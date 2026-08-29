@@ -13,7 +13,7 @@ export function SheetRoadmap() {
       />
 
       <div className="relative">
-        <span className="absolute top-3 bottom-3 left-[8px] w-px bg-gradient-to-b from-gold-500 via-ink-300 to-transparent" aria-hidden />
+        <span className="grad-timeline absolute top-3 bottom-3 left-[8px] w-px" aria-hidden />
         <div className="space-y-6">
           {phases.map((p, i) => (
             <Reveal key={p.phase} delay={i * 110}>

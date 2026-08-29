@@ -64,7 +64,7 @@ export function SheetEconomics() {
                   className="flex items-center justify-end bg-gold-300 pr-1.5"
                   style={{ width: mounted ? `${crossPct}%` : "0%", transition: "width 1.2s cubic-bezier(.22,.61,.36,1) .5s" }}
                 >
-                  <span className="whitespace-nowrap text-[10px] font-bold text-ink-900">+1 440</span>
+                  <span className="hidden whitespace-nowrap text-[10px] font-bold text-ink-900 sm:inline">+1 440</span>
                 </div>
               </div>
               <div className="mt-2 flex items-baseline justify-between">
@@ -89,7 +89,7 @@ export function SheetEconomics() {
             <div className="mt-7">
               <div className="relative h-3 w-full rounded-[3px] bg-paper-100/12">
                 <div
-                  className="absolute inset-y-0 left-0 rounded-[3px] bg-gradient-to-r from-moss-600 to-moss-500"
+                  className="grad-moss absolute inset-y-0 left-0 rounded-[3px]"
                   style={{ width: mounted ? `${cacPct}%` : "0%", transition: "width 1.3s cubic-bezier(.22,.61,.36,1) .3s" }}
                 />
                 <div className="absolute -top-1.5 -bottom-1.5 w-[2px] bg-gold-400" style={{ left: `${cacPct}%` }} />
@@ -282,7 +282,7 @@ export function SheetFunnel() {
               <div className="mt-1.5 flex items-center gap-3">
                 <div className="h-8 min-w-0 flex-1 overflow-hidden rounded-[3px] bg-ink-100/60 md:h-9">
                   <div
-                    className="relative h-full rounded-[3px] bg-gradient-to-r from-ink-800 to-ink-600"
+                    className="grad-ink relative h-full rounded-[3px]"
                     style={{
                       width: mounted ? `${s.width}%` : "0%",
                       transition: `width 1.15s cubic-bezier(.22,.61,.36,1) ${i * 130}ms`,
@@ -367,24 +367,26 @@ export function SheetRomi() {
       <Reveal>
         <div className="border border-ink-800/10 bg-white p-6 md:p-8">
           {sorted.map((c, i) => (
-            <div key={c.name} className="group grid items-center gap-x-5 gap-y-1 py-2.5 md:grid-cols-[230px_1fr_96px]">
-              <p className="truncate text-[13.5px] font-bold text-ink-800 group-hover:text-gold-700 transition-colors">
+            <div
+              key={c.name}
+              className="group grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1.5 py-2.5 md:grid-cols-[230px_1fr_96px] md:gap-y-1"
+            >
+              <p className="truncate text-[13px] font-bold text-ink-800 transition-colors group-hover:text-gold-700 md:text-[13.5px]">
                 {c.name}
               </p>
-              <div className="h-7 w-full overflow-hidden rounded-[3px] bg-ink-100/60">
+              <p className="text-right font-display text-[13px] font-bold text-ink-900 tabular-nums md:order-3 md:text-[14px]">
+                +{fmt(c.romi)}%
+              </p>
+              <div className="col-span-2 h-6 w-full overflow-hidden rounded-[3px] bg-ink-100/60 md:order-2 md:col-span-1 md:h-7">
                 <div
-                  className="flex h-full items-center rounded-[3px]"
+                  className="h-full rounded-[3px]"
                   style={{
                     width: `${(c.romi / max) * 100}%`,
                     backgroundColor: `rgba(212,175,55,${0.28 + 0.72 * (c.romi / max)})`,
                     transition: `width 1.15s cubic-bezier(.22,.61,.36,1) ${i * 90}ms`,
-                    opacity: 1,
                   }}
                 />
               </div>
-              <p className="text-right font-display text-[14px] font-bold text-ink-900 tabular-nums">
-                +{fmt(c.romi)}%
-              </p>
             </div>
           ))}
           <p className="mt-4 border-t border-ink-100 pt-4 text-[12.5px] text-ink-500">

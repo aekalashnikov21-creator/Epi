@@ -51,11 +51,11 @@ function DeckStat({
   const v = useCountUp(value, 1400);
   return (
     <div>
-      <p className="text-[10.5px] font-bold uppercase tracking-[0.18em] text-paper-100/50">{label}</p>
-      <p className="mt-1.5 font-display text-[21px] leading-none font-bold text-paper-50 tabular-nums md:text-[23px]">
+      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-paper-100/50 md:text-[10.5px] md:tracking-[0.18em]">{label}</p>
+      <p className="mt-1.5 font-display text-[17px] leading-tight font-bold text-paper-50 tabular-nums sm:text-[21px] md:text-[23px]">
         {prefix}
         {fmt(v)}
-        <span className="text-[13px] font-semibold text-gold-400">{suffix}</span>
+        <span className="text-[12px] font-semibold text-gold-400 md:text-[13px]">{suffix}</span>
       </p>
     </div>
   );
@@ -138,7 +138,7 @@ function Header() {
               </div>
               <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-100/10">
                 <div
-                  className="absolute inset-y-0 left-0 rounded-[2px] bg-gradient-to-r from-moss-600 to-moss-500"
+                  className="grad-moss absolute inset-y-0 left-0 rounded-[2px]"
                   style={{ width: mounted ? `${CAC_PLAN_PCT}%` : "0%", transition: "width 1.4s cubic-bezier(.22,.61,.36,1)" }}
                 />
                 <span
@@ -227,7 +227,7 @@ export default function App() {
 
       <div className="sticky top-0 z-40 border-b border-ink-800/15 bg-paper-200/95 shadow-[0_8px_24px_-18px_rgba(16,35,58,0.4)] backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <nav className="flex gap-1 overflow-x-auto pt-2" aria-label="Листы стратегии">
+          <nav className="no-scrollbar flex gap-1 overflow-x-auto pt-2" aria-label="Листы стратегии">
             {tabs.map((t, i) => {
               const Icon = t.icon;
               const active = tab === i;

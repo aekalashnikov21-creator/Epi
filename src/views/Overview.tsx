@@ -145,9 +145,7 @@ export function SheetDashboard() {
                   <div className="flex h-[150px] w-full max-w-[46px] items-end overflow-hidden rounded-[3px] bg-ink-100/70">
                     <div
                       className={`w-full rounded-[3px] ${
-                        i === growth.length - 1
-                          ? "bg-gradient-to-t from-gold-600 to-gold-400"
-                          : "bg-gradient-to-t from-ink-800 to-ink-600"
+                        i === growth.length - 1 ? "grad-gold-v" : "grad-ink-v"
                       }`}
                       style={{
                         height: mounted ? `${g.h}%` : "0%",
