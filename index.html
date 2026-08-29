@@ -40,6 +40,33 @@
         </p>
       </div>
     </noscript>
+    <script>
+      // Перехват ошибок ДО загрузки модуля приложения.
+      // Если модуль упадёт на импорте или среда его заблокирует —
+      // показываем причину вместо пустого экрана.
+      (function () {
+        var errors = [];
+        window.addEventListener("error", function (e) {
+          errors.push((e.message || "error") + " @" + (e.filename || "?") + ":" + (e.lineno || "?"));
+        });
+        window.addEventListener("unhandledrejection", function (e) {
+          errors.push(String(e.reason));
+        });
+        setTimeout(function () {
+          var root = document.getElementById("root");
+          if (!root) return;
+          if (!root.querySelector("[data-app-mounted]") && root.children.length === 0) {
+            root.innerHTML =
+              '<div style="max-width:640px;margin:10vh auto;padding:32px;font-family:\'Segoe UI\',system-ui,sans-serif;color:#10233a;border:1px solid #c64b3c;background:#fff">' +
+              '<p style="margin:0 0 10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a93b2e;font-size:13px">Не удалось запустить страницу</p>' +
+              '<p style="margin:0 0 12px;line-height:1.6;font-size:14px">Интерактивная стратегия Epilate-Me не запустилась. Обновите страницу или откройте файл в современном браузере.</p>' +
+              '<p style="margin:0;line-height:1.5;font-size:12px;color:#666;word-break:break-word">' +
+              (errors.length ? errors.join("; ").replace(/</g, "&lt;") : "Скрипт не был исполнен — среда может блокировать скрипты.") +
+              "</p></div>";
+          }
+        }, 5000);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
