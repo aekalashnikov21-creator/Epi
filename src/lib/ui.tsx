@@ -41,17 +41,28 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("rv-in");
+      return;
+    }
+    let io: IntersectionObserver | null = null;
+    const show = () => {
+      el.classList.add("rv-in");
+      io?.disconnect();
+    };
+    io = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          el.classList.add("rv-in");
-          io.disconnect();
-        }
+        if (entries[0]?.isIntersecting) show();
       },
-      { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -20px 0px" }
     );
     io.observe(el);
-    return () => io.disconnect();
+    // страховка: если среда не шлёт события IO — показываем принудительно
+    const t = window.setTimeout(show, 1600);
+    return () => {
+      io?.disconnect();
+      window.clearTimeout(t);
+    };
   }, []);
   return (
     <div ref={ref} className={`rv ${className}`} style={{ transitionDelay: `${delay}ms` }}>

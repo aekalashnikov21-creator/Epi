@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Component, useState, type ReactNode } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -184,6 +184,33 @@ function Ticker() {
   );
 }
 
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null };
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="grid min-h-screen place-items-center bg-paper-100 p-6 text-ink-900">
+          <div className="max-w-md border border-flame-500/40 bg-white p-8">
+            <p className="font-display text-[14px] font-bold text-flame-600 uppercase tracking-[0.18em]">
+              Ошибка отрисовки
+            </p>
+            <p className="mt-3 text-[13.5px] leading-relaxed text-ink-700">
+              Страница стратегии не смогла отобразиться. Попробуйте обновить браузер.
+            </p>
+            <p className="mt-3 break-words text-[11.5px] text-ink-500 tabular-nums">
+              {String(this.state.error)}
+            </p>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [tab, setTab] = useState(0);
 
@@ -193,6 +220,7 @@ export default function App() {
   };
 
   return (
+    <ErrorBoundary>
     <div className="min-h-screen">
       <Header />
       <Ticker />
@@ -267,5 +295,6 @@ export default function App() {
         </div>
       </footer>
     </div>
+    </ErrorBoundary>
   );
 }
