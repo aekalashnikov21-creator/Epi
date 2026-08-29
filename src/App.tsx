@@ -3,11 +3,14 @@ import {
   AlertTriangle,
   ArrowRight,
   BookOpen,
+  Download,
+  FileSpreadsheet,
   Filter,
   Flag,
   Gauge,
   Layers,
   LayoutGrid,
+  Loader2,
   MapPin,
   Megaphone,
   Percent,
@@ -15,6 +18,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { tickerItems, fmt } from "./data";
+import { downloadExcel } from "./excelExport";
 import { LogoMark, useCountUp, useMounted } from "./lib/ui";
 import { SheetCover, SheetDashboard } from "./views/Overview";
 import { SheetEconomics, SheetMedia, SheetFunnel, SheetRomi } from "./views/Finance";
@@ -63,6 +67,19 @@ function DeckStat({
 
 function Header({ tab }: { tab: number }) {
   const mounted = useMounted(450);
+  const [exporting, setExporting] = useState(false);
+  const onExport = async () => {
+    if (exporting) return;
+    setExporting(true);
+    try {
+      await downloadExcel();
+    } catch (e) {
+      console.error(e);
+      window.alert("Не удалось сформировать Excel-файл: " + String(e));
+    } finally {
+      setExporting(false);
+    }
+  };
   return (
     <header className="hero-bg relative overflow-hidden text-paper-100">
       <div className="bg-blueprint absolute inset-0" aria-hidden />
@@ -104,6 +121,15 @@ function Header({ tab }: { tab: number }) {
             <span className="border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[11.5px] font-semibold text-paper-100/80">
               Директ · авг 2026
             </span>
+            <button
+              onClick={onExport}
+              disabled={exporting}
+              className="press inline-flex items-center gap-2 rounded-full bg-paper-50 px-5 py-2 text-[12.5px] font-bold text-ink-900 shadow-[0_12px_26px_-14px_rgba(36,27,18,0.8)] transition-colors hover:bg-gold-100 disabled:cursor-wait disabled:opacity-75"
+              title="Сформировать книгу Excel со всеми 11 листами и фирменным оформлением"
+            >
+              {exporting ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />}
+              {exporting ? "Формируем файл…" : "Скачать .xlsx"}
+            </button>
           </div>
         </div>
 
@@ -317,8 +343,9 @@ export default function App() {
             <p className="flex flex-wrap items-center gap-2 font-display text-[12.5px] font-bold text-gold-400 tabular-nums">
               2 681 лид <ArrowRight size={13} /> 1 072 продажи <ArrowRight size={13} /> ROMI +241%
             </p>
-            <p className="mt-2 text-[11px] text-paper-100/40">
-              Epilate-Me_Стратегия_2026-2027.xlsx · интерактивная версия
+            <p className="mt-2 flex items-center gap-1.5 text-[11px] text-paper-100/40 md:justify-end">
+              <FileSpreadsheet size={12} className="text-gold-500/70" />
+              Epilate-Me_Стратегия_2026-2027.xlsx · кнопка «Скачать .xlsx» — в шапке
             </p>
           </div>
         </div>
