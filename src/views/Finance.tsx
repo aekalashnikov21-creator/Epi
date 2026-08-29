@@ -10,7 +10,7 @@ import {
   scenarios,
   fmt,
 } from "../data";
-import { Reveal, SectionHead, useCountUp, useMounted, Th, Td } from "../lib/ui";
+import { Reveal, SectionHead, ScrollHint, useCountUp, useMounted, Th, Td } from "../lib/ui";
 
 /* ================= ЛИСТ 3 · ЮНИТ-ЭКОНОМИКА ================= */
 export function SheetEconomics() {
@@ -133,6 +133,7 @@ export function SheetEconomics() {
               ))}
             </tbody>
           </table>
+          <ScrollHint />
         </div>
       </Reveal>
     </section>
@@ -233,6 +234,7 @@ export function SheetMedia() {
               </tr>
             </tbody>
           </table>
+          <ScrollHint text="12 метрик по 8 каналам — прокрутите таблицу вправо" />
         </div>
       </Reveal>
 
@@ -261,39 +263,37 @@ export function SheetFunnel() {
       <Reveal>
         <div className="border border-ink-800/10 bg-white p-6 md:p-8">
           {funnelStages.map((s, i) => (
-            <div key={s.stage}>
-              {s.conv && (
-                <div className="ml-[218px] hidden py-1.5 md:block">
-                  <span className="inline-flex items-center gap-1.5 rounded-[3px] border border-ink-300/60 bg-paper-200 px-2 py-0.5 text-[11px] font-bold text-ink-600 tabular-nums">
+            <div key={s.stage} className="py-2.5 first:pt-0 last:pb-0">
+              <div className="flex items-baseline justify-between gap-3">
+                <p className="text-[13.5px] font-bold text-ink-900 md:text-[14.5px]">
+                  {s.stage}
+                  <span className="ml-2 hidden font-normal text-ink-500 lg:inline">{s.note}</span>
+                </p>
+                {s.conv && (
+                  <span className="inline-flex shrink-0 items-center gap-1.5 rounded-[3px] border border-ink-300/60 bg-paper-200 px-2 py-0.5 text-[11px] font-bold text-ink-600 tabular-nums">
                     <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden>
                       <path d="M5 0v8M1.5 5L5 8.5 8.5 5" stroke="currentColor" strokeWidth="1.4" fill="none" />
                     </svg>
                     {s.conv}
                   </span>
-                </div>
-              )}
-              <div className="grid items-center gap-x-5 gap-y-1 md:grid-cols-[218px_1fr]">
-                <div className="md:text-right">
-                  <p className="text-[13.5px] font-bold text-ink-900">{s.stage}</p>
-                  <p className="text-[11.5px] text-ink-500">{s.note}</p>
-                </div>
-                <div className="flex items-center gap-3">
+                )}
+              </div>
+              <p className="mt-0.5 text-[11.5px] text-ink-500 lg:hidden">{s.note}</p>
+              <div className="mt-1.5 flex items-center gap-3">
+                <div className="h-8 min-w-0 flex-1 overflow-hidden rounded-[3px] bg-ink-100/60 md:h-9">
                   <div
-                    className="relative flex h-10 min-w-[86px] items-center overflow-hidden rounded-[3px] bg-gradient-to-r from-ink-800 to-ink-600"
+                    className="relative h-full rounded-[3px] bg-gradient-to-r from-ink-800 to-ink-600"
                     style={{
                       width: mounted ? `${s.width}%` : "0%",
                       transition: `width 1.15s cubic-bezier(.22,.61,.36,1) ${i * 130}ms`,
                     }}
                   >
                     <span className="absolute inset-y-0 left-0 w-[3px] bg-gold-500" />
-                    <span className="pl-3 font-display text-[13px] font-bold text-paper-50 tabular-nums">
-                      {fmt(s.value)}
-                    </span>
                   </div>
-                  {s.conv && (
-                    <span className="text-[11px] font-bold text-ink-500 tabular-nums md:hidden">↓ {s.conv}</span>
-                  )}
                 </div>
+                <p className="w-[70px] shrink-0 text-right font-display text-[14px] font-bold text-ink-900 tabular-nums md:w-24 md:text-[16px]">
+                  {fmt(s.value)}
+                </p>
               </div>
             </div>
           ))}

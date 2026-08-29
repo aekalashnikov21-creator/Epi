@@ -127,6 +127,25 @@ export function SectionHead({
   );
 }
 
+/* ---------- mobile scroll hint for wide tables ---------- */
+export function ScrollHint({ text = "Таблица шире экрана — прокрутите вправо" }: { text?: string }) {
+  return (
+    <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-ink-500 md:hidden">
+      <svg width="13" height="13" viewBox="0 0 13 13" aria-hidden>
+        <path
+          d="M2 6.5h8M7 3l3.5 3.5L7 10"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      {text}
+    </p>
+  );
+}
+
 /* ---------- pills ---------- */
 export function Pill({
   tone,

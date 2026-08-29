@@ -9,7 +9,7 @@ import {
   kpiControl,
   fmt,
 } from "../data";
-import { Reveal, SectionHead, Pill, useCountUp, useMounted, Th, Td } from "../lib/ui";
+import { Reveal, SectionHead, Pill, ScrollHint, useCountUp, useMounted, Th, Td } from "../lib/ui";
 
 /* ================= ЛИСТ 1 · ОБЛОЖКА ================= */
 export function SheetCover({ go }: { go: (tab: number) => void }) {
