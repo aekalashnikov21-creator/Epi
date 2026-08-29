@@ -35,7 +35,7 @@ const tabs = [
   { num: "11", label: "Приложение", icon: BookOpen },
 ];
 
-const CAC_PLAN_PCT = (2097 / 16000) * 100;
+const CAC_PLAN_PCT = (2639 / 16000) * 100;
 
 function DeckStat({
   label,
@@ -85,7 +85,7 @@ function Header() {
           <div className="flex flex-wrap items-center gap-2 sm:justify-end">
             <span className="flex items-center gap-1.5 border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[11.5px] font-semibold text-paper-100/80">
               <MapPin size={12} className="text-gold-400" />
-              9 филиалов · Москва
+              6 филиалов · Москва
             </span>
             <span className="border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[11.5px] font-semibold text-paper-100/80">
               Директ · авг 2026
@@ -100,14 +100,12 @@ function Header() {
               Действующий план · лазерная эпиляция и косметология
             </p>
             <h1 className="mt-5 font-display text-[30px] leading-[1.06] font-bold md:text-[44px] xl:text-[48px]">
-              <span className="text-paper-100/55 tabular-nums">1.5</span>
-              <ArrowRight size={30} className="mx-2 inline-block -translate-y-1 text-gold-500 md:mx-3 md:-translate-y-2" />
-              <span className="text-gold-400 tabular-nums">12</span>
-              <span className="mt-1 block text-paper-50">заявок в день за 12 месяцев</span>
+              <span className="text-gold-400 tabular-nums">120</span>
+              <span className="mt-1 block text-paper-50">лидов в день на всю сеть</span>
             </h1>
             <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-paper-100/70">
-              Фазовый разгон бюджета до 281 000 ₽/мес по 8 каналам, ставка на горячий Поиск, гео-Карты
-              и органику. Без РСЯ-слива, с закрытыми дырами в посадочных и экономикой, посчитанной до процедуры.
+              6 филиалов × 20 лидов в день. При конверсии в фактический приход 40% это 48 первичных
+              клиентов ежедневно — 3 600 лидов и 1 440 клиентов в месяц.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["Фокус: Поиск + Карты", "Мужской сегмент", "Membership 2 900 ₽/мес", "Органика до 35%"].map((c) => (
@@ -124,17 +122,17 @@ function Header() {
 
           <div className="border border-paper-100/12 bg-ink-900/75 p-6 md:p-7">
             <div className="grid grid-cols-2 gap-x-6 gap-y-6">
-              <DeckStat label="Бюджет · Фаза 3" value={281000} suffix=" ₽/мес" />
-              <DeckStat label="Заявки в месяц" value={266} />
-              <DeckStat label="Клиенты в месяц" value={134} />
-              <DeckStat label="ROMI по LTV" value={663} prefix="+" suffix="%" />
+              <DeckStat label="Бюджет" value={3800000} suffix=" ₽/мес" />
+              <DeckStat label="Лиды в месяц" value={3600} />
+              <DeckStat label="Клиенты в месяц" value={1440} />
+              <DeckStat label="ROMI по LTV" value={506} prefix="+" suffix="%" />
             </div>
             <div className="mt-7 border-t border-paper-100/10 pt-5">
               <div className="flex items-baseline justify-between">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-paper-100/50">
                   Запас прочности CAC
                 </p>
-                <p className="font-display text-[19px] font-bold text-gold-400 tabular-nums">×7.6</p>
+                <p className="font-display text-[19px] font-bold text-gold-400 tabular-nums">×6.1</p>
               </div>
               <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-100/10">
                 <div
@@ -147,7 +145,7 @@ function Header() {
                 />
               </div>
               <div className="mt-2 flex justify-between text-[11px] text-paper-100/55 tabular-nums">
-                <span className="font-semibold text-moss-500">план 2 097 ₽</span>
+                <span className="font-semibold text-moss-500">план 2 639 ₽</span>
                 <span>
                   безубыточность <b className="text-paper-50">16 000 ₽</b>
                 </span>
@@ -284,15 +282,14 @@ export default function App() {
             <div>
               <p className="font-display text-[13px] font-bold tracking-[0.08em] text-paper-50">EPILATE-ME</p>
               <p className="mt-1.5 max-w-md text-[12px] leading-relaxed text-paper-100/50">
-                Маркетинг-стратегия 2026–2027 · сеть клиник лазерной эпиляции и косметологии · Москва, 9 филиалов ·
-                подготовлено на основе данных Директа (август 2026) и семантического ядра
+                Маркетинг-стратегия 2026–2027 · сеть клиник лазерной эпиляции и косметологии · Москва, 6 филиалов ·
+                план: 120 лидов в день на сеть, конверсия в приход 40%
               </p>
             </div>
           </div>
           <div className="md:text-right">
             <p className="flex flex-wrap items-center gap-2 font-display text-[12.5px] font-bold text-gold-400 tabular-nums">
-              281 000 ₽ <ArrowRight size={13} /> 266 заявок <ArrowRight size={13} /> 134 клиента{" "}
-              <ArrowRight size={13} /> ROMI +663%
+              3 600 лидов <ArrowRight size={13} /> 1 440 клиентов <ArrowRight size={13} /> ROMI +506%
             </p>
             <p className="mt-2 text-[11px] text-paper-100/40">
               Epilate-Me_Стратегия_2026-2027.xlsx · интерактивная версия

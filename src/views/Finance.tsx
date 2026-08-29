@@ -15,10 +15,10 @@ import { Reveal, SectionHead, ScrollHint, useCountUp, useMounted, Th, Td } from 
 /* ================= ЛИСТ 3 · ЮНИТ-ЭКОНОМИКА ================= */
 export function SheetEconomics() {
   const mounted = useMounted(300);
-  const safety = useCountUp(7.6);
+  const safety = useCountUp(6.1);
   const coursePct = (14700 / 16000) * 100;
   const crossPct = (1440 / 16000) * 100;
-  const cacPct = (2097 / 16000) * 100;
+  const cacPct = (2639 / 16000) * 100;
 
   return (
     <section>
@@ -95,7 +95,7 @@ export function SheetEconomics() {
                 <div className="absolute -top-1.5 -bottom-1.5 w-[2px] bg-gold-400" style={{ left: `${cacPct}%` }} />
               </div>
               <div className="mt-2.5 flex items-start justify-between text-[11.5px] leading-tight">
-                <span className="text-moss-500 font-semibold">план ~2 097 ₽</span>
+                <span className="text-moss-500 font-semibold">план ~2 639 ₽</span>
                 <span className="text-right text-paper-100/65">
                   безубыточность
                   <br />
@@ -105,7 +105,7 @@ export function SheetEconomics() {
             </div>
 
             <ul className="mt-7 space-y-2.5 border-t border-paper-100/10 pt-5 text-[13px] text-paper-100/80">
-              <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />CR заявка → клиент — 50% (скрипты админов)</li>
+              <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />CR лид → фактический приход — 40% (скрипты админов)</li>
               <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />Выручка с клиента за курс — 24 500 ₽</li>
               <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />Предельный CAC = LTV-маржа клиента</li>
             </ul>
@@ -150,7 +150,7 @@ export function SheetMedia() {
       <SectionHead
         no="04"
         title="Медиаплан"
-        sub="Целевой месяц (Фаза 3) · 281 000 ₽/мес → 266 заявок → 134 клиента · ROMI(LTV) = (клиенты × 16 000 − бюджет) / бюджет"
+        sub="Целевой месяц · 3 800 000 ₽/мес → 3 600 лидов → 1 440 первичных клиентов · ROMI(LTV) = (клиенты × 16 000 − бюджет) / бюджет"
       />
 
       <Reveal>
@@ -257,7 +257,7 @@ export function SheetFunnel() {
       <SectionHead
         no="05"
         title="Полная маркетинговая воронка"
-        sub="Целевой месяц (Фаза 3) · путь от показа до LTV-процедур когорты из 134 клиентов"
+        sub="Целевой месяц · путь от показа до LTV-процедур когорты из 1 440 первичных клиентов"
       />
 
       <Reveal>
@@ -303,7 +303,7 @@ export function SheetFunnel() {
       <Reveal delay={120} className="mt-12">
         <p className="mb-4 flex items-center gap-2 font-display text-[12px] font-semibold tracking-[0.22em] text-ink-500 uppercase">
           <span className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
-          Экономика когорты · 134 клиента
+          Экономика когорты · 1 440 первичных клиентов
         </p>
       </Reveal>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -311,6 +311,33 @@ export function SheetFunnel() {
           <CohortCard key={c.label} c={c} delay={i * 90} dark={i === 3} />
         ))}
       </div>
+
+      <Reveal delay={160} className="mt-12">
+        <p className="mb-4 flex items-center gap-2 font-display text-[12px] font-semibold tracking-[0.22em] text-ink-500 uppercase">
+          <span className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
+          Экономика одного филиала · в месяц
+        </p>
+      </Reveal>
+      <Reveal delay={200}>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            { k: "Лидов в день", v: "20", f: "600 в месяц" },
+            { k: "Первичных клиентов", v: "240", f: "8/день · конверсия 40%" },
+            { k: "Выручка 1-го месяца", v: "1 260 000 ₽", f: "240 × 1.5 × 3 500" },
+            { k: "LTV-маржа · 12 мес", v: "3 840 000 ₽", f: "240 × 16 000" },
+          ].map((x) => (
+            <div key={x.k} className="row-hover border border-ink-800/10 bg-white p-5">
+              <p className="text-[11.5px] font-bold uppercase tracking-[0.12em] text-ink-500">{x.k}</p>
+              <p className="mt-2.5 font-display text-[21px] leading-none font-bold text-ink-900 tabular-nums">{x.v}</p>
+              <p className="mt-2.5 text-[12px] tabular-nums text-ink-500">{x.f}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-[12.5px] leading-relaxed text-ink-600">
+          Бюджет на филиал — ~633 000 ₽/мес (3 800 000 ₽ на сеть из 6 филиалов). ROMI 1-го месяца +19%, по LTV +507%.
+          Умножьте на 6 — и получите целевые 120 лидов и 48 первичных клиентов в день на всю сеть.
+        </p>
+      </Reveal>
     </section>
   );
 }
@@ -390,7 +417,7 @@ export function SheetRomi() {
             </div>
           ))}
           <p className="mt-4 border-t border-ink-100 pt-4 text-[12.5px] text-ink-500">
-            Даже худший канал (микро-блогеры, +140%) окупает бюджет по LTV более чем вдвое — при плановом CAC 2 097 ₽
+            Даже худший канал (микро-блогеры, +95%) почти удваивает бюджет по LTV — при плановом CAC 2 639 ₽
             против безубыточных 16 000 ₽.
           </p>
         </div>
@@ -424,15 +451,15 @@ export function SheetRomi() {
       <Reveal delay={100} className="mt-4">
         {active.id === "be" ? (
           <div className="grid items-center gap-6 border border-ink-800 bg-ink-900 p-6 text-paper-100 md:grid-cols-[auto_1fr] md:p-8">
-            <p className="font-display text-[54px] leading-none font-bold text-gold-400 tabular-nums">×7.6</p>
+            <p className="font-display text-[54px] leading-none font-bold text-gold-400 tabular-nums">×6.1</p>
             <div>
               <p className="font-display text-[13px] font-semibold tracking-[0.18em] text-paper-50 uppercase">
                 Точка безубыточности
               </p>
               <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-paper-100/80">
                 Безубыточный CAC = LTV-маржа = <b className="text-paper-50">16 000 ₽</b>. Плановый фактический CAC —{" "}
-                <b className="text-gold-400">2 097 ₽</b>. Стратегия остаётся безубыточной, даже если стоимость клиента
-                вырастет почти в 8 раз — запас на аукционный перегрев, сезонность и ошибки масштабирования.
+                <b className="text-gold-400">2 639 ₽</b>. Стратегия остаётся безубыточной, даже если стоимость клиента
+                вырастет в 6 раз — запас на аукционный перегрев, сезонность и ошибки масштабирования.
               </p>
             </div>
           </div>

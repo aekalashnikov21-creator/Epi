@@ -1,8 +1,8 @@
-import { ArrowRight, FileSpreadsheet } from "lucide-react";
+import { ArrowRight, FileSpreadsheet, MapPin } from "lucide-react";
 import {
   coverStats,
   goals,
-  keyDecisions,
+  branches,
   fileStructure,
   horizons,
   growth,
@@ -18,7 +18,7 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
       <SectionHead
         no="01"
         title="Стратегия в цифрах"
-        sub="Сеть клиник лазерной эпиляции и косметологии Epilate-Me · Москва, 9 филиалов · план подготовлен на основе данных Директа (август 2026) и семантического ядра"
+        sub="Epilate-Me · Москва, 6 филиалов · план: 120 лидов в день на сеть, конверсия в фактический приход 40%"
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -50,20 +50,41 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
         </Reveal>
 
         <Reveal className="lg:col-span-3" delay={200}>
-          <div className="h-full border border-ink-800/10 bg-ink-900 p-6 text-paper-100">
+          <div className="flex h-full flex-col border border-ink-800/10 bg-ink-900 p-6 text-paper-100">
             <p className="font-display text-[12px] font-semibold tracking-[0.22em] text-gold-400 uppercase">
-              Ключевые решения
+              Сеть · 6 филиалов в Москве
             </p>
-            <ol className="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2">
-              {keyDecisions.map((d, i) => (
-                <li key={d} className="flex gap-3.5 border-b border-paper-100/10 pb-4">
-                  <span className="font-display text-[13px] font-bold text-gold-500 tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
+            <ol className="mt-4 grid flex-1 gap-x-8 gap-y-3.5 sm:grid-cols-2">
+              {branches.map((b, i) => (
+                <li key={b.metro} className="flex gap-3.5 border-b border-paper-100/10 pb-3.5">
+                  <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center">
+                    <MapPin size={15} className="text-gold-500" />
                   </span>
-                  <span className="text-[14px] leading-snug text-paper-100/90">{d}</span>
+                  <span className="min-w-0">
+                    <span className="block font-display text-[12.5px] font-bold tracking-[0.06em] text-gold-300">
+                      {b.metro}
+                    </span>
+                    <span className="mt-0.5 block text-[12.5px] leading-snug text-paper-100/75">
+                      Москва, {b.address}
+                    </span>
+                  </span>
                 </li>
               ))}
             </ol>
+            <div className="mt-5 grid grid-cols-3 gap-3 border-t border-paper-100/10 pt-4 text-center">
+              <div>
+                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">20</p>
+                <p className="mt-0.5 text-[10.5px] leading-tight text-paper-100/55">лидов/день на филиал</p>
+              </div>
+              <div>
+                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">8</p>
+                <p className="mt-0.5 text-[10.5px] leading-tight text-paper-100/55">первичных клиентов/день</p>
+              </div>
+              <div>
+                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">40%</p>
+                <p className="mt-0.5 text-[10.5px] leading-tight text-paper-100/55">конверсия в приход</p>
+              </div>
+            </div>
           </div>
         </Reveal>
       </div>
@@ -125,15 +146,15 @@ export function SheetDashboard() {
     <section>
       <SectionHead
         no="02"
-        title="Дашборд собственника"
-        sub="Целевые показатели по горизонтам планирования и красные линии KPI, за которыми начинается немедленный разбор"
+        title="Дашборд"
+        sub="Целевые показатели и KPI"
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Reveal className="lg:col-span-1">
           <div className="flex h-full flex-col border border-ink-800/10 bg-white p-6">
             <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-ink-500">
-              Траектория · заявок / день
+              Траектория · лидов в день · сеть
             </p>
             <div className="mt-6 flex flex-1 items-end justify-between gap-3 px-1" style={{ minHeight: 190 }}>
               {growth.map((g, i) => (
