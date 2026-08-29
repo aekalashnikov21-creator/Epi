@@ -119,7 +119,7 @@ export function SectionHead({
         <span className="h-px flex-1 bg-ink-800/15" />
         <span className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
       </div>
-      <h2 className="mt-4 font-display text-[22px] font-bold leading-tight text-ink-900 md:text-[34px]">
+      <h2 className="mt-4 font-display text-[22px] font-semibold leading-tight text-ink-900 md:text-[34px]">
         {title}
       </h2>
       {sub && <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-600">{sub}</p>}
@@ -199,7 +199,7 @@ export function Td({
     <td
       className={`border border-ink-100 px-3 py-2.5 text-[13px] leading-snug tabular-nums ${
         align === "right" ? "text-right" : "text-left"
-      } ${bold ? "font-bold text-ink-900" : "text-ink-800"} ${className}`}
+      } ${bold ? "font-bold text-ink-900" : "text-ink-900"} ${className}`}
     >
       {children}
     </td>
@@ -210,11 +210,11 @@ export function Td({
 export function LogoMark({ size = 38 }: { size?: number }) {
   return (
     <span
-      className="grid shrink-0 place-items-center rounded-[8px] bg-ink-800 ring-1 ring-gold-500/50"
+      className="grid shrink-0 place-items-center rounded-[8px] bg-ink-800 ring-1 ring-paper-50/30"
       style={{ width: size, height: size }}
     >
       <svg viewBox="0 0 24 24" width={size * 0.62} height={size * 0.62} aria-hidden>
-        <path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#D4AF37" />
+        <path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#FDFBF7" />
       </svg>
     </span>
   );

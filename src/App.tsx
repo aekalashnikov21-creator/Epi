@@ -51,23 +51,37 @@ function DeckStat({
   const v = useCountUp(value, 1400);
   return (
     <div>
-      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-paper-100/50 md:text-[10.5px] md:tracking-[0.18em]">{label}</p>
-      <p className="mt-1.5 font-display text-[17px] leading-tight font-bold text-paper-50 tabular-nums sm:text-[21px] md:text-[23px]">
+      <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-ink-500 md:text-[10.5px] md:tracking-[0.18em]">{label}</p>
+      <p className="mt-1.5 font-display text-[17px] leading-tight font-bold text-ink-900 tabular-nums sm:text-[21px] md:text-[23px]">
         {prefix}
         {fmt(v)}
-        <span className="text-[12px] font-semibold text-gold-400 md:text-[13px]">{suffix}</span>
+        <span className="text-[12px] font-semibold text-gold-600 md:text-[13px]">{suffix}</span>
       </p>
     </div>
   );
 }
 
-function Header() {
+function Header({ tab }: { tab: number }) {
   const mounted = useMounted(450);
   return (
-    <header className="relative overflow-hidden bg-ink-950 text-paper-100">
+    <header className="hero-bg relative overflow-hidden text-paper-100">
       <div className="bg-blueprint absolute inset-0" aria-hidden />
       <div className="deck-glow absolute inset-0" aria-hidden />
       <div className="beam" aria-hidden />
+      {/* фирменные тонкие белые дуги */}
+      <svg
+        className="pointer-events-none absolute top-0 right-0 h-full w-[58%] opacity-35"
+        viewBox="0 0 600 600"
+        fill="none"
+        preserveAspectRatio="xMaxYMid slice"
+        aria-hidden
+      >
+        <path d="M0 190 C 200 140, 400 240, 600 170" stroke="#fff" strokeWidth="1" />
+        <path d="M0 300 C 220 250, 420 340, 600 280" stroke="#fff" strokeWidth="1" />
+        <path d="M0 410 C 200 370, 420 450, 600 395" stroke="#fff" strokeWidth="1" />
+        <circle cx="470" cy="150" r="130" stroke="#fff" strokeWidth="1" opacity="0.7" />
+        <circle cx="520" cy="420" r="80" stroke="#fff" strokeWidth="1" opacity="0.5" />
+      </svg>
 
       <div className="relative mx-auto max-w-7xl px-4 md:px-8">
         <div className="flex flex-col gap-3 border-b border-paper-100/10 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -77,7 +91,7 @@ function Header() {
               <p className="font-display text-[15px] leading-none font-bold tracking-[0.08em] text-paper-50">
                 EPILATE-ME
               </p>
-              <p className="mt-1 text-[10px] font-bold tracking-[0.32em] text-gold-400 uppercase">
+              <p className="mt-1 text-[10px] font-bold tracking-[0.32em] text-paper-50/85 uppercase">
                 Стратегия 2026–2027
               </p>
             </div>
@@ -95,13 +109,13 @@ function Header() {
 
         <div className="grid gap-10 py-10 md:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
-            <p className="flex items-center gap-3 text-[11px] font-bold tracking-[0.26em] text-gold-400 uppercase">
-              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-gold-500 text-gold-500" />
+            <p className="flex items-center gap-3 text-[11px] font-bold tracking-[0.26em] text-paper-50/85 uppercase">
+              <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-paper-50 text-paper-50" />
               Действующий план · лазерная эпиляция и косметология
             </p>
-            <h1 className="mt-5 font-display text-[30px] leading-[1.06] font-bold md:text-[44px] xl:text-[48px]">
-              <span className="text-gold-400 tabular-nums">120</span>
-              <span className="mt-1 block text-paper-50">лидов в день на всю сеть</span>
+            <h1 className="mt-5 font-display text-[32px] leading-[1.12] font-medium md:text-[52px] md:font-normal xl:text-[60px]">
+              <span className="tabular-nums">120</span> лидов в день
+              <span className="mt-1 block text-paper-50/90">на всю сеть из 6 филиалов</span>
             </h1>
             <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-paper-100/70">
               6 филиалов × 20 лидов в день. При конверсии в фактический приход 40% это 48 первичных
@@ -120,34 +134,46 @@ function Header() {
             </div>
           </div>
 
-          <div className="border border-paper-100/12 bg-ink-900/75 p-6 md:p-7">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-6">
+          <div className="border border-white/50 bg-paper-50/95 p-6 shadow-[0_24px_60px_-35px_rgba(36,27,18,0.55)] md:p-7">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-500">
+                Ключевые параметры плана
+              </p>
+              {/* фирменное кольцо пагинации */}
+              <span
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold-500 font-display text-[11.5px] font-semibold text-ink-900 tabular-nums"
+                title={`Раздел ${tab + 1} из 11`}
+              >
+                {`${String(tab + 1).padStart(2, "0")}/11`}
+              </span>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
               <DeckStat label="Бюджет" value={3800000} suffix=" ₽/мес" />
               <DeckStat label="Лиды в месяц" value={3600} />
               <DeckStat label="Клиенты в месяц" value={1440} />
               <DeckStat label="ROMI по LTV" value={506} prefix="+" suffix="%" />
             </div>
-            <div className="mt-7 border-t border-paper-100/10 pt-5">
+            <div className="mt-7 border-t border-ink-100 pt-5">
               <div className="flex items-baseline justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-paper-100/50">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-500">
                   Запас прочности CAC
                 </p>
-                <p className="font-display text-[19px] font-bold text-gold-400 tabular-nums">×6.1</p>
+                <p className="font-display text-[19px] font-bold text-gold-600 tabular-nums">×6.1</p>
               </div>
-              <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-100/10">
+              <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-200">
                 <div
                   className="grad-moss absolute inset-y-0 left-0 rounded-[2px]"
                   style={{ width: mounted ? `${CAC_PLAN_PCT}%` : "0%", transition: "width 1.4s cubic-bezier(.22,.61,.36,1)" }}
                 />
                 <span
-                  className="absolute -top-1 -bottom-1 w-[2px] bg-gold-400"
+                  className="absolute -top-1 -bottom-1 w-[2px] bg-gold-500"
                   style={{ left: `${CAC_PLAN_PCT}%` }}
                 />
               </div>
-              <div className="mt-2 flex justify-between text-[11px] text-paper-100/55 tabular-nums">
-                <span className="font-semibold text-moss-500">план 2 639 ₽</span>
+              <div className="mt-2 flex justify-between text-[11px] text-ink-500 tabular-nums">
+                <span className="font-semibold text-moss-600">план 2 639 ₽</span>
                 <span>
-                  безубыточность <b className="text-paper-50">16 000 ₽</b>
+                  безубыточность <b className="text-ink-900">16 000 ₽</b>
                 </span>
               </div>
             </div>
@@ -220,10 +246,10 @@ export default function App() {
   return (
     <ErrorBoundary>
     <div className="min-h-screen">
-      <Header />
+      <Header tab={tab} />
       <Ticker />
 
-      <div className="sticky top-0 z-40 border-b border-ink-800/15 bg-paper-200/95 shadow-[0_8px_24px_-18px_rgba(16,35,58,0.4)] backdrop-blur-sm">
+      <div className="sticky top-0 z-40 border-b border-ink-800/15 bg-paper-200/95 shadow-[0_8px_24px_-18px_rgba(110,83,52,0.45)] backdrop-blur-sm">
         <div className="relative mx-auto max-w-7xl px-4 md:px-8">
           <nav className="no-scrollbar flex gap-1 overflow-x-auto pt-2" aria-label="Листы стратегии">
             {tabs.map((t, i) => {
@@ -235,15 +261,15 @@ export default function App() {
                   onClick={() => go(i)}
                   className={`press sheet-tab flex shrink-0 items-center gap-2 px-3.5 pb-2.5 pt-2 text-[12.5px] font-bold whitespace-nowrap transition-colors duration-200 md:px-4 ${
                     active
-                      ? "bg-gold-500 text-ink-950"
-                      : "text-ink-600 hover:bg-white/70 active:bg-white/80 hover:text-ink-900"
+                      ? "bg-white text-ink-900 shadow-[0_6px_18px_-10px_rgba(110,83,52,0.5)]"
+                      : "text-ink-700 hover:bg-white/70 active:bg-white/80 hover:text-ink-900"
                   }`}
                 >
-                  <Icon size={13} className={active ? "text-ink-900" : "text-ink-400"} />
+                  <Icon size={13} className={active ? "text-gold-600" : "text-ink-400"} />
                   {t.label}
                   <span
                     className={`hidden text-[10px] tabular-nums min-[420px]:inline ${
-                      active ? "text-ink-900/60" : "text-ink-400"
+                      active ? "text-gold-600" : "text-ink-400"
                     }`}
                   >
                     {t.num}

@@ -150,7 +150,7 @@ export const mediaTotal: MediaChannel = {
   name: "ИТОГО", budget: 3800000, impressions: 6598000, ctr: "0.82%", clicks: 54441, cpc: 69.8, cr: "6.6%", leads: 3600, cpa: 1056, clients: 1440, cac: 2639, romi: 506,
 };
 
-export const channelColors = ["#D4AF37", "#2A5178", "#EBD488", "#7FA0C2", "#3F7D5C", "#B08F26", "#5580AB", "#A8BFD8"];
+export const channelColors = ["#B0844F", "#6E5334", "#D9BE97", "#A17E52", "#6F7F58", "#8A6A42", "#C4B49C", "#E0CFB2"];
 
 /* ---------- воронка ---------- */
 export const funnelStages = [

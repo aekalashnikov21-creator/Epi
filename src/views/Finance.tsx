@@ -409,7 +409,7 @@ export function SheetRomi() {
                   className="h-full rounded-[3px]"
                   style={{
                     width: `${(c.romi / max) * 100}%`,
-                    backgroundColor: `rgba(212,175,55,${0.28 + 0.72 * (c.romi / max)})`,
+                    backgroundColor: `rgba(176,132,79,${0.28 + 0.72 * (c.romi / max)})`,
                     transition: `width 1.15s cubic-bezier(.22,.61,.36,1) ${i * 90}ms`,
                   }}
                 />

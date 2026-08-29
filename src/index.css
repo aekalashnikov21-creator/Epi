@@ -1,43 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Unbounded", "Golos Text", system-ui, sans-serif;
-  --font-body: "Golos Text", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Onest", "Golos Text", system-ui, sans-serif;
+  --font-body: "Golos Text", "Onest", "Segoe UI", system-ui, sans-serif;
 
-  --color-ink-950: #0a1626;
-  --color-ink-900: #10233a;
-  --color-ink-850: #152c47;
-  --color-ink-800: #1b3a5c;
-  --color-ink-700: #2a5178;
-  --color-ink-600: #3a6693;
-  --color-ink-500: #5580ab;
-  --color-ink-400: #7fa0c2;
-  --color-ink-300: #a8bfd8;
-  --color-ink-200: #c3d4e6;
-  --color-ink-100: #dce7f2;
+  /* Ink — тёплый графит + глубокая бронза (тёмные поверхности, таблицы, текст) */
+  --color-ink-950: #241b12;
+  --color-ink-900: #1e2430;
+  --color-ink-850: #4a3b28;
+  --color-ink-800: #6e5334;
+  --color-ink-700: #8a6a42;
+  --color-ink-600: #a17e52;
+  --color-ink-500: #8c7b62;
+  --color-ink-400: #a99880;
+  --color-ink-300: #c4b49c;
+  --color-ink-200: #d8ccb8;
+  --color-ink-100: #e6dcc9;
 
-  --color-paper-50: #f8fbfe;
-  --color-paper-100: #f1f5fa;
-  --color-paper-200: #e9f0f7;
-  --color-paper-300: #dde7f1;
+  /* Paper — тёплая светлая гамма */
+  --color-paper-50: #fdfbf7;
+  --color-paper-100: #f8f2e8;
+  --color-paper-200: #f3ead9;
+  --color-paper-300: #ede2cd;
 
-  --color-gold-100: #f9f0cd;
-  --color-gold-200: #f3e4ac;
-  --color-gold-300: #ebd488;
-  --color-gold-400: #e0c158;
-  --color-gold-500: #d4af37;
-  --color-gold-600: #b08f26;
-  --color-gold-700: #8a6f1e;
+  /* Bronze — акцент бренда */
+  --color-gold-100: #f6eddd;
+  --color-gold-200: #efe0c6;
+  --color-gold-300: #d9be97;
+  --color-gold-400: #c09259;
+  --color-gold-500: #b0844f;
+  --color-gold-600: #8a6a42;
+  --color-gold-700: #6e5334;
 
-  --color-flame-100: #f7e2de;
-  --color-flame-500: #c64b3c;
-  --color-flame-600: #a93b2e;
-  --color-flame-700: #8c2f24;
+  /* Flame — красные линии (тёплый красный) */
+  --color-flame-100: #f6e3de;
+  --color-flame-500: #b3543f;
+  --color-flame-600: #9a4432;
+  --color-flame-700: #7e3628;
 
-  --color-moss-100: #dfeee6;
-  --color-moss-500: #3f7d5c;
-  --color-moss-600: #2f6247;
-  --color-moss-700: #244e38;
+  /* Moss — шалфей для целевых значений */
+  --color-moss-100: #eaeedf;
+  --color-moss-500: #6f7f58;
+  --color-moss-600: #5a6947;
+  --color-moss-700: #47543a;
 }
 
 html {
@@ -54,7 +59,7 @@ body {
 
 ::selection {
   background: var(--color-gold-500);
-  color: var(--color-ink-950);
+  color: var(--color-paper-50);
 }
 
 ::-webkit-scrollbar {
@@ -73,23 +78,27 @@ body {
   background: var(--color-gold-500);
 }
 
-/* ---------- ambient layers ---------- */
+/* ---------- фирменный герой: карамельный градиент ---------- */
+.hero-bg {
+  background: linear-gradient(115deg, #a5825a 0%, #b0844f 35%, #c4a173 70%, #d6bc93 100%);
+}
+
 .bg-blueprint {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 42px 42px;
 }
 
 .bg-papergrid {
-  background-image: linear-gradient(rgba(27, 58, 92, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 58, 92, 0.045) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(176, 132, 79, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(176, 132, 79, 0.07) 1px, transparent 1px);
   background-size: 42px 42px;
 }
 
 .deck-glow {
   background:
-    radial-gradient(58rem 30rem at 82% -10%, rgba(212, 175, 55, 0.14), transparent 60%),
-    radial-gradient(40rem 26rem at -8% 110%, rgba(58, 102, 147, 0.35), transparent 62%);
+    radial-gradient(58rem 30rem at 82% -10%, rgba(255, 255, 255, 0.22), transparent 60%),
+    radial-gradient(40rem 26rem at -8% 110%, rgba(110, 83, 52, 0.4), transparent 62%);
 }
 
 .beam {
@@ -98,7 +107,7 @@ body {
   bottom: -20%;
   width: 34%;
   pointer-events: none;
-  background: linear-gradient(100deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.12), transparent);
   animation: beam 8.5s ease-in-out infinite;
 }
 
@@ -183,10 +192,10 @@ body {
 }
 .row-hover:hover {
   background-color: #ffffff;
-  box-shadow: 0 6px 24px -12px rgba(16, 35, 58, 0.25);
+  box-shadow: 0 6px 24px -12px rgba(110, 83, 52, 0.35);
 }
 
-/* тактильный отклик на нажатие (тач-устройства) */
+/* ---------- press feedback ---------- */
 .press {
   transition:
     transform 0.15s ease,
@@ -199,34 +208,35 @@ body {
   transform: scale(0.965);
 }
 
-/* затухание у правого края скроллящейся ленты вкладок */
+/* ---------- gradient fade at tab edge ---------- */
 .grad-fade-l {
-  background-image: linear-gradient(270deg, #e9f0f7 25%, rgba(233, 240, 247, 0));
+  background-image: linear-gradient(270deg, var(--color-paper-200) 25%, transparent);
 }
 
-/* ---------- кроссбраузерные градиенты (без oklab-интерполяции Tailwind) ---------- */
+/* ---------- plain gradients (hex only — старый Safari) ---------- */
 .grad-ink {
-  background-image: linear-gradient(90deg, #1b3a5c, #3a6693);
+  background-image: linear-gradient(90deg, #6e5334, #b0844f);
 }
 .grad-ink-v {
-  background-image: linear-gradient(0deg, #1b3a5c, #3a6693);
+  background-image: linear-gradient(#a17e52, #6e5334);
 }
 .grad-gold-v {
-  background-image: linear-gradient(0deg, #b08f26, #e0c158);
+  background-image: linear-gradient(#d9be97, #b0844f);
 }
 .grad-moss {
-  background-image: linear-gradient(90deg, #2f6247, #3f7d5c);
+  background-image: linear-gradient(90deg, #5a6947, #6f7f58);
 }
 .grad-timeline {
-  background-image: linear-gradient(180deg, #d4af37, #a8bfd8, rgba(168, 191, 216, 0));
+  background-image: linear-gradient(#b0844f, #d8ccb8, transparent);
 }
 
-/* ---------- touch & mobile ---------- */
+/* ---------- touch / mobile ---------- */
 body {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .no-scrollbar {
@@ -234,16 +244,15 @@ body {
   -ms-overflow-style: none;
 }
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
   width: 0;
   height: 0;
+  display: none;
 }
 
 .overflow-x-auto {
   -webkit-overflow-scrolling: touch;
 }
 
-/* ---------- экономим батарею и слои на мобильных ---------- */
 @media (max-width: 767px) {
   .beam {
     display: none;
@@ -253,7 +262,7 @@ body {
   }
 }
 
-/* ---------- уважение к prefers-reduced-motion ---------- */
+/* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -267,7 +276,7 @@ body {
   }
   .rv {
     opacity: 1;
-    transform: none;
     transition: none;
+    transform: none;
   }
 }
