@@ -70,7 +70,7 @@ function Header() {
       <div className="beam" aria-hidden />
 
       <div className="relative mx-auto max-w-7xl px-4 md:px-8">
-        <div className="flex items-center justify-between gap-4 border-b border-paper-100/10 py-5">
+        <div className="flex flex-col gap-3 border-b border-paper-100/10 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <div className="flex items-center gap-3">
             <LogoMark size={40} />
             <div>
@@ -82,7 +82,7 @@ function Header() {
               </p>
             </div>
           </div>
-          <div className="hidden items-center gap-2 sm:flex">
+          <div className="flex flex-wrap items-center gap-2 sm:justify-end">
             <span className="flex items-center gap-1.5 border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[11.5px] font-semibold text-paper-100/80">
               <MapPin size={12} className="text-gold-400" />
               9 филиалов · Москва
@@ -226,7 +226,7 @@ export default function App() {
       <Ticker />
 
       <div className="sticky top-0 z-40 border-b border-ink-800/15 bg-paper-200/95 shadow-[0_8px_24px_-18px_rgba(16,35,58,0.4)] backdrop-blur-sm">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 md:px-8">
           <nav className="no-scrollbar flex gap-1 overflow-x-auto pt-2" aria-label="Листы стратегии">
             {tabs.map((t, i) => {
               const Icon = t.icon;
@@ -235,21 +235,27 @@ export default function App() {
                 <button
                   key={t.num}
                   onClick={() => go(i)}
-                  className={`sheet-tab flex shrink-0 items-center gap-2 px-3.5 pb-2.5 pt-2 text-[12.5px] font-bold whitespace-nowrap transition-colors duration-200 md:px-4 ${
+                  className={`press sheet-tab flex shrink-0 items-center gap-2 px-3.5 pb-2.5 pt-2 text-[12.5px] font-bold whitespace-nowrap transition-colors duration-200 md:px-4 ${
                     active
                       ? "bg-gold-500 text-ink-950"
-                      : "text-ink-600 hover:bg-white/70 hover:text-ink-900"
+                      : "text-ink-600 hover:bg-white/70 active:bg-white/80 hover:text-ink-900"
                   }`}
                 >
                   <Icon size={13} className={active ? "text-ink-900" : "text-ink-400"} />
                   {t.label}
-                  <span className={`text-[10px] tabular-nums ${active ? "text-ink-900/60" : "text-ink-400"}`}>
+                  <span
+                    className={`hidden text-[10px] tabular-nums min-[420px]:inline ${
+                      active ? "text-ink-900/60" : "text-ink-400"
+                    }`}
+                  >
                     {t.num}
                   </span>
                 </button>
               );
             })}
           </nav>
+          {/* подсказка: справа есть ещё вкладки */}
+          <span className="grad-fade-l pointer-events-none absolute inset-y-0 right-0 hidden w-10 max-[900px]:block" aria-hidden />
         </div>
       </div>
 

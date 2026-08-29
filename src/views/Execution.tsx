@@ -86,7 +86,7 @@ export function SheetAppendix() {
                 <p className="font-display text-[14px] font-bold text-ink-900">{g.group}</p>
                 <button
                   onClick={() => copy(i, g.words)}
-                  className={`inline-flex items-center gap-1.5 rounded-[3px] border px-3 py-1.5 text-[12px] font-bold transition-all duration-200 ${
+                  className={`press inline-flex items-center gap-1.5 rounded-[3px] border px-3 py-1.5 text-[12px] font-bold transition-all duration-200 ${
                     copied === i
                       ? "border-moss-500 bg-moss-500 text-paper-50"
                       : "border-ink-300/70 bg-paper-100 text-ink-700 hover:border-gold-500 hover:bg-gold-100/60 hover:text-gold-700"

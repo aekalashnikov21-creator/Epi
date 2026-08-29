@@ -186,6 +186,24 @@ body {
   box-shadow: 0 6px 24px -12px rgba(16, 35, 58, 0.25);
 }
 
+/* тактильный отклик на нажатие (тач-устройства) */
+.press {
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.press:active {
+  transform: scale(0.965);
+}
+
+/* затухание у правого края скроллящейся ленты вкладок */
+.grad-fade-l {
+  background-image: linear-gradient(270deg, #e9f0f7 25%, rgba(233, 240, 247, 0));
+}
+
 /* ---------- кроссбраузерные градиенты (без oklab-интерполяции Tailwind) ---------- */
 .grad-ink {
   background-image: linear-gradient(90deg, #1b3a5c, #3a6693);

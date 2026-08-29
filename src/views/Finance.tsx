@@ -407,7 +407,7 @@ export function SheetRomi() {
           <button
             key={s.id}
             onClick={() => setSc(s.id)}
-            className={`rounded-[3px] border px-4 py-2 text-[13px] font-bold transition-all duration-200 ${
+            className={`press rounded-[3px] border px-4 py-2 text-[13px] font-bold transition-all duration-200 ${
               sc === s.id
                 ? "border-ink-800 bg-ink-800 text-paper-50 shadow-md"
                 : "border-ink-300/70 bg-white text-ink-700 hover:border-gold-500 hover:text-gold-700"

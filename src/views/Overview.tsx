@@ -79,13 +79,16 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
           <Reveal key={f.sheet} delay={i * 45}>
             <button
               onClick={() => go(f.tab)}
-              className="group grid w-full grid-cols-[44px_1fr_auto] items-center gap-4 border-b border-ink-100 px-4 py-3.5 text-left transition-colors last:border-b-0 hover:bg-gold-100/40 md:grid-cols-[56px_240px_1fr_auto] md:px-6"
+              className="press group grid w-full grid-cols-[44px_1fr_auto] items-center gap-x-4 gap-y-1 border-b border-ink-100 px-4 py-3.5 text-left transition-colors last:border-b-0 hover:bg-gold-100/40 active:bg-gold-100/60 md:grid-cols-[56px_240px_1fr_auto] md:gap-x-4 md:gap-y-0 md:px-6"
             >
               <span className="font-display text-[13px] font-bold text-ink-300 tabular-nums transition-colors group-hover:text-gold-600">
                 {String(f.tab + 1).padStart(2, "0")}
               </span>
-              <span className="text-[14.5px] font-bold text-ink-900">{f.sheet}</span>
-              <span className="col-span-1 hidden text-[13px] text-ink-600 md:block">{f.content}</span>
+              <span className="min-w-0">
+                <span className="block text-[14.5px] font-bold text-ink-900">{f.sheet}</span>
+                <span className="mt-0.5 block text-[12px] leading-snug text-ink-500 md:hidden">{f.content}</span>
+              </span>
+              <span className="hidden text-[13px] text-ink-600 md:block">{f.content}</span>
               <ArrowRight
                 size={17}
                 className="text-ink-300 transition-all duration-300 group-hover:translate-x-1.5 group-hover:text-gold-600"
