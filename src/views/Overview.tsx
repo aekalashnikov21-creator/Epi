@@ -18,7 +18,7 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
       <SectionHead
         no="01"
         title="Стратегия в цифрах"
-        sub="Epilate-Me · Москва, 6 филиалов · план: 120 лидов в день на сеть, конверсия в фактический приход 40%"
+        sub="Epilate-Me · Москва, 6 филиалов · план: 89 лидов в день на сеть, конверсия в фактический приход 40%"
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -73,12 +73,12 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
             </ol>
             <div className="mt-5 grid grid-cols-3 gap-3 border-t border-paper-100/10 pt-4 text-center">
               <div>
-                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">20</p>
+                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">15</p>
                 <p className="mt-0.5 text-[10.5px] leading-tight text-paper-100/55">лидов/день на филиал</p>
               </div>
               <div>
-                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">8</p>
-                <p className="mt-0.5 text-[10.5px] leading-tight text-paper-100/55">первичных клиентов/день</p>
+                <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">6</p>
+                <p className="mt-0.5 text-[10.5px] leading-tight text-paper-100/55">продаж/день</p>
               </div>
               <div>
                 <p className="font-display text-[18px] font-bold text-gold-400 tabular-nums">40%</p>

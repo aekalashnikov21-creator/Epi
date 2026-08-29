@@ -15,10 +15,10 @@ import { Reveal, SectionHead, ScrollHint, useCountUp, useMounted, Th, Td } from 
 /* ================= ЛИСТ 3 · ЮНИТ-ЭКОНОМИКА ================= */
 export function SheetEconomics() {
   const mounted = useMounted(300);
-  const safety = useCountUp(6.1);
+  const safety = useCountUp(15.6);
   const coursePct = (14700 / 16000) * 100;
   const crossPct = (1440 / 16000) * 100;
-  const cacPct = (2639 / 16000) * 100;
+  const cacPct = (1026 / 16000) * 100;
 
   return (
     <section>
@@ -95,7 +95,7 @@ export function SheetEconomics() {
                 <div className="absolute -top-1.5 -bottom-1.5 w-[2px] bg-gold-400" style={{ left: `${cacPct}%` }} />
               </div>
               <div className="mt-2.5 flex items-start justify-between text-[11.5px] leading-tight">
-                <span className="text-moss-500 font-semibold">план ~2 639 ₽</span>
+                <span className="text-moss-500 font-semibold">план ~1 026 ₽</span>
                 <span className="text-right text-paper-100/65">
                   безубыточность
                   <br />
@@ -150,7 +150,7 @@ export function SheetMedia() {
       <SectionHead
         no="04"
         title="Медиаплан"
-        sub="Целевой месяц · 3 800 000 ₽/мес → 3 600 лидов → 1 440 первичных клиентов · ROMI(LTV) = (клиенты × 16 000 − бюджет) / бюджет"
+        sub="Целевой месяц · 1 100 000 ₽/мес → 2 681 лид → 1 072 продажи (конверсия в приход 40%) · ROMI = (выручка − бюджет) / бюджет"
       />
 
       <Reveal>
@@ -159,7 +159,7 @@ export function SheetMedia() {
             Распределение бюджета по каналам
           </p>
           <div className="mt-4 flex h-6 w-full overflow-hidden rounded-[3px] bg-ink-100/70">
-            {mediaChannels.map((c, i) => (
+            {mediaChannels.filter((c) => c.budget > 0).map((c, i) => (
               <div
                 key={c.name}
                 title={`${c.name} — ${fmt(c.budget)} ₽`}
@@ -168,13 +168,13 @@ export function SheetMedia() {
               />
             ))}
           </div>
-          <div className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-5 grid gap-x-6 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {mediaChannels.map((c, i) => (
               <div key={c.name} className="flex items-center gap-2.5 text-[12.5px]">
-                <span className="h-2.5 w-2.5 shrink-0 rounded-[2px]" style={{ backgroundColor: channelColors[i] }} />
+                <span className="h-2.5 w-2.5 shrink-0 rounded-[2px]" style={{ backgroundColor: c.organic ? "transparent" : channelColors[i], border: c.organic ? "1px dashed #8A6A42" : "none" }} />
                 <span className="truncate font-semibold text-ink-800">{c.name}</span>
                 <span className="ml-auto whitespace-nowrap text-ink-500 tabular-nums">
-                  {fmt(c.budget)} ₽ · {((c.budget / mediaTotal.budget) * 100).toFixed(0)}%
+                  {c.organic ? "0 ₽ · органика" : `${fmt(c.budget)} ₽ · ${((c.budget / mediaTotal.budget) * 100).toFixed(0)}%`}
                 </span>
               </div>
             ))}
@@ -184,21 +184,19 @@ export function SheetMedia() {
 
       <Reveal delay={120} className="mt-4">
         <div className="overflow-x-auto border border-ink-800/10 bg-white p-2 md:p-3">
-          <table className="w-full min-w-[1080px] border-collapse">
+          <table className="w-full min-w-[980px] border-collapse">
             <thead>
               <tr>
                 <Th>Канал</Th>
                 <Th align="right">Бюджет, ₽</Th>
-                <Th align="right">Показы</Th>
-                <Th align="right">CTR</Th>
                 <Th align="right">Клики</Th>
                 <Th align="right">CPC, ₽</Th>
-                <Th align="right">CR</Th>
-                <Th align="right">Заявки</Th>
-                <Th align="right">CPA, ₽</Th>
-                <Th align="right">Клиенты</Th>
-                <Th align="right">CAC, ₽</Th>
-                <Th align="right">ROMI (LTV)</Th>
+                <Th align="right">CV клик→лид</Th>
+                <Th align="right">Лиды</Th>
+                <Th align="right">CPL, ₽</Th>
+                <Th align="right">Продажи (40%)</Th>
+                <Th align="right">Выручка, ₽</Th>
+                <Th align="right">ROMI</Th>
               </tr>
             </thead>
             <tbody>
@@ -206,43 +204,41 @@ export function SheetMedia() {
                 <tr key={c.name} className={`transition-colors hover:bg-gold-100/40 ${i % 2 ? "bg-paper-200/60" : "bg-white"}`}>
                   <Td bold>{c.name}</Td>
                   <Td align="right">{fmt(c.budget)}</Td>
-                  <Td align="right">{fmt(c.impressions)}</Td>
-                  <Td align="right">{c.ctr}</Td>
                   <Td align="right">{fmt(c.clicks)}</Td>
-                  <Td align="right">{fmt(c.cpc, 1)}</Td>
-                  <Td align="right">{c.cr}</Td>
-                  <Td align="right" bold>{c.leads}</Td>
-                  <Td align="right">{fmt(c.cpa)}</Td>
-                  <Td align="right" bold>{c.clients}</Td>
-                  <Td align="right">{fmt(c.cac)}</Td>
-                  <Td align="right" className={romiTone(c.romi)}>+{fmt(c.romi)}%</Td>
+                  <Td align="right">{fmt(c.cpc)}</Td>
+                  <Td align="right">{c.cv}</Td>
+                  <Td align="right" bold>{fmt(c.leads)}</Td>
+                  <Td align="right">{c.organic ? "0" : fmt(c.cpl)}</Td>
+                  <Td align="right" bold>{fmt(c.sales)}</Td>
+                  <Td align="right">{fmt(c.revenue)}</Td>
+                  <Td align="right" className={c.organic ? "italic text-ink-500" : romiTone(c.romi)}>
+                    {c.organic ? "органика" : `+${fmt(c.romi)}%`}
+                  </Td>
                 </tr>
               ))}
               <tr className="bg-ink-800">
                 <Td bold className="border-ink-700 bg-ink-800 text-paper-50">ИТОГО</Td>
                 <Td align="right" bold className="border-ink-700 bg-ink-800 text-paper-50">{fmt(mediaTotal.budget)}</Td>
-                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{fmt(mediaTotal.impressions)}</Td>
-                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{mediaTotal.ctr}</Td>
                 <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{fmt(mediaTotal.clicks)}</Td>
-                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{fmt(mediaTotal.cpc, 1)}</Td>
-                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{mediaTotal.cr}</Td>
-                <Td align="right" bold className="border-ink-700 bg-ink-800 text-paper-50">{mediaTotal.leads}</Td>
-                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{fmt(mediaTotal.cpa)}</Td>
-                <Td align="right" bold className="border-ink-700 bg-ink-800 text-paper-50">{mediaTotal.clients}</Td>
-                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{fmt(mediaTotal.cac)}</Td>
+                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{mediaTotal.cpc}</Td>
+                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{mediaTotal.cv}</Td>
+                <Td align="right" bold className="border-ink-700 bg-ink-800 text-paper-50">{fmt(mediaTotal.leads)}</Td>
+                <Td align="right" className="border-ink-700 bg-ink-800 text-paper-100">{mediaTotal.cpl}</Td>
+                <Td align="right" bold className="border-ink-700 bg-ink-800 text-paper-50">{fmt(mediaTotal.sales)}</Td>
+                <Td align="right" bold className="border-ink-700 bg-ink-800 text-paper-50">{fmt(mediaTotal.revenue)}</Td>
                 <Td align="right" bold className="border-ink-700 bg-gold-500 text-ink-950">+{fmt(mediaTotal.romi)}%</Td>
               </tr>
             </tbody>
           </table>
-          <ScrollHint text="12 метрик по 8 каналам — прокрутите таблицу вправо" />
+          <ScrollHint text="10 метрик по 14 каналам — прокрутите таблицу вправо" />
         </div>
       </Reveal>
 
       <Reveal delay={180}>
         <p className="mt-4 flex items-start gap-2.5 text-[13px] leading-relaxed text-ink-600">
           <TrendingUp size={16} className="mt-0.5 shrink-0 text-gold-600" />
-          ROMI(LTV) = (клиенты × 16 000 ₽ − бюджет) / бюджет. Органика (SMM / SEO) начинает давать заявки с 4–6 месяца —
-          до этого её стоимость «амортизируется» платными каналами.
+          ROMI = (выручка − бюджет) / бюджет, выручка = продажи × 3 500 ₽. Google Maps работает без бюджета — 38 лидов в
+          месяц даёт заполненный профиль с отзывами. Лучшие CPL: Авито 125 ₽, Яндекс Карты 189 ₽, партнёрки банков 200 ₽.
         </p>
       </Reveal>
     </section>
@@ -257,7 +253,7 @@ export function SheetFunnel() {
       <SectionHead
         no="05"
         title="Полная маркетинговая воронка"
-        sub="Целевой месяц · путь от показа до LTV-процедур когорты из 1 440 первичных клиентов"
+        sub="Целевой месяц · путь от клика до LTV-процедур когорты из 1 072 первичных клиентов"
       />
 
       <Reveal>
@@ -303,7 +299,7 @@ export function SheetFunnel() {
       <Reveal delay={120} className="mt-12">
         <p className="mb-4 flex items-center gap-2 font-display text-[12px] font-semibold tracking-[0.22em] text-ink-500 uppercase">
           <span className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
-          Экономика когорты · 1 440 первичных клиентов
+          Экономика когорты · 1 072 первичных клиентов
         </p>
       </Reveal>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -321,10 +317,10 @@ export function SheetFunnel() {
       <Reveal delay={200}>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { k: "Лидов в день", v: "20", f: "600 в месяц" },
-            { k: "Первичных клиентов", v: "240", f: "8/день · конверсия 40%" },
-            { k: "Выручка 1-го месяца", v: "1 260 000 ₽", f: "240 × 1.5 × 3 500" },
-            { k: "LTV-маржа · 12 мес", v: "3 840 000 ₽", f: "240 × 16 000" },
+            { k: "Лидов в день", v: "15", f: "447 в месяц" },
+            { k: "Первичных клиентов", v: "179", f: "6/день · конверсия 40%" },
+            { k: "Выручка 1-го месяца", v: "625 300 ₽", f: "179 × 3 500" },
+            { k: "LTV-маржа · 12 мес", v: "2 858 700 ₽", f: "179 × 16 000" },
           ].map((x) => (
             <div key={x.k} className="row-hover border border-ink-800/10 bg-white p-5">
               <p className="text-[11.5px] font-bold uppercase tracking-[0.12em] text-ink-500">{x.k}</p>
@@ -334,8 +330,8 @@ export function SheetFunnel() {
           ))}
         </div>
         <p className="mt-4 text-[12.5px] leading-relaxed text-ink-600">
-          Бюджет на филиал — ~633 000 ₽/мес (3 800 000 ₽ на сеть из 6 филиалов). ROMI 1-го месяца +19%, по LTV +507%.
-          Умножьте на 6 — и получите целевые 120 лидов и 48 первичных клиентов в день на всю сеть.
+          Бюджет на филиал — ~183 000 ₽/мес (1 100 000 ₽ на сеть из 6 филиалов). ROMI 1-го месяца +241%, по LTV +1 459%.
+          Умножьте на 6 — и получите целевые 89 лидов и 36 продаж в день на всю сеть.
         </p>
       </Reveal>
     </section>
@@ -388,7 +384,7 @@ export function SheetRomi() {
       <SectionHead
         no="06"
         title="ROMI: расчёты и сценарии"
-        sub="База: LTV-маржа 16 000 ₽ на клиента · каналы отсортированы по возврату на вложенный бюджет"
+        sub="ROMI = (выручка − бюджет) / бюджет · выручка = продажи × 3 500 ₽ · каналы отсортированы по возврату"
       />
 
       <Reveal>
@@ -396,29 +392,30 @@ export function SheetRomi() {
           {sorted.map((c, i) => (
             <div
               key={c.name}
-              className="group grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1.5 py-2.5 md:grid-cols-[230px_1fr_96px] md:gap-y-1"
+              className="group grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-1.5 py-2.5 md:grid-cols-[230px_1fr_110px] md:gap-y-1"
             >
               <p className="truncate text-[13px] font-bold text-ink-800 transition-colors group-hover:text-gold-700 md:text-[13.5px]">
                 {c.name}
               </p>
-              <p className="text-right font-display text-[13px] font-bold text-ink-900 tabular-nums md:order-3 md:text-[14px]">
-                +{fmt(c.romi)}%
+              <p className={`text-right font-display text-[13px] font-bold tabular-nums md:order-3 md:text-[14px] ${c.organic ? "italic text-moss-600" : "text-ink-900"}`}>
+                {c.organic ? "органика · 0 ₽" : `+${fmt(c.romi)}%`}
               </p>
               <div className="col-span-2 h-6 w-full overflow-hidden rounded-[3px] bg-ink-100/60 md:order-2 md:col-span-1 md:h-7">
                 <div
                   className="h-full rounded-[3px]"
                   style={{
-                    width: `${(c.romi / max) * 100}%`,
-                    backgroundColor: `rgba(176,132,79,${0.28 + 0.72 * (c.romi / max)})`,
-                    transition: `width 1.15s cubic-bezier(.22,.61,.36,1) ${i * 90}ms`,
+                    width: c.organic ? "100%" : `${(c.romi / max) * 100}%`,
+                    backgroundColor: c.organic ? "rgba(111,127,88,0.35)" : `rgba(176,132,79,${0.28 + 0.72 * (c.romi / max)})`,
+                    backgroundImage: c.organic ? "repeating-linear-gradient(45deg, rgba(111,127,88,0.5) 0 6px, rgba(111,127,88,0.2) 6px 12px)" : "none",
+                    transition: `width 1.15s cubic-bezier(.22,.61,.36,1) ${i * 70}ms`,
                   }}
                 />
               </div>
             </div>
           ))}
-          <p className="mt-4 border-t border-ink-100 pt-4 text-[12.5px] text-ink-500">
-            Даже худший канал (микро-блогеры, +95%) почти удваивает бюджет по LTV — при плановом CAC 2 639 ₽
-            против безубыточных 16 000 ₽.
+          <p className="mt-4 border-t border-ink-100 pt-4 text-[12.5px] leading-relaxed text-ink-500">
+            Лидеры возврата — Авито (+1 020%) и Яндекс Карты (+640%). Директ даёт объём (340 лидов), но наименьший ROMI
+            (+40%) — кандидат на оптимизацию ставок. Google Maps приносит 38 лидов при нулевом бюджете.
           </p>
         </div>
       </Reveal>
@@ -451,24 +448,29 @@ export function SheetRomi() {
       <Reveal delay={100} className="mt-4">
         {active.id === "be" ? (
           <div className="grid items-center gap-6 border border-ink-800 bg-ink-900 p-6 text-paper-100 md:grid-cols-[auto_1fr] md:p-8">
-            <p className="font-display text-[54px] leading-none font-bold text-gold-400 tabular-nums">×6.1</p>
+            <div className="text-center md:text-left">
+              <p className="font-display text-[54px] leading-none font-bold text-gold-400 tabular-nums">×15.6</p>
+              <p className="mt-2 text-[11px] tracking-[0.14em] text-paper-100/50 uppercase">запас по CAC</p>
+            </div>
             <div>
               <p className="font-display text-[13px] font-semibold tracking-[0.18em] text-paper-50 uppercase">
                 Точка безубыточности
               </p>
               <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-paper-100/80">
-                Безубыточный CAC = LTV-маржа = <b className="text-paper-50">16 000 ₽</b>. Плановый фактический CAC —{" "}
-                <b className="text-gold-400">2 639 ₽</b>. Стратегия остаётся безубыточной, даже если стоимость клиента
-                вырастет в 6 раз — запас на аукционный перегрев, сезонность и ошибки масштабирования.
+                План окупается уже при конверсии в приход <b className="text-paper-50">11.7%</b> (314 продаж) — плановые{" "}
+                <b className="text-gold-400">40%</b> дают запас ×3.4. По стоимости клиента запас ещё больше: CAC{" "}
+                <b className="text-gold-400">1 026 ₽</b> против безубыточных <b className="text-paper-50">16 000 ₽</b> (×15.6).
+                План выдержит и перегрев аукциона, и падение конверсии, и сезонность.
               </p>
             </div>
           </div>
         ) : (
-          <div className="grid gap-4 border border-ink-800/10 bg-white p-6 sm:grid-cols-2 md:p-8 lg:grid-cols-4">
+          <div className="grid gap-4 border border-ink-800/10 bg-white p-6 sm:grid-cols-2 md:p-8 lg:grid-cols-5">
             {[
               { k: "Бюджет / мес", v: `${fmt(active.budget)} ₽` },
-              { k: "Клиенты / мес", v: String(active.clients) },
-              { k: "LTV-маржа / клиент", v: `${fmt(active.ltv)} ₽` },
+              { k: "Продажи / мес", v: fmt(active.sales) },
+              { k: "Средний чек", v: `${fmt(active.check)} ₽` },
+              { k: "Выручка / мес", v: `${fmt(active.sales * active.check)} ₽` },
               { k: "ROMI", v: active.romi, gold: true },
             ].map((x) => (
               <div key={x.k} className="border-l-2 border-gold-500 pl-4">

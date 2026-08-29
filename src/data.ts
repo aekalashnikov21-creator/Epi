@@ -1,7 +1,8 @@
 /* ============================================================
    EPILATE-ME · Маркетинг-стратегия 2026–2027
    Сеть из 6 филиалов · Москва
-   План: 120 лидов/день на сеть · конверсия в приход 40%
+   Медиаплан: 1 100 000 ₽/мес · 14 каналов
+   2 681 лид/мес → 1 072 продажи (конверсия в приход 40%)
    ============================================================ */
 
 export const fmt = (n: number, digits = 0): string =>
@@ -22,49 +23,52 @@ export const branches = [
 
 /* ---------- ключевые показатели плана ---------- */
 export const planNumbers = {
-  budget: 3800000,
-  budgetBranch: 633000,
-  leadsDayNetwork: 120,
-  leadsDayBranch: 20,
-  clientsDayNetwork: 48,
-  clientsDayBranch: 8,
-  leadsMonth: 3600,
-  clientsMonth: 1440,
+  budget: 1100000,
+  budgetBranch: 183300,
+  leadsMonth: 2681,
+  leadsDayNetwork: 89,
+  leadsDayBranch: 15,
+  salesMonth: 1072,
+  salesDayNetwork: 36,
+  salesDayBranch: 6,
   conv: 40,
-  cpa: 1056,
-  cac: 2639,
-  romi: 506,
-  romi1mo: 19,
+  cpl: 410,
+  cac: 1026,
+  revenueMonth: 3752000,
+  romi1mo: 241,
+  romiLtv: 1459,
   ltvMargin: 16000,
-  safety: 6.1,
-  rev1moBranch: 1260000,
-  ltvMarginBranch: 3840000,
+  safety: 15.6,
+  rev1moBranch: 625300,
+  ltvMarginBranch: 2858700,
+  margin1mo: 3376800,
+  romiMargin1mo: 207,
 };
 
 /* ---------- обложка ---------- */
 export const coverStats = [
-  { label: "Бюджет", value: 3800000, prefix: "", suffix: " ₽/мес", note: "8 каналов · 6 филиалов" },
-  { label: "Лидов в день · сеть", value: 120, prefix: "", suffix: "", note: "по 20 на филиал" },
-  { label: "Первичных клиентов · день", value: 48, prefix: "", suffix: "", note: "конверсия в приход 40%" },
-  { label: "ROMI по LTV", value: 506, prefix: "+", suffix: "%", note: "LTV-маржа 16 000 ₽ / клиент" },
+  { label: "Бюджет", value: 1100000, prefix: "", suffix: " ₽/мес", note: "14 каналов · 6 филиалов" },
+  { label: "Лидов в день · сеть", value: 89, prefix: "", suffix: "", note: "~15 на филиал · 2 681 в месяц" },
+  { label: "Продаж в день", value: 36, prefix: "", suffix: "", note: "конверсия в приход 40%" },
+  { label: "ROMI (1-й месяц)", value: 241, prefix: "+", suffix: "%", note: "по LTV +1 459% · LTV-маржа 16 000 ₽" },
 ];
 
 export const goals = [
   {
     horizon: "Цель · 6 месяцев",
-    points: ["90 лидов в день на сеть", "36 первичных клиентов в день", "ROMI(LTV) +400%"],
+    points: ["70 лидов в день на сеть", "28 продаж в день", "ROMI (1-й месяц) ≥ +200%"],
   },
   {
     horizon: "Цель · 12 месяцев",
-    points: ["120 лидов в день на сеть", "48 первичных клиентов в день", "Органика 35%"],
+    points: ["89 лидов в день · 2 681 в месяц", "36 продаж в день · 1 072 в месяц", "Органика ≥ 20%"],
   },
 ];
 
 export const fileStructure: { sheet: string; content: string; tab: number }[] = [
   { sheet: "Дашборд", content: "Целевые показатели и KPI с красными линиями", tab: 1 },
   { sheet: "Юнит-экономика", content: "Экономика одного клиента, LTV, безубыточность", tab: 2 },
-  { sheet: "Медиаплан", content: "8 каналов: бюджеты, клики, CPA, CAC, ROMI", tab: 3 },
-  { sheet: "Воронка", content: "Показы → клики → лиды → первичные клиенты → процедуры", tab: 4 },
+  { sheet: "Медиаплан", content: "14 каналов: бюджет, клики, CPL, продажи, ROMI", tab: 3 },
+  { sheet: "Воронка", content: "Клики → лиды → продажи → процедуры", tab: 4 },
   { sheet: "ROMI", content: "ROMI по каналам + сценарии (база / пессимист)", tab: 5 },
   { sheet: "Roadmap", content: "Фазы 0–3 с бюджетами и KPI выхода", tab: 6 },
   { sheet: "Контрольные точки", content: "Даты срезов и управленческие решения", tab: 7 },
@@ -75,34 +79,33 @@ export const fileStructure: { sheet: string; content: string; tab: number }[] = 
 
 /* ---------- дашборд ---------- */
 export const horizons = [
-  { metric: "Лидов / день · сеть", now: "~40", m3: "60", m6: "90", m12: "120" },
-  { metric: "Лидов / день · 1 филиал", now: "~7", m3: "10", m6: "15", m12: "20" },
-  { metric: "Первичных клиентов / день · сеть", now: "~16", m3: "24", m6: "36", m12: "48" },
-  { metric: "Лидов / месяц · сеть", now: "~1 200", m3: "1 800", m6: "2 700", m12: "3 600" },
-  { metric: "CR лид → приход", now: "~35%", m3: "38%", m6: "40%", m12: "40%" },
-  { metric: "CPA (макро), ₽", now: "1 056", m3: "≤ 1 000", m6: "≤ 950", m12: "≤ 900" },
-  { metric: "Выручка / мес на филиал, ₽", now: "~150 000", m3: "500 000", m6: "850 000", m12: "1 260 000+" },
-  { metric: "Доля органики", now: "~5%", m3: "15%", m6: "25%", m12: "35%" },
+  { metric: "Лидов / день · сеть", now: "~45", m3: "60", m6: "75", m12: "89" },
+  { metric: "Лидов / день · 1 филиал", now: "~7", m3: "10", m6: "12", m12: "15" },
+  { metric: "Продаж / день · сеть", now: "~18", m3: "24", m6: "30", m12: "36" },
+  { metric: "Лидов / месяц · сеть", now: "~1 350", m3: "1 800", m6: "2 250", m12: "2 681" },
+  { metric: "CPL (лид), ₽", now: "410", m3: "≤ 450", m6: "≤ 430", m12: "≤ 400" },
+  { metric: "Выручка / мес на филиал, ₽", now: "~300 000", m3: "420 000", m6: "520 000", m12: "625 000+" },
+  { metric: "Доля органики", now: "~8%", m3: "12%", m6: "15%", m12: "20%" },
   { metric: "LTV клиента, ₽", now: "16 000", m3: "25 000", m6: "35 000", m12: "45 000" },
-  { metric: "ROMI (LTV)", now: "+400%", m3: "+450%", m6: "+400%", m12: "+500%" },
+  { metric: "ROMI (1-й месяц)", now: "+150%", m3: "+180%", m6: "+210%", m12: "+241%" },
 ];
 
 export const growth = [
-  { label: "Сейчас", value: "~40", h: 33.3 },
-  { label: "3 мес", value: "60", h: 50 },
-  { label: "6 мес", value: "90", h: 75 },
-  { label: "12 мес", value: "120", h: 100 },
+  { label: "Сейчас", value: "~45", h: 50.5 },
+  { label: "3 мес", value: "60", h: 67.5 },
+  { label: "6 мес", value: "75", h: 84.5 },
+  { label: "12 мес", value: "89", h: 100 },
 ];
 
 export const kpiControl = [
+  { metric: "CPL (лид)", target: "≤ 500 ₽", red: "> 800 ₽", freq: "еженедельно" },
+  { metric: "CAC (продажа)", target: "≤ 1 200 ₽", red: "> 2 000 ₽", freq: "еженедельно" },
+  { metric: "Лидов / день · сеть", target: "≥ 89", red: "< 60", freq: "еженедельно" },
+  { metric: "CV клик → лид", target: "≥ 10%", red: "< 6%", freq: "еженедельно" },
   { metric: "CR лид → приход", target: "≥ 40%", red: "< 30%", freq: "еженедельно" },
-  { metric: "CPA (макро)", target: "≤ 1 200 ₽", red: "> 2 000 ₽", freq: "еженедельно" },
-  { metric: "Лидов / день · сеть", target: "≥ 120", red: "< 80", freq: "еженедельно" },
-  { metric: "Доходимость до процедуры", target: "≥ 60%", red: "< 45%", freq: "еженедельно" },
   { metric: "Retention (2-я процедура)", target: "≥ 70%", red: "< 55%", freq: "ежемесячно" },
-  { metric: "LTV / CAC", target: "≥ 5", red: "< 3", freq: "ежемесячно" },
+  { metric: "LTV / CAC", target: "≥ 10", red: "< 5", freq: "ежемесячно" },
   { metric: "NPS", target: "≥ 50", red: "< 30", freq: "ежемесячно" },
-  { metric: "Загрузка оборудования", target: "75–85%", red: "< 50% или > 95%", freq: "ежемесячно" },
 ];
 
 /* ---------- юнит-экономика ---------- */
@@ -115,7 +118,8 @@ export const unitEconomics = [
   { param: "Допродажа косметологии", value: "+1 440 ₽", comment: "30% клиентов × 8 000 × 60%" },
   { param: "LTV-маржа за 12 мес", value: "~16 000 ₽", comment: "14 700 + 1 440" },
   { param: "Предельный (безубыточный) CAC", value: "16 000 ₽", comment: "= LTV-маржа" },
-  { param: "Фактический CAC (план)", value: "~2 640 ₽", comment: "запас прочности ×6" },
+  { param: "CPL (стоимость лида)", value: "410 ₽", comment: "1 100 000 / 2 681" },
+  { param: "CAC (стоимость продажи)", value: "~1 030 ₽", comment: "1 100 000 / 1 072 · запас ×15.6" },
   { param: "CR лид → первичный клиент", value: "40%", comment: "конверсия в фактический приход" },
 ];
 
@@ -123,136 +127,143 @@ export const unitEconomics = [
 export type MediaChannel = {
   name: string;
   budget: number;
-  impressions: number;
-  ctr: string;
   clicks: number;
   cpc: number;
-  cr: string;
+  cv: string;
   leads: number;
-  cpa: number;
-  clients: number;
-  cac: number;
+  cpl: number;
+  sales: number;
+  revenue: number;
   romi: number;
+  organic?: boolean;
 };
 
 export const mediaChannels: MediaChannel[] = [
-  { name: "Яндекс Директ · Поиск", budget: 1216000, impressions: 1013000, ctr: "1.0%", clicks: 10150, cpc: 120, cr: "20%", leads: 2030, cpa: 600, clients: 812, cac: 1498, romi: 969 },
-  { name: "Яндекс Карты · 3 филиала", budget: 487000, impressions: 812000, ctr: "0.8%", clicks: 6493, cpc: 75, cr: "5.4%", leads: 352, cpa: 1384, clients: 141, cac: 3454, romi: 363 },
-  { name: "2ГИС · 2 филиала", budget: 270000, impressions: 408000, ctr: "0.7%", clicks: 2853, cpc: 95, cr: "5.2%", leads: 149, cpa: 1812, clients: 60, cac: 4500, romi: 255 },
-  { name: "ВКонтакте · таргет + органика", budget: 609000, impressions: 2003000, ctr: "0.8%", clicks: 16026, cpc: 38, cr: "2.5%", leads: 406, cpa: 1500, clients: 162, cac: 3759, romi: 326 },
-  { name: "Авито", budget: 203000, impressions: 541000, ctr: "1.5%", clicks: 8120, cpc: 25, cr: "2.5%", leads: 203, cpa: 1000, clients: 81, cac: 2506, romi: 538 },
-  { name: "ПроДокторов", budget: 474000, impressions: 271000, ctr: "1.0%", clicks: 2709, cpc: 175, cr: "8%", leads: 216, cpa: 2194, clients: 86, cac: 5512, romi: 190 },
-  { name: "SEO / контент / видео", budget: 270000, impressions: 202000, ctr: "2.0%", clicks: 4045, cpc: 67, cr: "4%", leads: 162, cpa: 1667, clients: 65, cac: 4154, romi: 284 },
-  { name: "Микро-блогеры", budget: 271000, impressions: 1348000, ctr: "0.3%", clicks: 4045, cpc: 67, cr: "2%", leads: 82, cpa: 3305, clients: 33, cac: 8212, romi: 95 },
+  { name: "Яндекс Карты", budget: 130000, clicks: 3960, cpc: 33, cv: "17.3%", leads: 687, cpl: 189, sales: 275, revenue: 962500, romi: 640 },
+  { name: "2ГИС", budget: 90000, clicks: 723, cpc: 124, cv: "27%", leads: 197, cpl: 457, sales: 79, revenue: 276500, romi: 207 },
+  { name: "Google Maps · органика", budget: 0, clicks: 260, cpc: 0, cv: "—", leads: 38, cpl: 0, sales: 15, revenue: 52500, romi: 0, organic: true },
+  { name: "Яндекс Директ", budget: 340000, clicks: 2833, cpc: 120, cv: "12%", leads: 340, cpl: 1000, sales: 136, revenue: 476000, romi: 40 },
+  { name: "ВКонтакте", budget: 90000, clicks: 2571, cpc: 35, cv: "5%", leads: 129, cpl: 698, sales: 52, revenue: 182000, romi: 102 },
+  { name: "Instagram / SMM", budget: 100000, clicks: 2500, cpc: 40, cv: "5%", leads: 125, cpl: 800, sales: 50, revenue: 175000, romi: 75 },
+  { name: "Telegram", budget: 30000, clicks: 1000, cpc: 30, cv: "5%", leads: 50, cpl: 600, sales: 20, revenue: 70000, romi: 133 },
+  { name: "Авито", budget: 40000, clicks: 2667, cpc: 15, cv: "12%", leads: 320, cpl: 125, sales: 128, revenue: 448000, romi: 1020 },
+  { name: "SEO / контент", budget: 60000, clicks: 1500, cpc: 40, cv: "12%", leads: 180, cpl: 333, sales: 72, revenue: 252000, romi: 320 },
+  { name: "ПроДокторов", budget: 60000, clicks: 750, cpc: 80, cv: "12%", leads: 90, cpl: 667, sales: 36, revenue: 126000, romi: 110 },
+  { name: "Яндекс Медицина", budget: 50000, clicks: 1667, cpc: 30, cv: "12%", leads: 200, cpl: 250, sales: 80, revenue: 280000, romi: 460 },
+  { name: "Блогеры", budget: 80000, clicks: 4000, cpc: 20, cv: "5%", leads: 200, cpl: 400, sales: 80, revenue: 280000, romi: 250 },
+  { name: "MAX", budget: 10000, clicks: 500, cpc: 20, cv: "5%", leads: 25, cpl: 400, sales: 10, revenue: 35000, romi: 250 },
+  { name: "Партнёрки банков", budget: 20000, clicks: 2000, cpc: 10, cv: "5%", leads: 100, cpl: 200, sales: 40, revenue: 140000, romi: 600 },
 ];
 
 export const mediaTotal: MediaChannel = {
-  name: "ИТОГО", budget: 3800000, impressions: 6598000, ctr: "0.82%", clicks: 54441, cpc: 69.8, cr: "6.6%", leads: 3600, cpa: 1056, clients: 1440, cac: 2639, romi: 506,
+  name: "ИТОГО", budget: 1100000, clicks: 24931, cpc: 44, cv: "10.8%", leads: 2681, cpl: 410, sales: 1072, revenue: 3752000, romi: 241,
 };
 
-export const channelColors = ["#B0844F", "#6E5334", "#D9BE97", "#A17E52", "#6F7F58", "#8A6A42", "#C4B49C", "#E0CFB2"];
+export const channelColors = ["#B0844F", "#6E5334", "#D9BE97", "#A17E52", "#6F7F58", "#8A6A42", "#C4B49C", "#E0CFB2", "#5E6E4E", "#8C7B62", "#B7A98C", "#77684E", "#D8CBB4", "#9C8B6E"];
 
 /* ---------- воронка ---------- */
 export const funnelStages = [
-  { stage: "Показы", value: 6598000, conv: null as string | null, note: "все каналы", width: 100 },
-  { stage: "Клики", value: 54441, conv: "0.82%", note: "CPC средний 69.8 ₽", width: 62 },
-  { stage: "Лиды", value: 3600, conv: "6.6%", note: "CPA 1 056 ₽", width: 45 },
-  { stage: "Первичные клиенты", value: 1440, conv: "40%", note: "CAC 2 639 ₽", width: 32 },
-  { stage: "Процедуры · 1-й месяц", value: 2160, conv: "×1.5", note: "выручка 7 560 000 ₽", width: 24 },
-  { stage: "Процедуры · LTV 12 мес", value: 10080, conv: "×7", note: "LTV-выручка когорты 35.3 млн ₽", width: 17 },
+  { stage: "Клики", value: 24931, conv: null as string | null, note: "все каналы · CPC средний 44 ₽", width: 100 },
+  { stage: "Лиды", value: 2681, conv: "10.8%", note: "CPL 410 ₽", width: 60 },
+  { stage: "Продажи (первичные клиенты)", value: 1072, conv: "40%", note: "CAC 1 026 ₽", width: 42 },
+  { stage: "Процедуры · 1-й месяц", value: 1608, conv: "×1.5", note: "выручка 5 628 000 ₽", width: 29 },
+  { stage: "Процедуры · LTV 12 мес", value: 7504, conv: "×7", note: "LTV-выручка когорты 26.3 млн ₽", width: 18 },
 ];
 
 export const cohortEconomics = [
-  { label: "Маржа 1-го месяца", formula: "1 440 × 1.5 × 2 100", value: 4536000, suffix: " ₽" },
-  { label: "ROMI 1-го месяца", formula: "(4 536 000 − 3 800 000) / 3 800 000", value: 19, suffix: "%", prefix: "+" },
-  { label: "LTV-маржа когорты · 12 мес", formula: "1 440 × 16 000", value: 23040000, suffix: " ₽" },
-  { label: "ROMI по LTV", formula: "(23 040 000 − 3 800 000) / 3 800 000", value: 506, suffix: "%", prefix: "+" },
+  { label: "Маржа 1-го месяца", formula: "1 072 × 1.5 × 2 100", value: 3376800, suffix: " ₽" },
+  { label: "ROMI 1-го месяца (маржа)", formula: "(3 376 800 − 1 100 000) / 1 100 000", value: 207, suffix: "%", prefix: "+" },
+  { label: "LTV-маржа когорты · 12 мес", formula: "1 072 × 16 000", value: 17152000, suffix: " ₽" },
+  { label: "ROMI по LTV", formula: "(17 152 000 − 1 100 000) / 1 100 000", value: 1459, suffix: "%", prefix: "+" },
 ];
 
 /* ---------- ROMI ---------- */
 export const scenarios = [
-  { id: "base", name: "База", desc: "план · CR 40%", budget: 3800000, clients: 1440, ltv: 16000, romi: "+506%" },
-  { id: "pess", name: "Пессимист", desc: "CR 32% · LTV 12 000", budget: 3800000, clients: 1152, ltv: 12000, romi: "+264%" },
-  { id: "be", name: "Безубыточность", desc: "предельный CAC", budget: 0, clients: 0, ltv: 16000, romi: "0%" },
+  { id: "base", name: "База", desc: "план · CR 40%", budget: 1100000, sales: 1072, check: 3500, romi: "+241%" },
+  { id: "pess", name: "Пессимист", desc: "CR 32% · чек 3 000", budget: 1100000, sales: 858, check: 3000, romi: "+134%" },
+  { id: "be", name: "Безубыточность", desc: "порог окупаемости", budget: 0, sales: 0, check: 0, romi: "0%" },
 ];
 
 /* ---------- roadmap ---------- */
 export const phases = [
   {
-    phase: "Фаза 0", period: "недели 1–2", budget: "~600 000 ₽",
+    phase: "Фаза 0", period: "недели 1–2", budget: "~150 000 ₽",
     actions: [
       "Коллтрекинг + UTM-разметка + цели Метрики",
       "Лендинги под кластеры ядра (губы, M22, мужская, зоны)",
-      "Верификация 6 филиалов на Яндекс Картах",
+      "Верификация 6 филиалов: Яндекс Карты, Google Maps, 2ГИС",
       "Скрипты админов на доведение лида до прихода (40%)",
     ],
     kpi: "Аналитика собирается · 6/6 филиалов верифицированы · страницы live",
   },
   {
-    phase: "Фаза 1", period: "месяц 1", budget: "2 000 000 ₽/мес",
+    phase: "Фаза 1", period: "месяц 1", budget: "400 000 ₽/мес",
     actions: [
-      "Масштаб Директа: горячие + зоны + мужская кампания",
-      "Приоритетное размещение на Картах (3 филиала)",
-      "Запуск 2ГИС (2 филиала)",
-      "Ретаргетинг «Не дошли» + look-alike по базе",
+      "Яндекс Директ: горячие + зоны + аппараты (Candela/Deka)",
+      "Приоритетное размещение на Картах (3 филиала) + 2ГИС",
+      "Авито: 3 объявления",
+      "Ретаргетинг «Не дошли» по базе",
     ],
-    kpi: "Лидов/день ≥ 60 · CPA ≤ 1 050 ₽",
+    kpi: "Лидов/день ≥ 45 · CPL ≤ 500 ₽",
   },
   {
-    phase: "Фаза 2", period: "месяцы 2–3", budget: "3 000 000 ₽/мес",
+    phase: "Фаза 2", period: "месяцы 2–3", budget: "700 000 ₽/мес",
     actions: [
       "+ ВКонтакте: лид-формы, сторис",
-      "+ Авито: 3 объявления",
-      "SMM: Instagram / VK / Telegram",
+      "+ Instagram / SMM и Telegram-клуб",
+      "+ SEO / контент, ПроДокторов, Яндекс Медицина",
       "Реферальная программа «Приведи подругу»",
       "Автоматизация записи в YCLIENTS",
     ],
-    kpi: "Лидов/день ≥ 90 · органика ≥ 15% · retention ≥ 65%",
+    kpi: "Лидов/день ≥ 65 · органика ≥ 12% · retention ≥ 65%",
   },
   {
-    phase: "Фаза 3", period: "месяцы 4–6", budget: "3 800 000 ₽/мес",
+    phase: "Фаза 3", period: "месяцы 4–6", budget: "1 100 000 ₽/мес",
     actions: [
-      "+ ПроДокторов: премиум-размещение",
-      "+ Микро-блогеры",
-      "SEO-контент: 10 статей/мес",
+      "+ Блогеры: микро-инфлюенсеры, бартер + интеграции",
+      "+ MAX: канал бренда, промо-посты",
+      "+ Партнёрки банков: кэшбэк, рассрочки, ко-промо",
       "Membership «Клуб гладкой кожи» 2 900 ₽/мес",
-      "Corporate wellness для офисов",
     ],
-    kpi: "Лидов/день 120 · ROMI(LTV) ≥ +500% · LTV ≥ 35 000",
+    kpi: "Лидов/день 89 · ROMI (1-й мес) ≥ +241% · 1 072 продажи/мес",
   },
 ];
 
 /* ---------- контрольные точки ---------- */
 export const checkpoints = [
-  { point: "Неделя 2", check: "Лендинги и Карты", kpi: "Страницы live · 6/6 филиалов верифицированы · цели пишутся", decision: "Запуск платного трафика" },
-  { point: "Конец месяца 1", check: "Срез Фазы 1", kpi: "Лидов/день ≥ 60 · CPA ≤ 1 050 · CR лид→приход ≥ 35%", decision: "Масштаб в Фазу 2" },
-  { point: "Конец месяца 3", check: "Срез Фазы 2", kpi: "Лидов/день ≥ 90 · органика ≥ 15% · retention ≥ 65%", decision: "Переход в Фазу 3" },
-  { point: "Конец месяца 6", check: "Срез Фазы 3", kpi: "Лидов/день 120 · ROMI(LTV) ≥ +500%", decision: "Годовой план, 7-й филиал" },
-  { point: "Конец месяца 12", check: "Годовой срез", kpi: "Лидов/день 120+ · выручка/филиал ≥ 1.26 млн · NPS ≥ 50", decision: "Масштабирование / франшиза" },
+  { point: "Неделя 2", check: "Лендинги и карты", kpi: "Страницы live · 6/6 филиалов на Яндекс Картах, Google и 2ГИС", decision: "Запуск платного трафика" },
+  { point: "Конец месяца 1", check: "Срез Фазы 1", kpi: "Лидов/день ≥ 45 · CPL ≤ 500 · CV клик→лид ≥ 10%", decision: "Масштаб в Фазу 2" },
+  { point: "Конец месяца 3", check: "Срез Фазы 2", kpi: "Лидов/день ≥ 65 · органика ≥ 12% · retention ≥ 65%", decision: "Переход в Фазу 3" },
+  { point: "Конец месяца 6", check: "Срез Фазы 3", kpi: "Лидов/день 89 · ROMI (1-й мес) ≥ +241%", decision: "Годовой план, 7-й филиал" },
+  { point: "Конец месяца 12", check: "Годовой срез", kpi: "Лидов/день 89+ · выручка/филиал ≥ 625 000 · NPS ≥ 50", decision: "Масштабирование / франшиза" },
 ];
 
 /* ---------- риски ---------- */
 export const risks = [
-  { risk: "Рост CPC в Директе", prob: "Высокая", impact: "Среднее", mitigation: "Диверсификация каналов (органика до 35%), работа с LTV и retention" },
+  { risk: "Рост CPC в Директе", prob: "Высокая", impact: "Среднее", mitigation: "Доля Директа — 31% бюджета; диверсификация на карты, Авито, органику; работа с LTV" },
+  { risk: "CR лид → приход ниже 40%", prob: "Высокая", impact: "Высокое", mitigation: "Скрипты админов, напоминания за 24 ч, предоплата-бронь слотов, контроль доходимости" },
   { risk: "Ужесточение модерации мед. услуг", prob: "Высокая", impact: "Высокое", mitigation: "Лицензии всех филиалов в объявлениях; без обещаний «навсегда»; юрист на креативах" },
-  { risk: "CR лид → приход ниже 40%", prob: "Высокая", impact: "Высокое", mitigation: "Скрипты админов, напоминания за 24 ч, предоплата-бронь slots, контроль доходимости" },
   { risk: "Сезонность: спад май–июль", prob: "Высокая", impact: "Среднее", mitigation: "Pivot на M22, RSL и косметологию; акции «Summer Ready»" },
-  { risk: "Кассовый разрыв при масштабировании", prob: "Средняя", impact: "Высокое", mitigation: "Предоплата курсов, membership, абонементы «6 по цене 5»" },
-  { risk: "Агрессия конкурентов", prob: "Средняя", impact: "Среднее", mitigation: "Бренд-защита в Директе, отзывы на Картах, УТП (Candela + Deka Moveo)" },
+  { risk: "Зависимость от геосервисов (Карты, 2ГИС)", prob: "Средняя", impact: "Среднее", mitigation: "Google Maps-органика, SEO, своя база (Telegram-клуб), партнёрки банков" },
+  { risk: "Агрессия конкурентов", prob: "Средняя", impact: "Среднее", mitigation: "Бренд-защита в Директе, отзывы на картах, УТП (Candela + Deka Moveo)" },
 ];
 
 /* ---------- детали каналов ---------- */
 export const channelDetails = [
-  { channel: "Яндекс Директ", actions: "Горячий поиск в кавычках; мужская кампания; зоны (бикини, ноги, подмышки, лицо); аппараты (Candela/Deka); ретаргетинг", result: "2 030 лидов/мес · CPA 600 ₽" },
-  { channel: "Карты / 2ГИС", actions: "Приоритетное размещение, сбор отзывов (SMS после процедуры), фото, кнопка записи", result: "501 лид/мес" },
-  { channel: "ВКонтакте", actions: "Лид-формы + сторис (оффер → преимущества → CTA), парсинг групп шугаринга", result: "406 лидов/мес" },
-  { channel: "Instagram · органика", actions: "Reels 3/нед, сторис ежедневно, highlights, коллабы с микро-блогерами", result: "органика растёт с 4 мес" },
-  { channel: "Telegram", actions: "Канал-клуб, горящие слоты, реферальная механика", result: "часть органики 35%" },
-  { channel: "SEO / Дзен", actions: "10 статей/мес, лендинги под недостающие кластеры ядра", result: "162 лида/мес" },
-  { channel: "Авито", actions: "3 объявления: «от 990 ₽», «александрит Candela», «мужская»", result: "203 лида/мес" },
-  { channel: "ПроДокторов", actions: "Премиум-размещение, карточки врачей, отзывы", result: "216 лидов/мес" },
-  { channel: "Membership", actions: "«Клуб гладкой кожи» 2 900 ₽/мес: 1 процедура + скидка 20%", result: "стабильный cash flow" },
-  { channel: "Referral", actions: "«Приведи подругу — скидка 30%», 3 подруги = процедура бесплатно", result: "+10–15% лидов" },
+  { channel: "Яндекс Карты", actions: "Приоритетное размещение, сбор отзывов (SMS после процедуры), фото, кнопка записи", result: "687 лидов/мес · CPL 189 ₽" },
+  { channel: "2ГИС", actions: "Размещение, отзывы, кнопка записи, акции", result: "197 лидов/мес · CPL 457 ₽" },
+  { channel: "Google Maps · органика", actions: "Заполненные профили, отзывы, фото, категории — без бюджета", result: "38 лидов/мес · 0 ₽" },
+  { channel: "Яндекс Директ", actions: "Горячий поиск, зоны (бикини, ноги, подмышки, лицо), аппараты, ретаргетинг", result: "340 лидов/мес · CPL 1 000 ₽" },
+  { channel: "ВКонтакте", actions: "Лид-формы + сторис (оффер → преимущества → CTA), парсинг групп шугаринга", result: "129 лидов/мес" },
+  { channel: "Instagram / SMM", actions: "Reels 3/нед, сторис ежедневно, highlights, коллабы с блогерами", result: "125 лидов/мес" },
+  { channel: "Telegram", actions: "Канал-клуб, горящие слоты, реферальная механика", result: "50 лидов/мес" },
+  { channel: "Авито", actions: "3 объявления: «от 990 ₽», «александрит Candela», «мужская»", result: "320 лидов/мес · CPL 125 ₽" },
+  { channel: "SEO / контент", actions: "10 статей/мес, лендинги под недостающие кластеры ядра", result: "180 лидов/мес" },
+  { channel: "ПроДокторов", actions: "Премиум-размещение, карточки врачей, отзывы", result: "90 лидов/мес" },
+  { channel: "Яндекс Медицина", actions: "Профили клиник, карточки врачей, отзывы, акции", result: "200 лидов/мес · CPL 250 ₽" },
+  { channel: "Блогеры", actions: "Микро-инфлюенсеры, бартер + платные интеграции", result: "200 лидов/мес · CPL 400 ₽" },
+  { channel: "MAX", actions: "Канал бренда, промо-посты, горящие окна", result: "25 лидов/мес" },
+  { channel: "Партнёрки банков", actions: "Кэшбэк-офферы, рассрочки на курс, ко-промо", result: "100 лидов/мес · CPL 200 ₽" },
 ];
 
 /* ---------- приложение: минус-слова ---------- */
@@ -279,14 +290,15 @@ export const doNotNegate = ["candela", "deka", "moveo", "александрит"
 
 /* ---------- тикер ---------- */
 export const tickerItems = [
-  "120 лидов в день на сеть",
-  "по 20 лидов на филиал",
+  "2 681 лид в месяц",
+  "89 лидов в день на сеть",
+  "~15 лидов на филиал",
   "конверсия в приход 40%",
-  "48 первичных клиентов в день",
-  "3 600 лидов в месяц",
-  "Бюджет — 3 800 000 ₽/мес",
-  "Средний CAC — 2 639 ₽",
-  "ROMI по LTV — +506%",
-  "LTV клиента — до 45 000 ₽",
+  "36 продаж в день",
+  "Бюджет — 1 100 000 ₽/мес",
+  "CPL — 410 ₽",
+  "CAC — 1 026 ₽",
+  "ROMI (1-й месяц) — +241%",
+  "Выручка — 3 752 000 ₽/мес",
   "6 филиалов · Москва",
 ];
