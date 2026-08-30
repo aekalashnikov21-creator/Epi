@@ -409,6 +409,29 @@
         line-height: 1.6;
         margin-top: 12px;
       }
+      /* кнопка скачивания CSV (работает без JS) */
+      .em-dlbtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #b0844f;
+        color: #241b12;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 12.5px;
+        padding: 11px 22px;
+        border-radius: 999px;
+        box-shadow: 0 14px 30px -12px rgba(36, 27, 18, 0.9);
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+      .em-dlbtn:hover {
+        background: #c09259;
+        transform: scale(1.04);
+      }
+      .em-dlbtn:active {
+        transform: scale(0.97);
+      }
+
       /* кольцо пагинации */
       .em-pager {
         display: grid;
@@ -457,9 +480,18 @@
                 Маркетинг-стратегия 2026–2027
               </div>
             </div>
-            <span style="margin-left: auto; border: 1px solid rgba(253,251,247,0.25); padding: 5px 11px; font-size: 11.5px; color: rgba(253,251,247,0.85)">
+            <span style="border: 1px solid rgba(253,251,247,0.25); padding: 5px 11px; font-size: 11.5px; color: rgba(253,251,247,0.85)">
               6 филиалов · Москва
             </span>
+            <a
+              href="data:text/csv;charset=utf-8,%EF%BB%BFEPILATE-ME%20%E2%80%94%20%D0%9C%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3-%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D1%8F%202026%E2%80%932027%0A%0A%D0%9A%D0%9B%D0%AE%D0%A7%D0%95%D0%92%D0%AB%D0%95%20%D0%9F%D0%9E%D0%9A%D0%90%D0%97%D0%90%D0%A2%D0%95%D0%9B%D0%98%0A%D0%9C%D0%B5%D0%B4%D0%B8%D0%B0%D0%B1%D1%8E%D0%B4%D0%B6%D0%B5%D1%82;1100000%0A%D0%9B%D0%B8%D0%B4%D0%BE%D0%B2%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86;2521%0A%D0%9F%D1%80%D0%BE%D0%B4%D0%B0%D0%B6%20%D0%B2%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86;1008%0ACPL%20(%D1%80%D1%83%D0%B1);436%0AMedia-CAC%20(%D1%80%D1%83%D0%B1);1091%0AROMI%201-%D0%B9%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86;221%25%0A%0A%D0%9C%D0%95%D0%94%D0%98%D0%90%D0%9F%D0%9B%D0%90%D0%9D%0A%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB;%D0%91%D1%8E%D0%B4%D0%B6%D0%B5%D1%82;%D0%9A%D0%BB%D0%B8%D0%BA%D0%B8;CPC;CV;%D0%9B%D0%B8%D0%B4%D1%8B;CPL;%D0%9F%D1%80%D0%BE%D0%B4%D0%B0%D0%B6%D0%B8;%D0%92%D1%8B%D1%80%D1%83%D1%87%D0%BA%D0%B0;ROMI%0A%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20%D0%9A%D0%B0%D1%80%D1%82%D1%8B;130000;3960;33;17.3%25;687;189;275;962500;640%25%0A2%D0%93%D0%98%D0%A1;90000;723;124;27%25;197;457;79;276500;207%25%0AGoogle%20Maps%20(%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0);0;260;0;;38;0;15;52500;%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%BA%D0%B0%0A%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20%D0%94%D0%B8%D1%80%D0%B5%D0%BA%D1%82;340000;2833;120;12%25;340;1000;136;476000;40%25%0A%D0%92%D0%9A%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D0%B5;90000;2571;35;5%25;129;698;52;182000;102%25%0AInstagram%20/%20SMM;100000;2500;40;5%25;125;800;50;175000;75%25%0ATelegram;30000;1000;30;5%25;50;600;20;70000;133%25%0A%D0%90%D0%B2%D0%B8%D1%82%D0%BE;40000;2667;15;6%25;160;250;64;224000;460%25%0ASEO%20/%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82;60000;1500;40;12%25;180;333;72;252000;320%25%0A%D0%9F%D1%80%D0%BE%D0%94%D0%BE%D0%BA%D1%82%D0%BE%D1%80%D0%BE%D0%B2;60000;750;80;12%25;90;667;36;126000;110%25%0A%D0%AF%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20%D0%9C%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D0%B0;50000;1667;30;12%25;200;250;80;280000;460%25%0A%D0%91%D0%BB%D0%BE%D0%B3%D0%B5%D1%80%D1%8B;80000;4000;20;5%25;200;400;80;280000;250%25%0AMAX;10000;500;20;5%25;25;400;10;35000;250%25%0A%D0%9F%D0%B0%D1%80%D1%82%D0%BD%D1%91%D1%80%D0%BA%D0%B8%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%BE%D0%B2;20000;2000;10;5%25;100;200;40;140000;600%25%0A%D0%98%D0%A2%D0%9E%D0%93%D0%9E;1100000;24931;44;10.1%25;2521;436;1008;3528000;221%25"
+              download="Epilate-Me_медиаплан.csv"
+              class="em-dlbtn"
+              style="margin-left: auto"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden><path d="M12 3v12"/><path d="m6 9 6 6 6-6"/><path d="M4 21h16"/></svg>
+              Скачать (CSV → Excel)
+            </a>
           </div>
           <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px">
             <h1 class="em-display" style="margin: 0; font-size: 26px; line-height: 1.15; font-weight: 500">
@@ -835,10 +867,13 @@
               <div style="font-size:11px;color:rgba(253,251,247,0.55)">Стратегия 2026–2027 · 6 филиалов · Москва</div>
             </div>
           </div>
-          <div style="font-size:12px;color:#d9be97;font-variant-numeric:tabular-nums;font-weight:700;text-align:right">
-            2 521 лид → 1 008 продаж → ROMI +221% · по LTV +1 366%
-            <div style="font-size:10.5px;color:rgba(253,251,247,0.45);font-weight:400;margin-top:4px">
-              Кнопка «Скачать .xlsx» появляется в шапке и справа внизу, когда файл открыт в браузере
+          <div style="text-align:right">
+            <div style="font-size:12px;color:#d9be97;font-variant-numeric:tabular-nums;font-weight:700">
+              2 521 лид → 1 008 продаж → ROMI +221% · по LTV +1 366%
+            </div>
+            <div style="font-size:10.5px;color:rgba(253,251,247,0.5);font-weight:400;margin-top:5px;line-height:1.5">
+              Кнопка «Скачать (CSV → Excel)» — в шапке сверху: работает всегда, даже без JavaScript.
+              Полный .xlsx на 9 листов — кнопка «Скачать .xlsx», когда файл открыт в браузере.
             </div>
           </div>
         </div>
