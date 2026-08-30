@@ -2,12 +2,12 @@ import { ArrowRight, Flag, ShieldAlert } from "lucide-react";
 import { phases, checkpoints, risks } from "../data";
 import { Reveal, SectionHead, Pill } from "../lib/ui";
 
-/* ================= ЛИСТ 7 · ROADMAP ================= */
+/* ================= ЛИСТ 6 · ROADMAP ================= */
 export function SheetRoadmap() {
   return (
     <section>
       <SectionHead
-        no="07"
+        no="06"
         title="Дорожная карта внедрения"
         sub="4 фазы на 12 месяцев: от настройки аналитики и верификации 6 филиалов до 1 100 000 ₽/мес и 84 лидов в день"
       />
@@ -52,12 +52,12 @@ export function SheetRoadmap() {
   );
 }
 
-/* ================= ЛИСТ 8 · КОНТРОЛЬНЫЕ ТОЧКИ ================= */
+/* ================= ЛИСТ 7 · КОНТРОЛЬНЫЕ ТОЧКИ ================= */
 export function SheetControl() {
   return (
     <section>
       <SectionHead
-        no="08"
+        no="07"
         title="Таблица контрольных точек"
         sub="Срезы и управленческие решения: каждая точка отвечает на вопрос «идём дальше, масштабируем или чиним»"
       />
@@ -83,14 +83,14 @@ export function SheetControl() {
   );
 }
 
-/* ================= ЛИСТ 9 · РИСКИ ================= */
+/* ================= ЛИСТ 8 · РИСКИ ================= */
 export function SheetRisks() {
   return (
     <section>
       <SectionHead
-        no="09"
-        title="Риски и митигация"
-        sub="Шесть рабочих рисков стратегии — у каждого есть заранее подготовленный ответ"
+        no="08"
+        title="Риски"
+        sub="Четыре рабочих риска стратегии — у каждого есть заранее подготовленный ответ"
       />
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -108,7 +108,7 @@ export function SheetRisks() {
                 </div>
               </div>
               <div className="mt-4 border-t border-ink-100 pt-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gold-600">Митигация</p>
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gold-600">Что делаем</p>
                 <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-700">{r.mitigation}</p>
               </div>
             </div>

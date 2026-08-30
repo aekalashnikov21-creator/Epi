@@ -2,7 +2,6 @@ import { Component, useState, type ReactNode } from "react";
 import {
   AlertTriangle,
   ArrowRight,
-  BookOpen,
   Download,
   FileSpreadsheet,
   Filter,
@@ -13,7 +12,6 @@ import {
   Loader2,
   MapPin,
   Megaphone,
-  Percent,
   Route,
   Wallet,
 } from "lucide-react";
@@ -21,9 +19,9 @@ import { tickerItems, fmt } from "./data";
 import { downloadExcel } from "./excelExport";
 import { LogoMark, useCountUp, useMounted } from "./lib/ui";
 import { SheetCover, SheetDashboard } from "./views/Overview";
-import { SheetEconomics, SheetMedia, SheetFunnel, SheetRomi } from "./views/Finance";
+import { SheetEconomics, SheetMedia, SheetFunnel } from "./views/Finance";
 import { SheetRoadmap, SheetControl, SheetRisks } from "./views/Plan";
-import { SheetChannels, SheetAppendix } from "./views/Execution";
+import { SheetChannels } from "./views/Execution";
 
 const tabs = [
   { num: "01", label: "Обложка", icon: LayoutGrid },
@@ -31,12 +29,10 @@ const tabs = [
   { num: "03", label: "Юнит-экономика", icon: Wallet },
   { num: "04", label: "Медиаплан", icon: Megaphone },
   { num: "05", label: "Воронка", icon: Filter },
-  { num: "06", label: "ROMI", icon: Percent },
-  { num: "07", label: "Roadmap", icon: Route },
-  { num: "08", label: "Точки", icon: Flag },
-  { num: "09", label: "Риски", icon: AlertTriangle },
-  { num: "10", label: "Каналы", icon: Layers },
-  { num: "11", label: "Приложение", icon: BookOpen },
+  { num: "06", label: "Roadmap", icon: Route },
+  { num: "07", label: "Точки", icon: Flag },
+  { num: "08", label: "Риски", icon: AlertTriangle },
+  { num: "09", label: "Каналы", icon: Layers },
 ];
 
 const CAC_PLAN_PCT = (1091 / 16000) * 100;
@@ -118,14 +114,11 @@ function Header({ tab }: { tab: number }) {
               <MapPin size={12} className="text-gold-400" />
               6 филиалов · Москва
             </span>
-            <span className="border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[11.5px] font-semibold text-paper-100/80">
-              Директ · авг 2026
-            </span>
             <button
               onClick={onExport}
               disabled={exporting}
               className="press inline-flex items-center gap-2 rounded-full bg-paper-50 px-5 py-2 text-[12.5px] font-bold text-ink-900 shadow-[0_12px_26px_-14px_rgba(36,27,18,0.8)] transition-colors hover:bg-gold-100 disabled:cursor-wait disabled:opacity-75"
-              title="Сформировать книгу Excel со всеми 11 листами и фирменным оформлением"
+              title="Сформировать книгу Excel со всеми 9 листами и фирменным оформлением"
             >
               {exporting ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />}
               {exporting ? "Формируем файл…" : "Скачать .xlsx"}
@@ -137,7 +130,7 @@ function Header({ tab }: { tab: number }) {
           <div>
             <p className="flex items-center gap-3 text-[11px] font-bold tracking-[0.26em] text-paper-50/85 uppercase">
               <span className="pulse-dot inline-block h-2 w-2 rounded-full bg-paper-50 text-paper-50" />
-              Действующий план · лазерная эпиляция и косметология
+              Лазерная эпиляция и косметология
             </p>
             <h1 className="mt-5 font-display text-[32px] leading-[1.12] font-medium md:text-[52px] md:font-normal xl:text-[60px]">
               <span className="tabular-nums">84</span> лида в день
@@ -168,9 +161,9 @@ function Header({ tab }: { tab: number }) {
               {/* фирменное кольцо пагинации */}
               <span
                 className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold-500 font-display text-[11.5px] font-semibold text-ink-900 tabular-nums"
-                title={`Раздел ${tab + 1} из 11`}
+                title={`Раздел ${tab + 1} из 9`}
               >
-                {`${String(tab + 1).padStart(2, "0")}/11`}
+                {`${String(tab + 1).padStart(2, "0")}/09`}
               </span>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
@@ -280,7 +273,7 @@ export default function App() {
 
       <div className="sticky top-0 z-40 border-b border-ink-800/15 bg-paper-200/95 shadow-[0_8px_24px_-18px_rgba(110,83,52,0.45)] backdrop-blur-sm">
         <div className="relative mx-auto max-w-7xl px-4 md:px-8">
-          <nav className="no-scrollbar flex gap-1 overflow-x-auto pt-2" aria-label="Листы стратегии">
+          <nav className="no-scrollbar flex items-center gap-2 overflow-x-auto py-2.5" aria-label="Листы стратегии">
             {tabs.map((t, i) => {
               const Icon = t.icon;
               const active = tab === i;
@@ -288,17 +281,17 @@ export default function App() {
                 <button
                   key={t.num}
                   onClick={() => go(i)}
-                  className={`press sheet-tab flex shrink-0 items-center gap-2 px-3.5 pb-2.5 pt-2 text-[12.5px] font-bold whitespace-nowrap transition-colors duration-200 md:px-4 ${
+                  className={`press inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-1.5 text-[12.5px] font-bold whitespace-nowrap transition-colors duration-200 md:px-4 ${
                     active
-                      ? "bg-white text-ink-900 shadow-[0_6px_18px_-10px_rgba(110,83,52,0.5)]"
-                      : "text-ink-700 hover:bg-white/70 active:bg-white/80 hover:text-ink-900"
+                      ? "border-ink-900 bg-ink-900 text-paper-50 shadow-[0_10px_22px_-12px_rgba(36,27,18,0.9)]"
+                      : "border-ink-800/25 bg-transparent text-ink-700 hover:border-gold-500 hover:bg-white/70 hover:text-ink-900"
                   }`}
                 >
-                  <Icon size={13} className={active ? "text-gold-600" : "text-ink-400"} />
+                  <Icon size={13} className={active ? "text-gold-400" : "text-ink-400"} />
                   {t.label}
                   <span
                     className={`hidden text-[10px] tabular-nums min-[420px]:inline ${
-                      active ? "text-gold-600" : "text-ink-400"
+                      active ? "text-gold-400" : "text-ink-400"
                     }`}
                   >
                     {t.num}
@@ -315,18 +308,15 @@ export default function App() {
       <main className="relative">
         <div className="bg-papergrid pointer-events-none absolute inset-0" aria-hidden />
         <div key={tab} className="relative mx-auto max-w-7xl px-4 py-12 md:px-8 md:py-16">
-          {tab === 0 && <SheetCover go={go} />}
-          {tab === 1 && <SheetDashboard />}
-          {tab === 2 && <SheetEconomics />}
-          {tab === 3 && <SheetMedia />}
-          {tab === 4 && <SheetFunnel />}
-          {tab === 5 && <SheetRomi />}
-          {tab === 6 && <SheetRoadmap />}
-          {tab === 7 && <SheetControl />}
-          {tab === 8 && <SheetRisks />}
-          {tab === 9 && <SheetChannels />}
-          {tab === 10 && <SheetAppendix />}
-        </div>
+              {tab === 0 && <SheetCover go={go} />}
+              {tab === 1 && <SheetDashboard />}
+              {tab === 2 && <SheetEconomics />}
+              {tab === 3 && <SheetMedia />}
+              {tab === 4 && <SheetFunnel />}
+              {tab === 5 && <SheetRoadmap />}
+              {tab === 6 && <SheetControl />}
+              {tab === 7 && <SheetRisks />}
+              {tab === 8 && <SheetChannels />}        </div>
       </main>
 
       <footer className="relative border-t-4 border-gold-500 bg-ink-950 text-paper-100">

@@ -135,9 +135,7 @@
       #em-s6:checked ~ .em-panels [data-sheet="6"],
       #em-s7:checked ~ .em-panels [data-sheet="7"],
       #em-s8:checked ~ .em-panels [data-sheet="8"],
-      #em-s9:checked ~ .em-panels [data-sheet="9"],
-      #em-s10:checked ~ .em-panels [data-sheet="10"],
-      #em-s11:checked ~ .em-panels [data-sheet="11"] {
+      #em-s9:checked ~ .em-panels [data-sheet="9"] {
         display: block;
         animation: em-fade 0.35s ease;
       }
@@ -160,9 +158,10 @@
       }
       .em-tabs {
         display: flex;
-        gap: 4px;
+        align-items: center;
+        gap: 8px;
         overflow-x: auto;
-        padding: 10px 16px 0;
+        padding: 10px 16px;
         max-width: 1100px;
         margin: 0 auto;
         scrollbar-width: none;
@@ -176,20 +175,22 @@
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        padding: 9px 14px 11px;
+        padding: 7px 15px;
         font-size: 12.5px;
         font-weight: 700;
         white-space: nowrap;
-        color: #8a6a42;
-        background: #f3ead9;
+        color: #6b5136;
+        background: transparent;
+        border: 1px solid rgba(110, 83, 52, 0.3);
+        border-radius: 999px;
         cursor: pointer;
         user-select: none;
         -webkit-user-select: none;
-        clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 100%, 0 100%);
-        transition: background 0.2s ease, color 0.2s ease;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
       }
       .em-tabs label:hover {
         background: #ffffff;
+        border-color: #b0844f;
         color: #1e2430;
       }
       .em-tabs label:active {
@@ -208,10 +209,9 @@
       #em-s6:checked ~ .em-tabs label[for="em-s6"],
       #em-s7:checked ~ .em-tabs label[for="em-s7"],
       #em-s8:checked ~ .em-tabs label[for="em-s8"],
-      #em-s9:checked ~ .em-tabs label[for="em-s9"],
-      #em-s10:checked ~ .em-tabs label[for="em-s10"],
-      #em-s11:checked ~ .em-tabs label[for="em-s11"] {
-        background: #6e5334;
+      #em-s9:checked ~ .em-tabs label[for="em-s9"] {
+        background: #1e2430;
+        border-color: #1e2430;
         color: #fdfbf7;
       }
       .em-fadehint {
@@ -465,7 +465,7 @@
             <h1 class="em-display" style="margin: 0; font-size: 26px; line-height: 1.15; font-weight: 500">
               84 лида в день <span style="display:block;color:rgba(253,251,247,0.9)">на всю сеть из 6 филиалов</span>
             </h1>
-            <span class="em-pager" style="border-color: rgba(253,251,247,0.6); color: #fdfbf7">01/11</span>
+            <span class="em-pager" style="border-color: rgba(253,251,247,0.6); color: #fdfbf7">01/09</span>
           </div>
         </div>
       </header>
@@ -481,8 +481,6 @@
         <input class="em-radio" type="radio" name="em-sheet" id="em-s7" />
         <input class="em-radio" type="radio" name="em-sheet" id="em-s8" />
         <input class="em-radio" type="radio" name="em-sheet" id="em-s9" />
-        <input class="em-radio" type="radio" name="em-sheet" id="em-s10" />
-        <input class="em-radio" type="radio" name="em-sheet" id="em-s11" />
 
         <nav class="em-tabs" aria-label="Разделы стратегии">
           <label for="em-s1">Обложка <span class="em-n">01</span></label>
@@ -490,12 +488,10 @@
           <label for="em-s3">Юнит-экономика <span class="em-n">03</span></label>
           <label for="em-s4">Медиаплан <span class="em-n">04</span></label>
           <label for="em-s5">Воронка <span class="em-n">05</span></label>
-          <label for="em-s6">ROMI <span class="em-n">06</span></label>
-          <label for="em-s7">Roadmap <span class="em-n">07</span></label>
-          <label for="em-s8">Точки <span class="em-n">08</span></label>
-          <label for="em-s9">Риски <span class="em-n">09</span></label>
-          <label for="em-s10">Каналы <span class="em-n">10</span></label>
-          <label for="em-s11">Приложение <span class="em-n">11</span></label>
+          <label for="em-s6">Roadmap <span class="em-n">06</span></label>
+          <label for="em-s7">Точки <span class="em-n">07</span></label>
+          <label for="em-s8">Риски <span class="em-n">08</span></label>
+          <label for="em-s9">Каналы <span class="em-n">09</span></label>
         </nav>
         <span class="em-fadehint" aria-hidden></span>
 
@@ -715,56 +711,11 @@
             </div>
           </section>
 
-          <!-- ============ 06 ROMI ============ -->
+          <!-- ============ 06 ROADMAP ============ -->
           <section data-sheet="6">
             <div class="wrap">
               <div class="em-head">
                 <span class="em-no em-display">06</span>
-                <h2 class="em-display">ROMI: расчёты и сценарии</h2>
-                <p>ROMI = (выручка − бюджет) / бюджет · выручка = продажи × 3 500 ₽. Каналы отсортированы по возврату.</p>
-              </div>
-              <div class="em-rule"></div>
-
-              <div class="card scroll-x">
-                <table style="min-width:520px">
-                  <thead><tr><th>Канал</th><th class="num">Бюджет, ₽</th><th class="num">Продажи</th><th class="num">ROMI</th></tr></thead>
-                  <tbody>
-                    <tr><td>Яндекс Карты</td><td class="num">130 000</td><td class="num">275</td><td class="num"><b style="color:#8a6a42">+640%</b></td></tr>
-                    <tr><td>Партнёрки банков</td><td class="num">20 000</td><td class="num">40</td><td class="num"><b style="color:#8a6a42">+600%</b></td></tr>
-                    <tr><td>Авито</td><td class="num">40 000</td><td class="num">64</td><td class="num"><b style="color:#8a6a42">+460%</b></td></tr>
-                    <tr><td>Яндекс Медицина</td><td class="num">50 000</td><td class="num">80</td><td class="num">+460%</td></tr>
-                    <tr><td>SEO / контент</td><td class="num">60 000</td><td class="num">72</td><td class="num">+320%</td></tr>
-                    <tr><td>Блогеры / MAX</td><td class="num">90 000</td><td class="num">90</td><td class="num">+250%</td></tr>
-                    <tr><td>2ГИС</td><td class="num">90 000</td><td class="num">79</td><td class="num">+207%</td></tr>
-                    <tr><td>Telegram</td><td class="num">30 000</td><td class="num">20</td><td class="num">+133%</td></tr>
-                    <tr><td>ПроДокторов</td><td class="num">60 000</td><td class="num">36</td><td class="num">+110%</td></tr>
-                    <tr><td>ВКонтакте</td><td class="num">90 000</td><td class="num">52</td><td class="num">+102%</td></tr>
-                    <tr><td>Instagram / SMM</td><td class="num">100 000</td><td class="num">50</td><td class="num">+75%</td></tr>
-                    <tr><td>Яндекс Директ</td><td class="num">340 000</td><td class="num">136</td><td class="num">+40%</td></tr>
-                    <tr><td>Google Maps · органика</td><td class="num">0</td><td class="num">15</td><td class="num"><i>органика</i></td></tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="em-block-t">Сценарии</div>
-              <div class="card scroll-x">
-                <table style="min-width:520px">
-                  <thead><tr><th>Сценарий</th><th class="num">Медиабюджет</th><th class="num">Продажи</th><th class="num">Выручка</th><th class="num">ROMI</th></tr></thead>
-                  <tbody>
-                    <tr><td>База · CR 40%</td><td class="num">1 100 000</td><td class="num">1 008</td><td class="num">3 528 000</td><td class="num"><b style="color:#8a6a42">+221%</b></td></tr>
-                    <tr><td>Пессимист · CR 32%, чек 3 000</td><td class="num">1 100 000</td><td class="num">807</td><td class="num">2 421 000</td><td class="num">+120%</td></tr>
-                    <tr><td>Безубыточность</td><td class="num">1 100 000</td><td class="num">314</td><td class="num">CR = 12,5%</td><td class="num">плановые 40% → запас ×3.2 · media-CAC 1 091 ₽ (×14.7)</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
-          <!-- ============ 07 ROADMAP ============ -->
-          <section data-sheet="7">
-            <div class="wrap">
-              <div class="em-head">
-                <span class="em-no em-display">07</span>
                 <h2 class="em-display">Дорожная карта внедрения</h2>
                 <p>4 фазы на 12 месяцев: от настройки аналитики и верификации 6 филиалов до 1 100 000 ₽/мес и 84 лидов в день.</p>
               </div>
@@ -773,17 +724,17 @@
                 <div class="card" style="padding:14px 16px">
                   <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 0</b><span class="em-pill">недели 1–2</span><span class="em-pill gold">~150 000 ₽</span></div>
                   <p style="margin:10px 0 0;font-size:13px;line-height:1.65">Коллтрекинг + UTM + цели Метрики; лендинги под кластеры ядра; верификация 6 филиалов (Яндекс Карты, Google Maps, 2ГИС); скрипты админов на доведение лида до прихода (40%).</p>
-                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> аналитика · 6/6 филиалов · страницы live</p>
+                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> аналитика · 6/6 филиалов · проверить посадочные страницы и формы</p>
                 </div>
                 <div class="card" style="padding:14px 16px">
                   <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 1</b><span class="em-pill">месяц 1</span><span class="em-pill gold">400 000 ₽/мес</span></div>
-                  <p style="margin:10px 0 0;font-size:13px;line-height:1.65">Яндекс Директ (горячие + зоны + аппараты); приоритет Карты (3 филиала) + 2ГИС; Авито: 3 объявления; ретаргетинг «Не дошли» по базе.</p>
+                  <p style="margin:10px 0 0;font-size:13px;line-height:1.65">Яндекс Директ (горячие + зоны + аппараты); реклама на картах + 2ГИС; Авито: 3 объявления; ретаргетинг «Не дошли» по базе.</p>
                   <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> ≥ 45 лидов/день · CPL ≤ 500 ₽</p>
                 </div>
                 <div class="card" style="padding:14px 16px">
                   <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 2</b><span class="em-pill">месяцы 2–3</span><span class="em-pill gold">700 000 ₽/мес</span></div>
                   <p style="margin:10px 0 0;font-size:13px;line-height:1.65">+ ВКонтакте (лид-формы, сторис); + Instagram / SMM и Telegram-клуб; + SEO / контент, ПроДокторов, Яндекс Медицина; реферальная программа; автоматизация YCLIENTS.</p>
-                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> ≥ 65 лидов/день · органика ≥ 12% · retention ≥ 65%</p>
+                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> ≥ 65 лидов/день · органика ≥ 12% · удержание клиентов ≥ 65%</p>
                 </div>
                 <div class="card" style="padding:14px 16px">
                   <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 3</b><span class="em-pill">месяцы 4–6</span><span class="em-pill gold">1 100 000 ₽/мес</span></div>
@@ -794,11 +745,11 @@
             </div>
           </section>
 
-          <!-- ============ 08 ТОЧКИ ============ -->
-          <section data-sheet="8">
+          <!-- ============ 07 ТОЧКИ ============ -->
+          <section data-sheet="7">
             <div class="wrap">
               <div class="em-head">
-                <span class="em-no em-display">08</span>
+                <span class="em-no em-display">07</span>
                 <h2 class="em-display">Таблица контрольных точек</h2>
                 <p>Срезы и управленческие решения: каждая точка отвечает «идём дальше, масштабируем или чиним».</p>
               </div>
@@ -807,42 +758,40 @@
                 <table style="min-width:640px">
                   <thead><tr><th>Точка</th><th>Что проверяем</th><th>KPI</th><th>Решение</th></tr></thead>
                   <tbody>
-                    <tr><td><b>Неделя 2</b></td><td>Лендинги и карты</td><td>Страницы live · 6/6 филиалов на Яндекс Картах, Google и 2ГИС</td><td>Запуск платного трафика</td></tr>
+                    <tr><td><b>Неделя 2</b></td><td>Лендинги и карты</td><td>Проверить посадочные страницы и формы · 6/6 филиалов на Яндекс Картах, Google и 2ГИС</td><td>Запуск платного трафика</td></tr>
                     <tr><td><b>Конец месяца 1</b></td><td>Срез Фазы 1</td><td>Лидов/день ≥ 45 · CPL ≤ 500 · CV клик→лид ≥ 10%</td><td>Масштаб в Фазу 2</td></tr>
-                    <tr><td><b>Конец месяца 3</b></td><td>Срез Фазы 2</td><td>Лидов/день ≥ 65 · органика ≥ 12% · retention ≥ 65%</td><td>Переход в Фазу 3</td></tr>
+                    <tr><td><b>Конец месяца 3</b></td><td>Срез Фазы 2</td><td>Лидов/день ≥ 65 · органика ≥ 12% · удержание клиентов ≥ 65%</td><td>Переход в Фазу 3</td></tr>
                     <tr><td><b>Конец месяца 6</b></td><td>Срез Фазы 3</td><td>Лидов/день 84 · ROMI (1-й мес) ≥ +221%</td><td>Годовой план, 7-й филиал</td></tr>
-                    <tr><td><b>Конец месяца 12</b></td><td>Годовой срез</td><td>Лидов/день 84+ · выручка/филиал ≥ 588 000 · NPS ≥ 50</td><td>Масштабирование / франшиза</td></tr>
+                    <tr><td><b>Конец месяца 12</b></td><td>Годовой срез</td><td>Лидов/день 84+ · выручка/филиал ≥ 588 000 · по рекомендации ≥ 50</td><td>Масштабирование / франшиза</td></tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </section>
 
-          <!-- ============ 09 РИСКИ ============ -->
-          <section data-sheet="9">
+          <!-- ============ 08 РИСКИ ============ -->
+          <section data-sheet="8">
             <div class="wrap">
               <div class="em-head">
-                <span class="em-no em-display">09</span>
-                <h2 class="em-display">Риски и митигация</h2>
-                <p>Шесть рабочих рисков стратегии — у каждого есть заранее подготовленный ответ.</p>
+                <span class="em-no em-display">08</span>
+                <h2 class="em-display">Риски</h2>
+                <p>Четыре рабочих риска стратегии — у каждого есть заранее подготовленный ответ.</p>
               </div>
               <div class="em-rule"></div>
               <div class="em-grid2">
-                <div class="card" style="padding:14px 16px"><b>Рост CPC в Директе</b> <span class="em-pill red">P: высокая</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Митигация:</b> доля Директа — 31% бюджета; диверсификация на карты, Авито, органику; работа с LTV.</p></div>
-                <div class="card" style="padding:14px 16px"><b>CR лид → приход ниже 40%</b> <span class="em-pill red">P: высокая</span> <span class="em-pill red">I: высокое</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Митигация:</b> скрипты админов, напоминания за 24 ч, предоплата-бронь слотов, контроль доходимости.</p></div>
-                <div class="card" style="padding:14px 16px"><b>Ужесточение модерации мед. услуг</b> <span class="em-pill red">P: высокая</span> <span class="em-pill red">I: высокое</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Митигация:</b> лицензии всех филиалов; без обещаний «навсегда»; юрист на креативах.</p></div>
-                <div class="card" style="padding:14px 16px"><b>Сезонность: спад май–июль</b> <span class="em-pill red">P: высокая</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Митигация:</b> pivot на M22, RSL и косметологию; акции «Summer Ready».</p></div>
-                <div class="card" style="padding:14px 16px"><b>Зависимость от геосервисов</b> <span class="em-pill gold">P: средняя</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Митигация:</b> Google Maps-органика, SEO, своя база (Telegram-клуб), партнёрки банков.</p></div>
-                <div class="card" style="padding:14px 16px"><b>Агрессия конкурентов</b> <span class="em-pill gold">P: средняя</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Митигация:</b> бренд-защита в Директе, отзывы на картах, УТП (Candela + Deka Moveo).</p></div>
+                <div class="card" style="padding:14px 16px"><b>CR лид → приход ниже 40%</b> <span class="em-pill red">P: высокая</span> <span class="em-pill red">I: высокое</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> скрипты админов, напоминания за 24 ч, предоплата-бронь слотов, еженедельный контроль доходимости.</p></div>
+                <div class="card" style="padding:14px 16px"><b>Недостаточная качественная ёмкость для открутки бюджета</b> <span class="em-pill gold">P: средняя</span> <span class="em-pill red">I: высокое</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> расширение семантики и гео, новые кластеры (мужская, косметология), look-alike по базе, перераспределение в ёмкие каналы.</p></div>
+                <div class="card" style="padding:14px 16px"><b>Сезонность: спад май–июль</b> <span class="em-pill red">P: высокая</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> pivot на M22, RSL и косметологию; акции «Summer Ready»; предоплата курсов со скидкой.</p></div>
+                <div class="card" style="padding:14px 16px"><b>Рост цены за трафик</b> <span class="em-pill red">P: высокая</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> диверсификация каналов (14 источников), ставка на органику и карты, работа с LTV и удержанием клиентов.</p></div>
               </div>
             </div>
           </section>
 
           <!-- ============ 10 КАНАЛЫ ============ -->
-          <section data-sheet="10">
+          <section data-sheet="9">
             <div class="wrap">
               <div class="em-head">
-                <span class="em-no em-display">10</span>
+                <span class="em-no em-display">09</span>
                 <h2 class="em-display">Детализация по каналам</h2>
                 <p>Конкретные действия и ожидаемый результат каждого канала к месяцу 6.</p>
               </div>
@@ -871,28 +820,6 @@
             </div>
           </section>
 
-          <!-- ============ 11 ПРИЛОЖЕНИЕ ============ -->
-          <section data-sheet="11">
-            <div class="wrap">
-              <div class="em-head">
-                <span class="em-no em-display">11</span>
-                <h2 class="em-display">Приложение: минус-слова по группам</h2>
-                <p>Для кампании «Поиск» на уровне аккаунта.</p>
-              </div>
-              <div class="em-rule"></div>
-              <div class="em-grid2">
-                <div class="card" style="padding:14px 16px"><b>Конкуренты</b><div class="em-chips" style="margin-top:10px"><span class="em-neg">мисс лазер</span><span class="em-neg">miss laser</span><span class="em-neg">лазер лав</span><span class="em-neg">laserlove</span><span class="em-neg">эпил тайм</span><span class="em-neg">эпил сити</span><span class="em-neg">novolazer</span><span class="em-neg">fancyvita</span><span class="em-neg">амория</span><span class="em-neg">beverly</span><span class="em-neg">nsee</span><span class="em-neg">one by one beauty</span><span class="em-neg">queens</span><span class="em-neg">everglow</span><span class="em-neg">lalalaser</span><span class="em-neg">beauty mix</span></div></div>
-                <div class="card" style="padding:14px 16px"><b>Инфо-мусор</b><div class="em-chips" style="margin-top:10px"><span class="em-neg">отзывы</span><span class="em-neg">как</span><span class="em-neg">почему</span><span class="em-neg">можно ли</span><span class="em-neg">фаза цикла</span><span class="em-neg">навсегда</span><span class="em-neg">вред</span><span class="em-neg">риски</span><span class="em-neg">противопоказания</span><span class="em-neg">в домашних условиях</span><span class="em-neg">своими руками</span><span class="em-neg">видео</span><span class="em-neg">форум</span><span class="em-neg">принцип действия</span></div></div>
-                <div class="card" style="padding:14px 16px"><b>B2B / кадры</b><div class="em-chips" style="margin-top:10px"><span class="em-neg">франшиза</span><span class="em-neg">открыть</span><span class="em-neg">стоимость открытия</span><span class="em-neg">курсы</span><span class="em-neg">школа</span><span class="em-neg">обучение</span><span class="em-neg">работа</span><span class="em-neg">вакансия</span><span class="em-neg">зарплата</span></div></div>
-                <div class="card" style="padding:14px 16px"><b>Не наши услуги</b><div class="em-chips" style="margin-top:10px"><span class="em-neg">воск</span><span class="em-neg">шугаринг</span><span class="em-neg">фотоэпилятор</span><span class="em-neg">купить</span><span class="em-neg">аппарат</span><span class="em-neg">крем</span><span class="em-neg">нитью</span><span class="em-neg">электроэпиляция (в отдельную кампанию)</span></div></div>
-              </div>
-              <div class="em-block-t">Не минусовать — целевые операторы запросов</div>
-              <div class="card" style="padding:14px 16px">
-                <div class="em-chips"><span class="em-pos">candela</span><span class="em-pos">deka</span><span class="em-pos">moveo</span><span class="em-pos">александрит</span><span class="em-pos">диод</span><span class="em-pos">цена</span><span class="em-pos">москва</span><span class="em-pos">записаться</span></div>
-                <p class="em-note">«Электроэпиляцию» не минусуем — выносим в отдельную кампанию с собственной посадочной.</p>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
 

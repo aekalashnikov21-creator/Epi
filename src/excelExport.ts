@@ -4,7 +4,6 @@ import {
   channelDetails,
   checkpoints,
   cohortEconomics,
-  doNotNegate,
   fileStructure,
   funnelStages,
   goals,
@@ -12,10 +11,8 @@ import {
   kpiControl,
   mediaChannels,
   mediaTotal,
-  negativeGroups,
   phases,
   risks,
-  scenarios,
   tickerItems,
   unitEconomics,
   fmt,
@@ -277,33 +274,9 @@ export async function downloadExcel(): Promise<void> {
     }
   );
 
-  /* ---------- 6. ROMI ---------- */
-  ws = wb.addWorksheet("6. ROMI");
-  r = title(ws, "ROMI: РАСЧЁТЫ И СЦЕНАРИИ", "ROMI = (выручка − бюджет) / бюджет · выручка = продажи × 3 500 ₽");
-  r = block(
-    ws, r, "ROMI ПО КАНАЛАМ (ПО УБЫВАНИЮ)",
-    ["Канал", "Бюджет, ₽", "Продажи", "Выручка, ₽", "ROMI"],
-    [...mediaChannels]
-      .sort((a, b) => (b.organic ? -1 : b.romi) - (a.organic ? -1 : a.romi))
-      .map((c) => [c.name, c.budget, c.sales, c.revenue, c.organic ? "органика · 0 ₽" : `+${fmt(c.romi)}%`]),
-    [30, 14, 11, 14, 16],
-    { zebra: true, alignRight: [1, 2, 3, 4] }
-  );
-  r = block(
-    ws, r, "СЦЕНАРИИ",
-    ["Сценарий", "Бюджет", "Продажи", "Средний чек", "Выручка", "ROMI"],
-    scenarios.map((s) =>
-      s.id === "be"
-        ? ["Безубыточность", "1 100 000", "314 (CR 12.5%)", "3 500 ₽", "1 099 000 ₽", "≈ 0% · media-CAC 1 091 ₽ (запас ×14.7) · плановые 40% дают запас ×3.2"]
-        : [s.name, fmt(s.budget), fmt(s.sales), `${fmt(s.check)} ₽`, `${fmt(s.sales * s.check)} ₽`, s.romi]
-    ),
-    [22, 13, 16, 12, 14, 62],
-    { zebra: true }
-  );
-
-  /* ---------- 7. ROADMAP ---------- */
-  ws = wb.addWorksheet("7. Roadmap");
-  r = title(ws, "ДОРОЖНАЯ КАРТА ВНЕДРЕНИЯ", "4 фазы на 12 месяцев: от настройки аналитики до 1 100 000 ₽/мес и 89 лидов в день");
+  /* ---------- 6. ROADMAP ---------- */
+  ws = wb.addWorksheet("6. Roadmap");
+  r = title(ws, "ДОРОЖНАЯ КАРТА ВНЕДРЕНИЯ", "4 фазы на 12 месяцев: от настройки аналитики до 1 100 000 ₽/мес и 84 лидов в день");
   r = block(
     ws, r, null,
     ["Фаза / период", "Действия", "Бюджет", "KPI выхода из фазы"],
@@ -312,8 +285,8 @@ export async function downloadExcel(): Promise<void> {
     { zebra: true }
   );
 
-  /* ---------- 8. КОНТРОЛЬНЫЕ ТОЧКИ ---------- */
-  ws = wb.addWorksheet("8. Контрольные точки");
+  /* ---------- 7. КОНТРОЛЬНЫЕ ТОЧКИ ---------- */
+  ws = wb.addWorksheet("7. Контрольные точки");
   r = title(ws, "ТАБЛИЦА КОНТРОЛЬНЫХ ТОЧЕК", "Срезы и решения: каждая точка отвечает «идём дальше, масштабируем или чиним»");
   r = block(
     ws, r, null,
@@ -323,19 +296,19 @@ export async function downloadExcel(): Promise<void> {
     { zebra: true }
   );
 
-  /* ---------- 9. РИСКИ ---------- */
-  ws = wb.addWorksheet("9. Риски");
-  r = title(ws, "РИСКИ И МИТИГАЦИЯ");
+  /* ---------- 8. РИСКИ ---------- */
+  ws = wb.addWorksheet("8. Риски");
+  r = title(ws, "РИСКИ");
   r = block(
     ws, r, null,
-    ["Риск", "Вероятность", "Влияние", "Митигация"],
+    ["Риск", "Вероятность", "Влияние", "Что делаем"],
     risks.map((x) => [x.risk, x.prob, x.impact, x.mitigation]),
     [36, 14, 12, 78],
     { zebra: true }
   );
 
-  /* ---------- 10. ДЕТАЛИ КАНАЛОВ ---------- */
-  ws = wb.addWorksheet("10. Детали каналов");
+  /* ---------- 9. ДЕТАЛИ КАНАЛОВ ---------- */
+  ws = wb.addWorksheet("9. Детали каналов");
   r = title(ws, "ДЕТАЛИЗАЦИЯ ПО КАНАЛАМ", "Действия и ожидаемый результат каждого канала");
   r = block(
     ws, r, null,
@@ -343,17 +316,6 @@ export async function downloadExcel(): Promise<void> {
     channelDetails.map((c) => [c.channel, c.actions, c.result]),
     [22, 82, 36],
     { zebra: true }
-  );
-
-  /* ---------- 11. МИНУС-СЛОВА ---------- */
-  ws = wb.addWorksheet("11. Минус-слова");
-  r = title(ws, "ПРИЛОЖЕНИЕ: МИНУС-СЛОВА ПО ГРУППАМ", "Для кампании «Поиск» на уровне аккаунта");
-  r = block(
-    ws, r, null,
-    ["Группа", "Минус-слова"],
-    negativeGroups.map((g) => [g.group, g.words.join(", ")]),
-    [22, 118],
-    { zebra: true, note: `Не минусовать: ${doNotNegate.join(", ")}. «Электроэпиляцию» выносим в отдельную кампанию с собственной посадочной.` }
   );
   r = block(
     ws, r, "ПАМЯТКА ПО ПЛАНУ",
