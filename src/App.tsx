@@ -39,11 +39,7 @@ const tabs = [
   { num: "11", label: "Приложение", icon: BookOpen },
 ];
 
-const CAC_TIERS = [
-  { label: "Media CAC", value: "1 026 ₽", mult: "×15.6", pct: (1026 / 16000) * 100, main: false },
-  { label: "Полный CAC · медиа + команда + сервисы", value: "1 880 ₽", mult: "×8.5", pct: (1880 / 16000) * 100, main: true },
-  { label: "CAC all-in · + аренда", value: "~2 400 ₽", mult: "×6.7", pct: (2400 / 16000) * 100, main: false },
-];
+const CAC_PLAN_PCT = (1091 / 16000) * 100;
 
 function DeckStat({
   label,
@@ -144,15 +140,15 @@ function Header({ tab }: { tab: number }) {
               Действующий план · лазерная эпиляция и косметология
             </p>
             <h1 className="mt-5 font-display text-[32px] leading-[1.12] font-medium md:text-[52px] md:font-normal xl:text-[60px]">
-              <span className="tabular-nums">89</span> лидов в день
+              <span className="tabular-nums">84</span> лида в день
               <span className="mt-1 block text-paper-50/90">на всю сеть из 6 филиалов</span>
             </h1>
             <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-paper-100/70">
-              6 филиалов × ~15 лидов в день. При конверсии в фактический приход 40% это 36 продаж
-              ежедневно — 2 681 лид и 1 072 продажи в месяц при бюджете 1 100 000 ₽.
+              6 филиалов × ~14 лидов в день. При конверсии в фактический приход 40% это 34 продажи
+              ежедневно — 2 521 лид и 1 008 продаж в месяц при медиабюджете 1 100 000 ₽.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {["Лидеры CPL: Авито 125 ₽ и Карты 189 ₽", "Google Maps — 38 лидов за 0 ₽", "Директ даёт объём — ROMI под контроль", "Органика ≥ 20%"].map((c) => (
+              {["Лидеры CPL: Карты 189 ₽, банки 250 ₽", "Авито считаем консервативно (CV 6%)", "Google Maps — 38 лидов за 0 ₽", "Директ даёт объём — ROMI под контроль"].map((c) => (
                 <span
                   key={c}
                   className="flex items-center gap-2 border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[12px] font-semibold text-paper-100/85 transition-colors hover:border-gold-500/60 hover:text-gold-300"
@@ -178,46 +174,37 @@ function Header({ tab }: { tab: number }) {
               </span>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
-              <DeckStat label="Бюджет" value={1100000} suffix=" ₽/мес" />
-              <DeckStat label="Лиды в месяц" value={2681} />
-              <DeckStat label="Продажи в месяц" value={1072} />
-              <DeckStat label="ROMI · 1-й мес · полный бюджет" value={86} prefix="+" suffix="%" />
+              <DeckStat label="Медиабюджет" value={1100000} suffix=" ₽/мес" />
+              <DeckStat label="Лиды в месяц" value={2521} />
+              <DeckStat label="Продажи в месяц" value={1008} />
+              <DeckStat label="ROMI (1-й месяц)" value={221} prefix="+" suffix="%" />
             </div>
             <p className="mt-4 text-[11px] leading-relaxed text-ink-500 tabular-nums">
-              На полном бюджете привлечения 2 020 000 ₽/мес · ROMI по LTV <b className="text-gold-700">+749%</b> · ROMI на медиабюджете +241%
+              ROMI по LTV-марже когорты <b className="text-gold-700">+1 366%</b> · media-CAC 1 091 ₽ · CPL 436 ₽
             </p>
             <div className="mt-7 border-t border-ink-100 pt-5">
-              <div className="flex items-baseline justify-between gap-3">
+              <div className="flex items-baseline justify-between">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-500">
-                  Запас прочности CAC · 3 уровня
+                  Запас прочности media-CAC
                 </p>
-                <p className="text-[11px] text-ink-500 tabular-nums">
+                <p className="font-display text-[19px] font-bold text-gold-600 tabular-nums">×14.7</p>
+              </div>
+              <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-200">
+                <div
+                  className="grad-moss absolute inset-y-0 left-0 rounded-[2px]"
+                  style={{ width: mounted ? `${CAC_PLAN_PCT}%` : "0%", transition: "width 1.4s cubic-bezier(.22,.61,.36,1)" }}
+                />
+                <span
+                  className="absolute -top-1 -bottom-1 w-[2px] bg-gold-500"
+                  style={{ left: `${CAC_PLAN_PCT}%` }}
+                />
+              </div>
+              <div className="mt-2 flex justify-between text-[11px] text-ink-500 tabular-nums">
+                <span className="font-semibold text-moss-600">план 1 091 ₽</span>
+                <span>
                   безубыточность <b className="text-ink-900">16 000 ₽</b>
-                </p>
+                </span>
               </div>
-              <div className="mt-3.5 space-y-3">
-                {CAC_TIERS.map((t, i) => (
-                  <div key={t.label} className={t.main ? "-mx-2 border border-gold-500/45 bg-gold-100/40 px-2 py-1.5" : ""}>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <p className={`text-[10.5px] font-bold uppercase tracking-[0.1em] ${t.main ? "text-gold-700" : "text-ink-500"}`}>
-                        {t.label}
-                      </p>
-                      <p className="whitespace-nowrap text-[11.5px] font-bold text-ink-900 tabular-nums">
-                        {t.value} <span className={t.main ? "text-gold-600" : "text-ink-500"}>{t.mult}</span>
-                      </p>
-                    </div>
-                    <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-[2px] bg-paper-200">
-                      <div
-                        className={t.main ? "grad-gold h-full rounded-[2px]" : "grad-moss h-full rounded-[2px]"}
-                        style={{ width: mounted ? `${t.pct}%` : "0%", transition: `width 1.3s cubic-bezier(.22,.61,.36,1) ${i * 160}ms` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-3 text-[11px] leading-relaxed text-ink-500">
-                Норма рынка — ×3. Даже all-in-уровень даёт запас ×6.7: план выдержит рост CPC вдвое и просадку конверсий на треть.
-              </p>
             </div>
           </div>
         </div>
@@ -351,13 +338,13 @@ export default function App() {
               <p className="font-display text-[13px] font-bold tracking-[0.08em] text-paper-50">EPILATE-ME</p>
               <p className="mt-1.5 max-w-md text-[12px] leading-relaxed text-paper-100/50">
                 Маркетинг-стратегия 2026–2027 · сеть клиник лазерной эпиляции и косметологии · Москва, 6 филиалов ·
-                план: 89 лидов в день на сеть, конверсия в приход 40%
+                план: 84 лида в день на сеть, конверсия в приход 40%
               </p>
             </div>
           </div>
           <div className="md:text-right">
             <p className="flex flex-wrap items-center gap-2 font-display text-[12.5px] font-bold text-gold-400 tabular-nums">
-              2 681 лид <ArrowRight size={13} /> 1 072 продажи <ArrowRight size={13} /> ROMI +86% (1-й мес)
+              2 521 лид <ArrowRight size={13} /> 1 008 продаж <ArrowRight size={13} /> ROMI +221%
             </p>
             <p className="mt-2 flex items-center gap-1.5 text-[11px] text-paper-100/40 md:justify-end">
               <FileSpreadsheet size={12} className="text-gold-500/70" />

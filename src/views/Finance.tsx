@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { TrendingUp, ShieldCheck, Scale } from "lucide-react";
+import { TrendingUp, ShieldCheck } from "lucide-react";
 import {
   unitEconomics,
-  costStructure,
-  cacTiers,
-  breakEven,
   mediaChannels,
   mediaTotal,
   channelColors,
@@ -18,9 +15,10 @@ import { Reveal, SectionHead, ScrollHint, useCountUp, useMounted, Th, Td } from 
 /* ================= ЛИСТ 3 · ЮНИТ-ЭКОНОМИКА ================= */
 export function SheetEconomics() {
   const mounted = useMounted(300);
-  const safety = useCountUp(8.5);
+  const safety = useCountUp(14.7);
   const coursePct = (14700 / 16000) * 100;
   const crossPct = (1440 / 16000) * 100;
+  const cacPct = (1091 / 16000) * 100;
 
   return (
     <section>
@@ -81,43 +79,35 @@ export function SheetEconomics() {
           <div className="flex h-full flex-col border border-ink-800 bg-ink-900 p-6 text-paper-100">
             <p className="flex items-center gap-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-gold-400">
               <ShieldCheck size={15} />
-              Запас прочности CAC · 3 уровня
+              Запас прочности media-CAC
             </p>
-            <p className="mt-4 font-display text-[42px] leading-none font-bold text-paper-50 md:text-[52px]">
+            <p className="mt-4 font-display text-[52px] leading-none font-bold text-paper-50">
               ×{fmt(safety, 1)}
             </p>
-            <p className="mt-1 text-[13px] text-paper-100/70">по полному CAC · между плановым и предельным (16 000 ₽)</p>
+            <p className="mt-1 text-[13px] text-paper-100/70">между плановым и предельным CAC</p>
 
-            <div className="mt-6 space-y-4">
-              {cacTiers.map((t, i) => (
-                <div key={t.name}>
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className={`text-[11px] font-bold uppercase tracking-[0.1em] ${t.main ? "text-gold-400" : "text-paper-100/60"}`}>
-                      {t.name}
-                    </p>
-                    <p className="whitespace-nowrap text-[12px] font-bold tabular-nums">
-                      <span className={t.main ? "text-gold-400" : "text-paper-50"}>~{fmt(t.value)} ₽</span>{" "}
-                      <span className="text-paper-100/55">{t.mult}</span>
-                    </p>
-                  </div>
-                  <div className="relative mt-1.5 h-2.5 w-full rounded-[3px] bg-paper-100/12">
-                    <div
-                      className={`${t.main ? "grad-gold" : "grad-moss"} absolute inset-y-0 left-0 rounded-[3px]`}
-                      style={{
-                        width: mounted ? `${(t.value / 16000) * 100}%` : "0%",
-                        transition: `width 1.3s cubic-bezier(.22,.61,.36,1) ${0.25 + i * 0.2}s`,
-                      }}
-                    />
-                  </div>
-                  <p className="mt-1 text-[10.5px] leading-snug text-paper-100/45">{t.desc}</p>
-                </div>
-              ))}
+            <div className="mt-7">
+              <div className="relative h-3 w-full rounded-[3px] bg-paper-100/12">
+                <div
+                  className="grad-moss absolute inset-y-0 left-0 rounded-[3px]"
+                  style={{ width: mounted ? `${cacPct}%` : "0%", transition: "width 1.3s cubic-bezier(.22,.61,.36,1) .3s" }}
+                />
+                <div className="absolute -top-1.5 -bottom-1.5 w-[2px] bg-gold-400" style={{ left: `${cacPct}%` }} />
+              </div>
+              <div className="mt-2.5 flex items-start justify-between text-[11.5px] leading-tight">
+                <span className="text-moss-500 font-semibold">план ~1 091 ₽</span>
+                <span className="text-right text-paper-100/65">
+                  безубыточность
+                  <br />
+                  <b className="text-paper-50 tabular-nums">16 000 ₽</b>
+                </span>
+              </div>
             </div>
 
-            <ul className="mt-auto space-y-2.5 border-t border-paper-100/10 pt-5 text-[12.5px] text-paper-100/80">
-              <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />Норма рынка — ×3; у нас ×6.7 даже all-in</li>
-              <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />Аренда — производственная константа: в марже, не в CAC</li>
+            <ul className="mt-7 space-y-2.5 border-t border-paper-100/10 pt-5 text-[13px] text-paper-100/80">
+              <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />Media-CAC = медиабюджет ÷ продажи: 1 100 000 / 1 008</li>
               <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />CR лид → фактический приход — 40% (скрипты админов)</li>
+              <li className="flex gap-2.5"><span className="mt-[7px] h-1 w-1 rotate-45 bg-gold-500" />Предельный CAC = LTV-маржа клиента</li>
             </ul>
           </div>
         </Reveal>
@@ -147,67 +137,6 @@ export function SheetEconomics() {
         </div>
       </Reveal>
 
-      <div className="mt-12 grid gap-4 lg:grid-cols-2">
-        <Reveal>
-          <div className="flex h-full flex-col border border-ink-800/10 bg-white p-6">
-            <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-ink-500">
-              Структура затрат на привлечение · ₽/мес
-            </p>
-            <div className="mt-4 flex-1">
-              {costStructure.map((c) => (
-                <div key={c.item} className="flex items-baseline justify-between gap-4 border-b border-ink-100 py-2.5">
-                  <div>
-                    <p className="text-[13.5px] font-semibold text-ink-900">{c.item}</p>
-                    <p className="text-[11.5px] text-ink-500">{c.note}</p>
-                  </div>
-                  <p className="whitespace-nowrap font-display text-[15px] font-bold text-ink-900 tabular-nums">{fmt(c.sum)}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 flex items-baseline justify-between border-t-2 border-ink-800 pt-3.5">
-              <p className="text-[13px] font-bold text-ink-900">Итого затрат на привлечение</p>
-              <p className="font-display text-[19px] font-bold text-gold-700 tabular-nums">2 020 000 ₽</p>
-            </div>
-            <p className="mt-3 text-[12px] leading-relaxed text-ink-500">
-              Аренда (≈1,5 млн ₽/мес) в CAC не входит — клиника существует и без привлечения. Она учитывается в точке
-              безубыточности и марже, а в «all-in»-взгляд добавляется отдельным слоем (+540 ₽ на клиента).
-            </p>
-          </div>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <div className="flex h-full flex-col border border-ink-800 bg-ink-900 p-6 text-paper-100">
-            <p className="flex items-center gap-2 text-[11.5px] font-bold uppercase tracking-[0.14em] text-gold-400">
-              <Scale size={15} />
-              Точка безубыточности сети
-            </p>
-            <div className="mt-5 grid grid-cols-2 gap-5">
-              <div>
-                <p className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-paper-100/50">Постоянные расходы</p>
-                <p className="mt-1.5 font-display text-[24px] leading-none font-bold text-paper-50 tabular-nums">~1,8 млн ₽</p>
-                <p className="mt-1.5 text-[11.5px] text-paper-100/55">{breakEven.fixedNote}</p>
-              </div>
-              <div>
-                <p className="text-[10.5px] font-bold uppercase tracking-[0.12em] text-paper-100/50">Безубыточность</p>
-                <p className="mt-1.5 font-display text-[24px] leading-none font-bold text-gold-400 tabular-nums">
-                  {fmt(breakEven.procedures)} <span className="text-[13px]">процедур/мес</span>
-                </p>
-                <p className="mt-1.5 text-[11.5px] text-paper-100/55">
-                  {breakEven.perDayNetwork}/день на сеть · {breakEven.perDayBranch} на филиал
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 border-t border-paper-100/10 pt-5">
-              <p className="text-[12.5px] leading-relaxed text-paper-100/80">
-                Маржа с процедуры <b className="text-paper-50">2 100 ₽</b> → ноль наступает при{" "}
-                <b className="text-gold-400">{fmt(breakEven.procedures)} процедурах</b> в месяц. Только новые клиенты дают{" "}
-                <b className="text-paper-50">{fmt(breakEven.newFlow)} процедур/мес</b> (1 072 × 1.5) — уже в ~1.9 раза выше
-                порога. С повторными визитами сеть безубыточна даже при полностью отключённой рекламе.
-              </p>
-            </div>
-          </div>
-        </Reveal>
-      </div>
     </section>
   );
 }
@@ -215,14 +144,14 @@ export function SheetEconomics() {
 /* ================= ЛИСТ 4 · МЕДИАПЛАН ================= */
 export function SheetMedia() {
   const romiTone = (r: number) =>
-    r >= 700 ? "font-extrabold text-gold-600" : r >= 400 ? "font-bold text-ink-800" : "font-semibold text-ink-500";
+    r >= 600 ? "font-extrabold text-gold-600" : r >= 300 ? "font-bold text-ink-800" : "font-semibold text-ink-500";
 
   return (
     <section>
       <SectionHead
         no="04"
         title="Медиаплан"
-        sub="Целевой месяц · 1 100 000 ₽/мес → 2 681 лид → 1 072 продажи (конверсия в приход 40%) · ROMI = (выручка − бюджет) / бюджет"
+        sub="Целевой месяц · 1 100 000 ₽/мес → 2 521 лид → 1 008 продаж (конверсия в приход 40%) · ROMI = (выручка − бюджет) / бюджет"
       />
 
       <Reveal>
@@ -311,9 +240,8 @@ export function SheetMedia() {
           <TrendingUp size={16} className="mt-0.5 shrink-0 text-gold-600" />
           <span>
             ROMI каналов = (выручка − медиабюджет) / медиабюджет; выручка = продажи × 3 500 ₽. Google Maps работает без
-            бюджета — 38 лидов в месяц даёт заполненный профиль с отзывами. Лучшие CPL: Авито 125 ₽, Яндекс Карты 189 ₽,
-            партнёрки банков 200 ₽. <b className="text-ink-800">ROMI 1-го месяца на полном бюджете привлечения (2 020 000 ₽) — +86%</b>,
-            по LTV-марже когорты — +749%.
+            бюджета — 38 лидов в месяц даёт заполненный профиль с отзывами. Авито посчитан консервативно (факт CV ~6%,
+            вдвое ниже паспортной). Лучшие CPL: Яндекс Карты 189 ₽, партнёрки банков и Яндекс Медицина 250 ₽, Авито 250 ₽.
           </span>
         </p>
       </Reveal>
@@ -329,7 +257,7 @@ export function SheetFunnel() {
       <SectionHead
         no="05"
         title="Полная маркетинговая воронка"
-        sub="Целевой месяц · путь от клика до LTV-процедур когорты из 1 072 первичных клиентов"
+        sub="Целевой месяц · путь от клика до LTV-процедур когорты из 1 008 первичных клиентов"
       />
 
       <Reveal>
@@ -375,7 +303,7 @@ export function SheetFunnel() {
       <Reveal delay={120} className="mt-12">
         <p className="mb-4 flex items-center gap-2 font-display text-[12px] font-semibold tracking-[0.22em] text-ink-500 uppercase">
           <span className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
-          Экономика когорты · 1 072 первичных клиентов
+          Экономика когорты · 1 008 первичных клиентов
         </p>
       </Reveal>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -393,10 +321,10 @@ export function SheetFunnel() {
       <Reveal delay={200}>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { k: "Лидов в день", v: "15", f: "447 в месяц" },
-            { k: "Первичных клиентов", v: "179", f: "6/день · конверсия 40%" },
-            { k: "Выручка 1-го месяца", v: "625 300 ₽", f: "179 × 3 500" },
-            { k: "LTV-маржа · 12 мес", v: "2 858 700 ₽", f: "179 × 16 000" },
+            { k: "Лидов в день", v: "14", f: "420 в месяц" },
+            { k: "Первичных клиентов", v: "168", f: "5.6/день · конверсия 40%" },
+            { k: "Выручка 1-го месяца", v: "588 000 ₽", f: "168 × 3 500" },
+            { k: "LTV-маржа · 12 мес", v: "2 688 000 ₽", f: "168 × 16 000" },
           ].map((x) => (
             <div key={x.k} className="row-hover border border-ink-800/10 bg-white p-5">
               <p className="text-[11.5px] font-bold uppercase tracking-[0.12em] text-ink-500">{x.k}</p>
@@ -406,8 +334,8 @@ export function SheetFunnel() {
           ))}
         </div>
         <p className="mt-4 text-[12.5px] leading-relaxed text-ink-600">
-          Бюджет на филиал — ~183 000 ₽/мес (1 100 000 ₽ на сеть из 6 филиалов). ROMI 1-го месяца +241%, по LTV +1 459%.
-          Умножьте на 6 — и получите целевые 89 лидов и 36 продаж в день на всю сеть.
+          Бюджет на филиал — ~183 000 ₽/мес (1 100 000 ₽ на сеть из 6 филиалов). ROMI 1-го месяца +221%, по LTV +1 366%.
+          Умножьте на 6 — и получите целевые 84 лида и 34 продажи в день на всю сеть.
         </p>
       </Reveal>
     </section>
@@ -460,7 +388,7 @@ export function SheetRomi() {
       <SectionHead
         no="06"
         title="ROMI: расчёты и сценарии"
-        sub="ROMI каналов — на медиабюджет (выручка = продажи × 3 500 ₽) · сценарии и запас прочности — на полный бюджет привлечения 2 020 000 ₽"
+        sub="Media-ROMI = (выручка − медиабюджет) / медиабюджет · выручка = продажи × 3 500 ₽ · каналы отсортированы по возврату"
       />
 
       <Reveal>
@@ -490,8 +418,8 @@ export function SheetRomi() {
             </div>
           ))}
           <p className="mt-4 border-t border-ink-100 pt-4 text-[12.5px] leading-relaxed text-ink-500">
-            Лидеры возврата — Авито (+1 020%) и Яндекс Карты (+640%). Директ даёт объём (340 лидов), но наименьший ROMI
-            (+40%) — кандидат на оптимизацию ставок. Google Maps приносит 38 лидов при нулевом бюджете.
+            Лидеры возврата — Яндекс Карты (+640%), Авито и Яндекс Медицина (по +460%). Директ даёт объём (340 лидов),
+            но наименьший ROMI (+40%) — кандидат на оптимизацию ставок. Google Maps приносит 38 лидов при нулевом бюджете.
           </p>
         </div>
       </Reveal>
@@ -525,19 +453,19 @@ export function SheetRomi() {
         {active.id === "be" ? (
           <div className="grid items-center gap-6 border border-ink-800 bg-ink-900 p-6 text-paper-100 md:grid-cols-[auto_1fr] md:p-8">
             <div className="text-center md:text-left">
-              <p className="font-display text-[54px] leading-none font-bold text-gold-400 tabular-nums">×8.5</p>
-              <p className="mt-2 text-[11px] tracking-[0.14em] text-paper-100/50 uppercase">запас по полному CAC</p>
+              <p className="font-display text-[54px] leading-none font-bold text-gold-400 tabular-nums">×14.7</p>
+              <p className="mt-2 text-[11px] tracking-[0.14em] text-paper-100/50 uppercase">запас по media-CAC</p>
             </div>
             <div>
               <p className="font-display text-[13px] font-semibold tracking-[0.18em] text-paper-50 uppercase">
                 Точка безубыточности
               </p>
               <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-paper-100/80">
-                На полном бюджете привлечения <b className="text-paper-50">2 020 000 ₽</b> план окупается при{" "}
-                <b className="text-paper-50">577 продажах</b> (конверсия в приход <b className="text-gold-400">21.5%</b>) —
-                плановые 40% дают запас ×1.9. По стоимости клиента: полный CAC <b className="text-gold-400">1 880 ₽</b>{" "}
-                против безубыточных <b className="text-paper-50">16 000 ₽</b> (×8.5), all-in ~2 400 ₽ (×6.7).
-                Норма рынка — ×3: модель выдержит рост CPC вдвое и просадку конверсий на треть.
+                При медиабюджете <b className="text-paper-50">1 100 000 ₽</b> план окупается при{" "}
+                <b className="text-paper-50">314 продажах</b> (конверсия в приход <b className="text-gold-400">12.5%</b>) —
+                плановые 40% дают запас ×3.2. По стоимости клиента: media-CAC <b className="text-gold-400">1 091 ₽</b>{" "}
+                против безубыточных <b className="text-paper-50">16 000 ₽</b> (×14.7).
+                План выдержит и перегрев аукциона, и падение конверсии, и сезонность.
               </p>
             </div>
           </div>
