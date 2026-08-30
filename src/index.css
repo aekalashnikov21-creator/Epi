@@ -230,6 +230,26 @@ body {
   background-image: linear-gradient(#b0844f, #d8ccb8, transparent);
 }
 
+/* ---------- плавающая кнопка скачивания ---------- */
+.fab-in {
+  animation: fab-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 1.1s backwards;
+}
+@keyframes fab-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fab-in {
+    animation: none;
+  }
+}
+
 /* ---------- touch / mobile ---------- */
 body {
   touch-action: manipulation;
