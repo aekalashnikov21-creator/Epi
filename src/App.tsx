@@ -39,7 +39,11 @@ const tabs = [
   { num: "11", label: "Приложение", icon: BookOpen },
 ];
 
-const CAC_PLAN_PCT = (1026 / 16000) * 100;
+const CAC_TIERS = [
+  { label: "Media CAC", value: "1 026 ₽", mult: "×15.6", pct: (1026 / 16000) * 100, main: false },
+  { label: "Полный CAC · медиа + команда + сервисы", value: "1 880 ₽", mult: "×8.5", pct: (1880 / 16000) * 100, main: true },
+  { label: "CAC all-in · + аренда", value: "~2 400 ₽", mult: "×6.7", pct: (2400 / 16000) * 100, main: false },
+];
 
 function DeckStat({
   label,
@@ -177,31 +181,43 @@ function Header({ tab }: { tab: number }) {
               <DeckStat label="Бюджет" value={1100000} suffix=" ₽/мес" />
               <DeckStat label="Лиды в месяц" value={2681} />
               <DeckStat label="Продажи в месяц" value={1072} />
-              <DeckStat label="ROMI (1-й месяц)" value={241} prefix="+" suffix="%" />
+              <DeckStat label="ROMI · 1-й мес · полный бюджет" value={86} prefix="+" suffix="%" />
             </div>
+            <p className="mt-4 text-[11px] leading-relaxed text-ink-500 tabular-nums">
+              На полном бюджете привлечения 2 020 000 ₽/мес · ROMI по LTV <b className="text-gold-700">+749%</b> · ROMI на медиабюджете +241%
+            </p>
             <div className="mt-7 border-t border-ink-100 pt-5">
-              <div className="flex items-baseline justify-between">
+              <div className="flex items-baseline justify-between gap-3">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-500">
-                  Запас прочности CAC
+                  Запас прочности CAC · 3 уровня
                 </p>
-                <p className="font-display text-[19px] font-bold text-gold-600 tabular-nums">×15.6</p>
-              </div>
-              <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-200">
-                <div
-                  className="grad-moss absolute inset-y-0 left-0 rounded-[2px]"
-                  style={{ width: mounted ? `${CAC_PLAN_PCT}%` : "0%", transition: "width 1.4s cubic-bezier(.22,.61,.36,1)" }}
-                />
-                <span
-                  className="absolute -top-1 -bottom-1 w-[2px] bg-gold-500"
-                  style={{ left: `${CAC_PLAN_PCT}%` }}
-                />
-              </div>
-              <div className="mt-2 flex justify-between text-[11px] text-ink-500 tabular-nums">
-                <span className="font-semibold text-moss-600">план 1 026 ₽</span>
-                <span>
+                <p className="text-[11px] text-ink-500 tabular-nums">
                   безубыточность <b className="text-ink-900">16 000 ₽</b>
-                </span>
+                </p>
               </div>
+              <div className="mt-3.5 space-y-3">
+                {CAC_TIERS.map((t, i) => (
+                  <div key={t.label} className={t.main ? "-mx-2 border border-gold-500/45 bg-gold-100/40 px-2 py-1.5" : ""}>
+                    <div className="flex items-baseline justify-between gap-3">
+                      <p className={`text-[10.5px] font-bold uppercase tracking-[0.1em] ${t.main ? "text-gold-700" : "text-ink-500"}`}>
+                        {t.label}
+                      </p>
+                      <p className="whitespace-nowrap text-[11.5px] font-bold text-ink-900 tabular-nums">
+                        {t.value} <span className={t.main ? "text-gold-600" : "text-ink-500"}>{t.mult}</span>
+                      </p>
+                    </div>
+                    <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-[2px] bg-paper-200">
+                      <div
+                        className={t.main ? "grad-gold h-full rounded-[2px]" : "grad-moss h-full rounded-[2px]"}
+                        style={{ width: mounted ? `${t.pct}%` : "0%", transition: `width 1.3s cubic-bezier(.22,.61,.36,1) ${i * 160}ms` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-[11px] leading-relaxed text-ink-500">
+                Норма рынка — ×3. Даже all-in-уровень даёт запас ×6.7: план выдержит рост CPC вдвое и просадку конверсий на треть.
+              </p>
             </div>
           </div>
         </div>
@@ -341,7 +357,7 @@ export default function App() {
           </div>
           <div className="md:text-right">
             <p className="flex flex-wrap items-center gap-2 font-display text-[12.5px] font-bold text-gold-400 tabular-nums">
-              2 681 лид <ArrowRight size={13} /> 1 072 продажи <ArrowRight size={13} /> ROMI +241%
+              2 681 лид <ArrowRight size={13} /> 1 072 продажи <ArrowRight size={13} /> ROMI +86% (1-й мес)
             </p>
             <p className="mt-2 flex items-center gap-1.5 text-[11px] text-paper-100/40 md:justify-end">
               <FileSpreadsheet size={12} className="text-gold-500/70" />
