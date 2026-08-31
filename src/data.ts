@@ -162,11 +162,10 @@ export const channelColors = ["#B0844F", "#6E5334", "#D9BE97", "#A17E52", "#6F7F
 
 /* ---------- воронка ---------- */
 export const funnelStages = [
-  { stage: "Клики", value: 24931, conv: null as string | null, note: "все каналы · CPC средний 44 ₽", width: 100 },
-  { stage: "Лиды", value: 2521, conv: "10.1%", note: "CPL 436 ₽", width: 60 },
-  { stage: "Продажи (первичные клиенты)", value: 1008, conv: "40%", note: "media-CAC 1 091 ₽", width: 42 },
-  { stage: "Процедуры · 1-й месяц", value: 1512, conv: "×1.5", note: "выручка 5 292 000 ₽", width: 29 },
-  { stage: "Процедуры · LTV 12 мес", value: 7056, conv: "×7", note: "LTV-выручка когорты 24.7 млн ₽", width: 18 },
+  { stage: "Лиды", value: 2521, conv: null as string | null, note: "все каналы · CPL 436 ₽", width: 100 },
+  { stage: "Продажи (первичные клиенты)", value: 1008, conv: "40%", note: "media-CAC 1 091 ₽", width: 70 },
+  { stage: "Процедуры · 1-й месяц", value: 1512, conv: "×1.5", note: "выручка 5 292 000 ₽", width: 48 },
+  { stage: "Процедуры · LTV 12 мес", value: 7056, conv: "×7", note: "LTV-выручка когорты 24.7 млн ₽", width: 30 },
 ];
 
 export const cohortEconomics = [

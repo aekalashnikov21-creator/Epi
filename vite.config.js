@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { viteSingleFile } from "vite-plugin-singlefile";
+import inlineStrategyXlsx from "./scripts/inline-strategy-xlsx.mjs";
 
 // Собираем IIFE (классический скрипт), а Vite всё равно помечает его
 // type="module". Модульные скрипты браузеры блокируют по протоколу file://,
@@ -24,7 +25,7 @@ const stripModuleType = () => ({
 });
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), viteSingleFile(), stripModuleType()],
+  plugins: [react(), tailwindcss(), viteSingleFile(), inlineStrategyXlsx(), stripModuleType()],
   base: "./",
   build: {
     target: "es2018",
