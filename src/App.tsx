@@ -257,34 +257,6 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
   }
 }
 
-/* ---------- плавающая кнопка скачивания (всегда на экране) ---------- */
-function DownloadFab() {
-  const [exporting, setExporting] = useState(false);
-  const onExport = async () => {
-    if (exporting) return;
-    setExporting(true);
-    try {
-      await downloadExcel();
-    } catch (e) {
-      console.error(e);
-      window.alert("Не удалось сформировать Excel-файл: " + String(e));
-    } finally {
-      setExporting(false);
-    }
-  };
-  return (
-    <button
-      onClick={onExport}
-      disabled={exporting}
-      className="fab-in press fixed bottom-5 right-5 z-50 inline-flex items-center gap-2.5 rounded-full border border-gold-500/70 bg-ink-950/95 px-5 py-3 font-display text-[12px] font-bold text-gold-400 shadow-[0_18px_44px_-14px_rgba(36,27,18,0.9)] backdrop-blur-sm transition-all duration-200 hover:scale-[1.05] hover:text-gold-300 disabled:cursor-wait disabled:opacity-80 md:bottom-7 md:right-7 md:px-6 md:text-[12.5px]"
-      title="Скачать книгу Excel со всеми листами стратегии"
-    >
-      {exporting ? <Loader2 size={15} className="animate-spin" /> : <Download size={15} />}
-      {exporting ? "Формируем…" : "Скачать .xlsx"}
-    </button>
-  );
-}
-
 export default function App() {
   const [tab, setTab] = useState(0);
 
@@ -366,13 +338,11 @@ export default function App() {
             </p>
             <p className="mt-2 flex items-center gap-1.5 text-[11px] text-paper-100/40 md:justify-end">
               <FileSpreadsheet size={12} className="text-gold-500/70" />
-              Epilate-Me_Стратегия_2026-2027.xlsx · кнопка «Скачать .xlsx» — в шапке и справа внизу
+              Epilate-Me_Стратегия_2026-2027.xlsx · кнопка «Скачать .xlsx» — в шапке
             </p>
           </div>
         </div>
       </footer>
-
-      <DownloadFab />
     </div>
     </ErrorBoundary>
   );

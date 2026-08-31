@@ -480,18 +480,9 @@
                 Маркетинг-стратегия 2026–2027
               </div>
             </div>
-            <span style="border: 1px solid rgba(253,251,247,0.25); padding: 5px 11px; font-size: 11.5px; color: rgba(253,251,247,0.85)">
+            <span style="margin-left: auto; border: 1px solid rgba(253,251,247,0.25); padding: 5px 11px; font-size: 11.5px; color: rgba(253,251,247,0.85)">
               6 филиалов · Москва
             </span>
-            <a
-              href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,__EM_STRATEGY_XLSX__"
-              download="Epilate-Me_Стратегия_2026-2027.xlsx"
-              class="em-dlbtn"
-              style="margin-left: auto"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden><path d="M12 3v12"/><path d="m6 9 6 6 6-6"/><path d="M4 21h16"/></svg>
-              Скачать Excel (.xlsx)
-            </a>
           </div>
           <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px">
             <h1 class="em-display" style="margin: 0; font-size: 26px; line-height: 1.15; font-weight: 500">
@@ -901,13 +892,51 @@
               2 521 лид → 1 008 продаж → ROMI +221% · по LTV +1 366%
             </div>
             <div style="font-size:10.5px;color:rgba(253,251,247,0.5);font-weight:400;margin-top:5px;line-height:1.5">
-              Кнопка «Скачать Excel (.xlsx)» — в шапке сверху: брендовая книга на 9 листов со всеми данными.
+              Кнопка «Скачать Excel (.xlsx)» под шапкой: брендовая книга на 9 листов со всеми данными.
               Работает всегда, даже если JavaScript отключён.
             </div>
           </div>
         </div>
       </footer>
     </div>
+
+    <!-- Если скрипты доступны — скачиваем через Blob (надёжнее, чем data-URI).
+         Если скрипты отключены — ссылка выше сработает как обычная. -->
+    <script>
+      (function () {
+        try {
+          var btns = document.querySelectorAll("a.em-dlbtn");
+          for (var k = 0; k < btns.length; k++) {
+            (function (a) {
+              a.addEventListener("click", function (ev) {
+                try {
+                  var h = a.getAttribute("href") || "";
+                  var i = h.indexOf("base64,");
+                  if (i < 0) return; /* пусть сработает как обычная ссылка */
+                  var bin = atob(h.slice(i + 7));
+                  var u = new Uint8Array(bin.length);
+                  for (var j = 0; j < bin.length; j++) u[j] = bin.charCodeAt(j);
+                  var blob = new Blob([u], {
+                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                  });
+                  var url = URL.createObjectURL(blob);
+                  var link = document.createElement("a");
+                  link.href = url;
+                  link.download = a.getAttribute("download") || "Epilate-Me_Стратегия.xlsx";
+                  document.body.appendChild(link);
+                  link.click();
+                  link.remove();
+                  setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+                  ev.preventDefault();
+                } catch (e) {
+                  /* если не вышло — пусть сработает обычная data-URI ссылка */
+                }
+              });
+            })(btns[k]);
+          }
+        } catch (e) { /* среда без JS — ничего не делаем */ }
+      })();
+    </script>
 
     <script type="module" src="/src/main.tsx"></script>
   </body>
