@@ -4,8 +4,10 @@ import {
   goals,
   branches,
   fileStructure,
-  horizons,
-  growth,
+  dashboardGoals,
+  mediaChannels,
+  mediaTotal,
+  channelColors,
   kpiControl,
   fmt,
 } from "../data";
@@ -18,7 +20,7 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
       <SectionHead
         no="01"
         title="Стратегия в цифрах"
-        sub="Epilate-Me · Москва, 6 филиалов · план: 84 лида в день на сеть, конверсия в фактический приход 40%"
+        sub="Epilate-Me · Москва, 6 филиалов · план: 54 лида в день на сеть, конверсия лид → клиент 60%"
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -151,66 +153,59 @@ export function SheetDashboard() {
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <Reveal className="lg:col-span-1">
+        <Reveal className="lg:col-span-2">
           <div className="flex h-full flex-col border border-ink-800/10 bg-white p-6">
             <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-ink-500">
-              Траектория · лидов в день · сеть
+              Целевые показатели · месяц
             </p>
-            <div className="mt-6 flex flex-1 items-end justify-between gap-3 px-1" style={{ minHeight: 190 }}>
-              {growth.map((g, i) => (
-                <div key={g.label} className="flex flex-1 flex-col items-center gap-2">
-                  <span
-                    className={`font-display text-[13px] font-bold tabular-nums ${
-                      i === growth.length - 1 ? "text-gold-600" : "text-ink-700"
-                    }`}
-                  >
+            <div className="mt-4 grid flex-1 gap-3 sm:grid-cols-2">
+              {dashboardGoals.map((g, i) => (
+                <div
+                  key={g.label}
+                  className="row-hover flex flex-col justify-between border border-ink-100 bg-paper-100/50 p-4"
+                >
+                  <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink-500">{g.label}</p>
+                  <p className="mt-2 font-display text-[22px] leading-none font-bold text-ink-900 tabular-nums md:text-[24px]">
                     {g.value}
-                  </span>
-                  <div className="flex h-[150px] w-full max-w-[46px] items-end overflow-hidden rounded-[3px] bg-ink-100/70">
-                    <div
-                      className={`w-full rounded-[3px] ${
-                        i === growth.length - 1 ? "grad-gold-v" : "grad-ink-v"
-                      }`}
-                      style={{
-                        height: mounted ? `${g.h}%` : "0%",
-                        transition: `height 1.1s cubic-bezier(.22,.61,.36,1) ${i * 140}ms`,
-                      }}
-                    />
-                  </div>
-                  <span className="text-[11px] font-semibold text-ink-500">{g.label}</span>
+                  </p>
+                  <p className="mt-2 text-[11.5px] text-ink-500">{g.note}</p>
                 </div>
               ))}
             </div>
           </div>
         </Reveal>
 
-        <Reveal className="lg:col-span-2" delay={120}>
-          <div className="h-full overflow-x-auto border border-ink-800/10 bg-white p-2 md:p-3">
-            <table className="w-full min-w-[560px] border-collapse">
-              <thead>
-                <tr>
-                  <Th>Метрика</Th>
-                  <Th align="right">Сейчас · авг 2026</Th>
-                  <Th align="right">3 мес</Th>
-                  <Th align="right">6 мес</Th>
-                  <Th align="right">12 мес</Th>
-                </tr>
-              </thead>
-              <tbody>
-                {horizons.map((h, i) => (
-                  <tr
-                    key={h.metric}
-                    className={`transition-colors hover:bg-gold-100/40 ${i % 2 ? "bg-paper-200/60" : "bg-white"}`}
-                  >
-                    <Td bold>{h.metric}</Td>
-                    <Td align="right" className="text-ink-500">{h.now}</Td>
-                    <Td align="right">{h.m3}</Td>
-                    <Td align="right">{h.m6}</Td>
-                    <Td align="right" bold className="bg-gold-100/50 text-gold-700">{h.m12}</Td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <Reveal className="lg:col-span-1" delay={120}>
+          <div className="flex h-full flex-col border border-ink-800/10 bg-white p-6">
+            <p className="text-[11.5px] font-bold uppercase tracking-[0.14em] text-ink-500">
+              Бюджет по каналам · 1 080 000 ₽
+            </p>
+            <div className="mt-5 flex-1 space-y-3">
+              {mediaChannels.map((c, i) => {
+                const pct = (c.budget / mediaTotal.budget) * 100;
+                return (
+                  <div key={c.name}>
+                    <div className="flex items-baseline justify-between gap-2">
+                      <p className="truncate text-[11.5px] font-semibold text-ink-700">{c.name}</p>
+                      <p className="whitespace-nowrap text-[11px] font-bold text-ink-500 tabular-nums">
+                        {c.budget > 0 ? `${fmt(c.budget)}` : "органика"}
+                      </p>
+                    </div>
+                    <div className="mt-1 h-2 w-full overflow-hidden rounded-[2px] bg-ink-100/60">
+                      <div
+                        className="h-full rounded-[2px]"
+                        style={{
+                          width: mounted ? `${Math.max(pct, c.organic ? 2 : 0)}%` : "0%",
+                          backgroundColor: c.organic ? "transparent" : channelColors[i % channelColors.length],
+                          border: c.organic ? "1px dashed #8A6A42" : "none",
+                          transition: `width 1.1s cubic-bezier(.22,.61,.36,1) ${i * 70}ms`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </Reveal>
       </div>
