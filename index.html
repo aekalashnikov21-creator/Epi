@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#B0844F" />
+    <title>Epilate-Me · Маркетинг-стратегия 2026–2027</title>
+    <meta
+      name="description"
+      content="Маркетинг-стратегия сети клиник лазерной эпиляции Epilate-Me: 6 филиалов, 54 лида в день на сеть, бюджет 1 080 000 ₽/мес (привлечение 930 000 + CRM 150 000), 1 610 лидов и 1 141 продажа в месяц, CAC 963 ₽, ROMI по марже +222%, дорожная карта на 12 месяцев."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23B0844F'/%3E%3Cpath d='M12 4l1.9 6.1L20 12l-6.1 1.9L12 20l-1.9-6.1L4 12l6.1-1.9z' fill='%23FDFBF7'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <script>
+      /* если скрипт страницы упадёт — покажем баннер над статической версией */
+      window.addEventListener("error", function (e) {
+        var fb = document.getElementById("em-fallback");
+        if (!fb || fb.getAttribute("data-banner")) return;
+        fb.setAttribute("data-banner", "1");
+        var b = document.createElement("div");
+        b.style.cssText =
+          "max-width:1100px;margin:12px auto;padding:12px 16px;border:1px solid #9a4432;background:#f6e3de;color:#7e3628;font-size:13px;line-height:1.5;";
+        b.textContent =
+          "Интерактивная версия не запустилась (" +
+          (e.message || "ошибка скрипта") +
+          ") — ниже показана полная статическая версия стратегии.";
+        fb.insertBefore(b, fb.firstChild);
+      });
+    </script>
+
+    <style>
+      .em-fb {
+        font-family: "Onest", "Golos Text", "Segoe UI", system-ui, sans-serif;
+        color: #1e2430;
+        line-height: 1.45;
+      }
+      .em-display {
+        font-family: "Onest", "Golos Text", system-ui, sans-serif;
+      }
+      /* --- фирменный герой: карамельный градиент --- */
+      .em-hero {
+        position: relative;
+        overflow: hidden;
+        color: #fdfbf7;
+        background: linear-gradient(115deg, #a5825a 0%, #b0844f 35%, #c4a173 70%, #d6bc93 100%);
+      }
+      .em-hero-lines {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 58%;
+        height: 100%;
+        opacity: 0.35;
+        pointer-events: none;
+      }
+      .em-dark {
+        background: #1e2430;
+        color: #fdfbf7;
+      }
+      .em-fb table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .em-fb th,
+      .em-fb td {
+        border: 1px solid #e6dcc9;
+        padding: 8px 10px;
+        font-size: 12.5px;
+        line-height: 1.45;
+        text-align: left;
+        vertical-align: top;
+      }
+      .em-fb th {
+        background: #6e5334;
+        color: #fdfbf7;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+      }
+      .em-fb .num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .em-fb .scroll-x {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .em-fb .card {
+        background: #fff;
+        border: 1px solid rgba(176, 132, 79, 0.22);
+      }
+      .em-fb .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+
+      /* --- radio-вкладки (скрытые переключатели) --- */
+      .em-radio {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        opacity: 0;
+        pointer-events: none;
+        clip: rect(0 0 0 0);
+      }
+      .em-panels > section {
+        display: none;
+      }
+      #em-s1:checked ~ .em-panels [data-sheet="1"],
+      #em-s2:checked ~ .em-panels [data-sheet="2"],
+      #em-s3:checked ~ .em-panels [data-sheet="3"],
+      #em-s4:checked ~ .em-panels [data-sheet="4"],
+      #em-s5:checked ~ .em-panels [data-sheet="5"],
+      #em-s6:checked ~ .em-panels [data-sheet="6"],
+      #em-s7:checked ~ .em-panels [data-sheet="7"],
+      #em-s8:checked ~ .em-panels [data-sheet="8"],
+      #em-s9:checked ~ .em-panels [data-sheet="9"] {
+        display: block;
+        animation: em-fade 0.35s ease;
+      }
+      @keyframes em-fade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* --- панель вкладок --- */
+      .em-tabbar {
+        position: relative;
+        background: #f3ead9;
+        border-bottom: 1px solid rgba(138, 106, 66, 0.25);
+      }
+      .em-tabs {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 10px 16px;
+        max-width: 1100px;
+        margin: 0 auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .em-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .em-tabs label {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 15px;
+        font-size: 12.5px;
+        font-weight: 700;
+        white-space: nowrap;
+        color: #6b5136;
+        background: transparent;
+        border: 1px solid rgba(110, 83, 52, 0.3);
+        border-radius: 999px;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+      .em-tabs label:hover {
+        background: #ffffff;
+        border-color: #b0844f;
+        color: #1e2430;
+      }
+      .em-tabs label:active {
+        transform: scale(0.97);
+      }
+      .em-tabs label .em-n {
+        font-size: 10px;
+        opacity: 0.65;
+        font-variant-numeric: tabular-nums;
+      }
+      #em-s1:checked ~ .em-tabs label[for="em-s1"],
+      #em-s2:checked ~ .em-tabs label[for="em-s2"],
+      #em-s3:checked ~ .em-tabs label[for="em-s3"],
+      #em-s4:checked ~ .em-tabs label[for="em-s4"],
+      #em-s5:checked ~ .em-tabs label[for="em-s5"],
+      #em-s6:checked ~ .em-tabs label[for="em-s6"],
+      #em-s7:checked ~ .em-tabs label[for="em-s7"],
+      #em-s8:checked ~ .em-tabs label[for="em-s8"],
+      #em-s9:checked ~ .em-tabs label[for="em-s9"] {
+        background: #1e2430;
+        border-color: #1e2430;
+        color: #fdfbf7;
+      }
+      .em-fadehint {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 44px;
+        pointer-events: none;
+        background: linear-gradient(90deg, rgba(243, 234, 217, 0), #f3ead9);
+      }
+      @media (min-width: 900px) {
+        .em-fadehint {
+          display: none;
+        }
+      }
+
+      /* --- заголовок раздела --- */
+      .em-head {
+        padding: 28px 0 8px;
+      }
+      .em-head .em-no {
+        color: #8a6a42;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.3em;
+      }
+      .em-head h2 {
+        margin: 8px 0 0;
+        font-size: 24px;
+        line-height: 1.15;
+        font-weight: 600;
+        color: #1e2430;
+      }
+      .em-head p {
+        margin: 10px 0 0;
+        max-width: 640px;
+        color: #8c7b62;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .em-rule {
+        height: 1px;
+        background: rgba(176, 132, 79, 0.35);
+        margin: 14px 0 20px;
+      }
+      .em-block-t {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #8a6a42;
+        margin: 22px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .em-block-t::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        background: #b0844f;
+        transform: rotate(45deg);
+      }
+
+      /* --- chips / pills --- */
+      .em-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .em-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border: 1px solid rgba(176, 132, 79, 0.4);
+        background: #fff;
+        padding: 6px 11px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #1e2430;
+      }
+      .em-chip::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        background: #b0844f;
+        transform: rotate(45deg);
+      }
+      .em-neg {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid rgba(154, 68, 50, 0.3);
+        background: rgba(246, 227, 222, 0.55);
+        padding: 4px 9px;
+        font-size: 12px;
+        color: #1e2430;
+      }
+      .em-neg::before {
+        content: "−";
+        color: #9a4432;
+        font-weight: 800;
+      }
+      .em-pos {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid rgba(176, 132, 79, 0.5);
+        background: rgba(176, 132, 79, 0.12);
+        padding: 4px 9px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #6e5334;
+      }
+      .em-pos::before {
+        content: "+";
+        font-weight: 800;
+      }
+
+      .em-pill {
+        display: inline-block;
+        border: 1px solid rgba(138, 106, 66, 0.35);
+        background: rgba(246, 237, 221, 0.7);
+        padding: 2px 8px;
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        color: #5c4630;
+      }
+      .em-pill.red {
+        border-color: rgba(154, 68, 50, 0.45);
+        background: rgba(246, 227, 222, 0.7);
+        color: #7e3628;
+      }
+      .em-pill.green {
+        border-color: rgba(111, 127, 88, 0.45);
+        background: rgba(234, 238, 223, 0.7);
+        color: #47543a;
+      }
+      .em-pill.gold {
+        border-color: rgba(176, 132, 79, 0.55);
+        background: rgba(246, 237, 221, 0.85);
+        color: #6e5334;
+      }
+
+      .em-grid2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      @media (min-width: 700px) {
+        .em-grid2 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .em-head h2 {
+          font-size: 30px;
+        }
+      }
+      .em-stat {
+        padding: 14px 16px;
+      }
+      .em-stat .k {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #8c7b62;
+      }
+      .em-stat .v {
+        margin-top: 6px;
+        font-size: 22px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        color: #1e2430;
+      }
+      .em-stat .s {
+        margin-top: 4px;
+        font-size: 11.5px;
+        color: #8c7b62;
+        line-height: 1.5;
+      }
+
+      .em-dark.v-card {
+        background: #1e2430;
+        color: #fdfbf7;
+      }
+      .em-dark .v,
+      .em-dark.v-card .v {
+        color: #d9be97;
+      }
+      .em-note {
+        font-size: 12px;
+        color: #8c7b62;
+        line-height: 1.6;
+        margin-top: 12px;
+      }
+      /* кнопка скачивания CSV (работает без JS) */
+      .em-dlbtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #b0844f;
+        color: #241b12;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 12.5px;
+        padding: 11px 22px;
+        border-radius: 999px;
+        box-shadow: 0 14px 30px -12px rgba(36, 27, 18, 0.9);
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+      .em-dlbtn:hover {
+        background: #c09259;
+        transform: scale(1.04);
+      }
+      .em-dlbtn:active {
+        transform: scale(0.97);
+      }
+
+      /* кольцо пагинации */
+      .em-pager {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #b0844f;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 600;
+        color: #1e2430;
+        font-variant-numeric: tabular-nums;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; background: #f8f2e8">
+    <div id="root"></div>
+
+    <!-- ==================================================================
+         ПОЛНАЯ СТАТИЧЕСКАЯ ВЕРСИЯ (работает без JavaScript).
+         Вкладки — на чистом CSS: переключение разделов доступно везде,
+         включая мобильные браузеры и просмотрщики файлов.
+         ================================================================== -->
+    <div id="em-fallback" class="em-fb">
+      <!-- Шапка -->
+      <header class="em-hero" style="padding: 22px 0 26px">
+        <svg class="em-hero-lines" viewBox="0 0 600 300" fill="none" preserveAspectRatio="xMaxYMid slice" aria-hidden>
+          <path d="M0 90 C 200 60, 400 120, 600 80" stroke="#fff" stroke-width="1" />
+          <path d="M0 160 C 220 130, 420 190, 600 150" stroke="#fff" stroke-width="1" />
+          <path d="M0 230 C 200 205, 420 255, 600 222" stroke="#fff" stroke-width="1" />
+          <circle cx="470" cy="70" r="70" stroke="#fff" stroke-width="1" opacity="0.7" />
+        </svg>
+        <div class="wrap" style="position: relative">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+            <span
+              style="display: grid; place-items: center; width: 40px; height: 40px; background: #6e5334; border: 1px solid rgba(253,251,247,0.3); border-radius: 8px"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden>
+                <path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#fdfbf7" />
+              </svg>
+            </span>
+            <div>
+              <div class="em-display" style="font-weight: 700; letter-spacing: 0.08em; font-size: 15px">EPILATE-ME</div>
+              <div style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3em; color: rgba(253,251,247,0.85)">
+                Маркетинг-стратегия 2026–2027
+              </div>
+            </div>
+            <span style="margin-left: auto; border: 1px solid rgba(253,251,247,0.25); padding: 5px 11px; font-size: 11.5px; color: rgba(253,251,247,0.85)">
+              6 филиалов · Москва
+            </span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 20px">
+            <h1 class="em-display" style="margin: 0; font-size: 26px; line-height: 1.15; font-weight: 500">
+              54 лида в день <span style="display:block;color:rgba(253,251,247,0.9)">на всю сеть из 6 филиалов</span>
+            </h1>
+            <span class="em-pager" style="border-color: rgba(253,251,247,0.6); color: #fdfbf7">01/09</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Крупная панель скачивания Excel (работает без JavaScript) -->
+      <div class="wrap" style="padding-top: 18px">
+        <div
+          style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:#4a3826;border:1px solid #b0844f;border-radius:6px;padding:16px 20px"
+        >
+          <div style="display:flex;align-items:center;gap:14px;min-width:0">
+            <span style="display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;background:#b0844f;border-radius:6px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fdfbf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden>
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h8"/>
+              </svg>
+            </span>
+            <div style="min-width:0">
+              <div class="em-display" style="font-size:15px;font-weight:700;color:#fdfbf7">Стратегия в Excel — 9 листов</div>
+              <div style="font-size:12px;color:#d9be97;margin-top:2px;line-height:1.5">
+                Обложка · Дашборд · Юнит-экономика · Медиаплан · Воронка · Roadmap · Точки · Риски · Каналы
+              </div>
+            </div>
+          </div>
+          <a
+            href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,__EM_STRATEGY_XLSX__"
+            download="Epilate-Me_Стратегия_2026-2027.xlsx"
+            class="em-dlbtn"
+            style="background:#b0844f;color:#241b12;padding:12px 22px;font-size:13.5px;flex-shrink:0"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden><path d="M12 3v12"/><path d="m6 9 6 6 6-6"/><path d="M4 21h16"/></svg>
+            Скачать Excel (.xlsx)
+          </a>
+        </div>
+      </div>
+
+      <!-- Вкладки + разделы -->
+      <div class="em-tabbar">
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s1" checked />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s2" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s3" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s4" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s5" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s6" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s7" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s8" />
+        <input class="em-radio" type="radio" name="em-sheet" id="em-s9" />
+
+        <nav class="em-tabs" aria-label="Разделы стратегии">
+          <label for="em-s1">Обложка <span class="em-n">01</span></label>
+          <label for="em-s2">Дашборд <span class="em-n">02</span></label>
+          <label for="em-s3">Юнит-экономика <span class="em-n">03</span></label>
+          <label for="em-s4">Медиаплан <span class="em-n">04</span></label>
+          <label for="em-s5">Воронка <span class="em-n">05</span></label>
+          <label for="em-s6">Roadmap <span class="em-n">06</span></label>
+          <label for="em-s7">Точки <span class="em-n">07</span></label>
+          <label for="em-s8">Риски <span class="em-n">08</span></label>
+          <label for="em-s9">Каналы <span class="em-n">09</span></label>
+        </nav>
+        <span class="em-fadehint" aria-hidden></span>
+
+        <div class="em-panels">
+          <!-- ============ 01 ОБЛОЖКА ============ -->
+          <section data-sheet="1">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">01</span>
+                <h2 class="em-display">Стратегия в цифрах</h2>
+                <p>Ключевые параметры плана и структура.</p>
+              </div>
+              <div class="em-rule"></div>
+
+              <div class="em-grid2">
+                <div class="card em-stat"><div class="k">Бюджет · целевой месяц</div><div class="v">1 080 000 ₽<span style="font-size:13px;color:#8a6a42">/мес</span></div><div class="s">привлечение 930 000 + CRM 150 000</div></div>
+                <div class="card em-stat"><div class="k">Лидов в день · сеть</div><div class="v">54</div><div class="s">9 на филиал · 1 610 в месяц</div></div>
+                <div class="card em-stat"><div class="k">Продаж в день</div><div class="v">38</div><div class="s">1 141 в месяц · CR лид→клиент 60%</div></div>
+                <div class="card em-stat"><div class="k">ROMI 1-го месяца (маржа)</div><div class="v" style="color:#8a6a42">+222%</div><div class="s">по LTV +2 762% · LTV-маржа 32 000 ₽</div></div>
+              </div>
+
+              <div class="em-block-t">Цели и юнит-экономика</div>
+              <div class="em-grid2">
+                <div class="card" style="padding:14px 16px">
+                  <div style="font-weight:700;color:#8a6a42;font-size:12px;letter-spacing:0.1em;text-transform:uppercase">Целевой месяц</div>
+                  <div class="em-chips" style="margin-top:10px">
+                    <span class="em-chip">54 лида в день на сеть</span>
+                    <span class="em-chip">38 продаж в день (966 новых + 175 повторных)</span>
+                    <span class="em-chip">ROMI (маржа) +222%</span>
+                  </div>
+                </div>
+                <div class="card" style="padding:14px 16px">
+                  <div style="font-weight:700;color:#8a6a42;font-size:12px;letter-spacing:0.1em;text-transform:uppercase">Юнит-экономика</div>
+                  <div class="em-chips" style="margin-top:10px">
+                    <span class="em-chip">LTV-маржа клиента 32 000 ₽</span>
+                    <span class="em-chip">CAC 963 ₽ · запас прочности ×33</span>
+                    <span class="em-chip">Органика ≥ 20% к 12 мес</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="em-block-t">Сеть · 6 филиалов в Москве</div>
+              <div class="card" style="padding:6px 16px">
+                <ol style="margin:0;padding:10px 0 10px 20px;font-size:13.5px;line-height:1.8">
+                  <li><b>Новокузнецкая</b> — Большой Овчинниковский переулок, 24, стр. 1</li>
+                  <li><b>Коммунарка</b> — НАО, посёлок Коммунарка, улица Липовый Парк, 5, корп. 1</li>
+                  <li><b>Курская</b> — Яковоапостольский переулок, 9, стр. 3</li>
+                  <li><b>Хамовники</b> — улица Льва Толстого, 23, корп. 1</li>
+                  <li><b>Маяковская</b> — улица Юлиуса Фучика, 11/13</li>
+                  <li><b>Зиларт</b> — ул. Родченко, дом 2</li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 02 ДАШБОРД ============ -->
+          <section data-sheet="2">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">02</span>
+                <h2 class="em-display">Дашборд</h2>
+                <p>Целевые показатели и KPI.</p>
+              </div>
+              <div class="em-rule"></div>
+
+              <div class="em-block-t">Целевые показатели</div>
+              <div class="card scroll-x">
+                <table style="min-width:560px">
+                  <thead><tr><th>Метрика</th><th>Цель</th><th>Комментарий</th></tr></thead>
+                  <tbody>
+                    <tr><td>Лидов в день · сеть</td><td><b>54</b></td><td>1 610 в месяц · 9 в день на филиал</td></tr>
+                    <tr><td>Продаж в день · сеть</td><td><b>38</b></td><td>966 новых + 175 повторных = 1 141</td></tr>
+                    <tr><td>CPL (лид)</td><td><b>≤ 600 ₽</b></td><td>план 578 ₽</td></tr>
+                    <tr><td>CAC (продажа)</td><td><b>≤ 1 200 ₽</b></td><td>план 963 ₽ · запас ×33</td></tr>
+                    <tr><td>Органика к 12 мес</td><td><b>≥ 20%</b></td><td>Google Maps + SEO / контент</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="em-block-t">KPI-контроль · красные линии</div>
+              <div class="card scroll-x">
+                <table style="min-width:560px">
+                  <thead><tr><th>Метрика</th><th>Цель</th><th>Красная линия</th><th>Частота</th></tr></thead>
+                  <tbody>
+                    <tr><td>CPL (лид)</td><td><span class="em-pill green">≤ 600 ₽</span></td><td><span class="em-pill red">&gt; 900 ₽</span></td><td>еженедельно</td></tr>
+                    <tr><td>CAC (продажа)</td><td><span class="em-pill green">≤ 1 200 ₽</span></td><td><span class="em-pill red">&gt; 2 000 ₽</span></td><td>еженедельно</td></tr>
+                    <tr><td>Лидов / день · сеть</td><td><span class="em-pill green">≥ 54</span></td><td><span class="em-pill red">&lt; 35</span></td><td>еженедельно</td></tr>
+                    <tr><td>CR лид → клиент</td><td><span class="em-pill green">≥ 60%</span></td><td><span class="em-pill red">&lt; 45%</span></td><td>еженедельно</td></tr>
+                    <tr><td>Retention (2-я процедура)</td><td><span class="em-pill green">≥ 70%</span></td><td><span class="em-pill red">&lt; 55%</span></td><td>ежемесячно</td></tr>
+                    <tr><td>LTV / CAC</td><td><span class="em-pill green">план 33</span></td><td><span class="em-pill red">&lt; 5</span></td><td>ежемесячно</td></tr>
+                    <tr><td>NPS</td><td><span class="em-pill green">≥ 50</span></td><td><span class="em-pill red">&lt; 30</span></td><td>ежемесячно</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 03 ЮНИТ-ЭКОНОМИКА ============ -->
+          <section data-sheet="3">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">03</span>
+                <h2 class="em-display">Юнит-экономика одного клиента</h2>
+                <p>База для всех расчётов ROMI и CAC · ROMI считается по марже: (маржа − бюджет) / бюджет.</p>
+              </div>
+              <div class="em-rule"></div>
+
+              <div class="card scroll-x">
+                <table style="min-width:560px">
+                  <thead><tr><th>Параметр</th><th class="num">Значение</th><th>Комментарий / формула</th></tr></thead>
+                  <tbody>
+                    <tr><td>Средний чек первички</td><td class="num"><b>4 550 ₽</b></td><td>прайс</td></tr>
+                    <tr><td>Маржинальность</td><td class="num"><b>67% → 3 049 ₽</b></td><td>маржа с первички</td></tr>
+                    <tr><td>Средний курс</td><td class="num"><b>8–10 процедур</b></td><td>ниша</td></tr>
+                    <tr><td>Допродажа (косметология)</td><td class="num"><b>+1 490 ₽</b></td><td>средняя на клиента</td></tr>
+                    <tr><td>LTV клиента (маржа · 12 мес)</td><td class="num"><b>32 000 ₽</b></td><td>курс + допродажа</td></tr>
+                    <tr><td>Конверсия лид → клиент</td><td class="num"><b>60%</b></td><td>в фактический приход</td></tr>
+                    <tr><td>Безубыточный CAC</td><td class="num"><b>32 000 ₽</b></td><td>= LTV-маржа клиента</td></tr>
+                    <tr><td>CPL (стоимость лида)</td><td class="num"><b>578 ₽</b></td><td>930 000 / 1 610</td></tr>
+                    <tr><td>CAC (стоимость продажи)</td><td class="num"><b>963 ₽</b></td><td>930 000 / 966 · запас ×33</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="em-note">
+                Запас прочности ×33: плановый CAC 963 ₽ против безубыточных 32 000 ₽ (= LTV-маржа клиента). Маржа = продажи × 3 049 ₽.
+              </p>
+            </div>
+          </section>
+
+          <!-- ============ 04 МЕДИАПЛАН ============ -->
+          <section data-sheet="4">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">04</span>
+                <h2 class="em-display">Медиаплан</h2>
+                <p>Целевой месяц: 1 080 000 ₽/мес → 1 610 лидов → 1 141 продажа (966 новых + 175 повторных).</p>
+              </div>
+              <div class="em-rule"></div>
+
+              <div class="card scroll-x">
+                <table style="min-width:860px">
+                  <thead><tr><th>Канал</th><th class="num">Бюджет, ₽</th><th class="num">Клики</th><th class="num">CPC, ₽</th><th class="num">CV клик→лид</th><th class="num">Лиды</th><th class="num">CPL, ₽</th><th class="num">Продажи (60%)</th><th class="num">Выручка, ₽</th><th class="num">ROMI (маржа)</th></tr></thead>
+                  <tbody>
+                    <tr><td>Яндекс Карты</td><td class="num">130 000</td><td class="num">3 960</td><td class="num">33</td><td class="num">11,4%</td><td class="num">450</td><td class="num">289</td><td class="num">270</td><td class="num">1 228 500</td><td class="num"><b style="color:#8a6a42">+533%</b></td></tr>
+                    <tr><td>Google Maps · органика</td><td class="num">0</td><td class="num">260</td><td class="num">0</td><td class="num">—</td><td class="num">38</td><td class="num">0</td><td class="num">23</td><td class="num">104 650</td><td class="num"><i>органика</i></td></tr>
+                    <tr><td>2ГИС</td><td class="num">90 000</td><td class="num">723</td><td class="num">124</td><td class="num">27%</td><td class="num">197</td><td class="num">457</td><td class="num">118</td><td class="num">536 900</td><td class="num">+300%</td></tr>
+                    <tr><td>Яндекс Директ</td><td class="num">340 000</td><td class="num">2 833</td><td class="num">120</td><td class="num">12%</td><td class="num">340</td><td class="num">1 000</td><td class="num">204</td><td class="num">928 200</td><td class="num">+83%</td></tr>
+                    <tr><td>Instagram / SMM</td><td class="num">100 000</td><td class="num">2 500</td><td class="num">40</td><td class="num">5%</td><td class="num">125</td><td class="num">800</td><td class="num">75</td><td class="num">341 250</td><td class="num">+129%</td></tr>
+                    <tr><td>Блогеры</td><td class="num">80 000</td><td class="num">1 600</td><td class="num">50</td><td class="num">5%</td><td class="num">80</td><td class="num">1 000</td><td class="num">48</td><td class="num">218 400</td><td class="num">+83%</td></tr>
+                    <tr><td>SEO / контент</td><td class="num">60 000</td><td class="num">1 200</td><td class="num">50</td><td class="num">12%</td><td class="num">144</td><td class="num">417</td><td class="num">86</td><td class="num">391 300</td><td class="num">+337%</td></tr>
+                    <tr><td>Яндекс Медицина</td><td class="num">50 000</td><td class="num">1 167</td><td class="num">43</td><td class="num">12%</td><td class="num">140</td><td class="num">357</td><td class="num">84</td><td class="num">382 200</td><td class="num">+412%</td></tr>
+                    <tr><td>Парсинг номеров конкурентов</td><td class="num">80 000</td><td class="num">800</td><td class="num">100</td><td class="num">12%</td><td class="num">96</td><td class="num">833</td><td class="num">58</td><td class="num">263 900</td><td class="num">+121%</td></tr>
+                    <tr><td>CRM-маркетинг · удержание</td><td class="num">150 000</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">175 повторных</td><td class="num">796 250</td><td class="num">+256%</td></tr>
+                    <tr style="background:#6e5334;color:#fdfbf7"><td><b>ИТОГО</b></td><td class="num"><b>1 080 000</b></td><td class="num"><b>14 840</b></td><td class="num"><b>—</b></td><td class="num"><b>—</b></td><td class="num"><b>1 610</b></td><td class="num"><b>578</b></td><td class="num"><b>1 141</b></td><td class="num"><b>5 191 550</b></td><td class="num"><b style="color:#d9be97">+222%</b></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="em-note">
+                ROMI считать по марже: (маржа − бюджет) / бюджет; маржа = продажи × 3 049 ₽.
+                Яндекс Карты: лиды — «кнопка-действие» (356) + «клики по телефону» (94), факт 13,5 мес; маршруты 149 — офлайн, не в лиды.
+                Google Maps: 38 лидов = звонки 17 + переходы 21 (факт 30 дней); маршруты 222 — офлайн.
+                2ГИС: сайт 88 + звонки 31 + мессенджер 18 + кнопка 60 (факт 8 мес).
+                Блогеры ÷2,5; SEO −20%; Яндекс Медицина −30%; Парсинг −20%; CRM −30% — консервативные поправки уже применены.
+              </p>
+            </div>
+          </section>
+
+          <!-- ============ 05 ВОРОНКА ============ -->
+          <section data-sheet="5">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">05</span>
+                <h2 class="em-display">Полная маркетинговая воронка</h2>
+                <p>Целевой месяц — путь от лида до LTV-процедур когорты из 966 новых клиентов.</p>
+              </div>
+              <div class="em-rule"></div>
+
+              <div class="card scroll-x">
+                <table style="min-width:560px">
+                  <thead><tr><th>Этап воронки</th><th class="num">Значение</th><th>Конверсия</th><th>Комментарий</th></tr></thead>
+                  <tbody>
+                    <tr><td>Лиды</td><td class="num"><b>1 610</b></td><td>100%</td><td>все каналы · CPL 578 ₽</td></tr>
+                    <tr><td>Продажи · новые клиенты</td><td class="num"><b>966</b></td><td>60%</td><td>CAC 963 ₽</td></tr>
+                    <tr><td>Процедуры · 1-й месяц</td><td class="num"><b>1 449</b></td><td>×1.5</td><td>выручка 5 191 550 ₽</td></tr>
+                    <tr><td>Процедуры · LTV 12 мес</td><td class="num"><b>8 694</b></td><td>×9</td><td>LTV-маржа когорты 30 912 000 ₽</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="em-block-t">Экономика когорты · 966 новых клиентов</div>
+              <div class="em-grid2">
+                <div class="card em-stat"><div class="k">Маржа 1-го месяца</div><div class="v">3 478 300 ₽</div><div class="s">выручка 5 191 550 × 67%</div></div>
+                <div class="card em-stat"><div class="k">ROMI 1-го месяца (маржа)</div><div class="v" style="color:#8a6a42">+222%</div><div class="s">(3 478 300 − 1 080 000) / 1 080 000</div></div>
+                <div class="card em-stat"><div class="k">LTV-маржа когорты · 12 мес</div><div class="v">30 912 000 ₽</div><div class="s">966 новых × 32 000</div></div>
+                <div class="card em-stat em-dark v-card"><div class="k" style="color:#c4b49c">ROMI по LTV</div><div class="v">+2 762%</div><div class="s" style="color:#c4b49c">(30 912 000 − 1 080 000) / 1 080 000</div></div>
+              </div>
+
+              <div class="em-block-t">Экономика одного филиала</div>
+              <div class="em-grid2">
+                <div class="card em-stat"><div class="k">Лиды / продажи в день</div><div class="v">9 → 6.3</div><div class="s">конверсия лид→клиент 60%</div></div>
+                <div class="card em-stat"><div class="k">Продажи / месяц</div><div class="v">190</div><div class="s">1 141 ÷ 6 филиалов</div></div>
+                <div class="card em-stat"><div class="k">Выручка 1-го месяца</div><div class="v">865 000 ₽</div><div class="s">5 191 550 ÷ 6</div></div>
+                <div class="card em-stat em-dark v-card"><div class="k" style="color:#c4b49c">Бюджет на филиал</div><div class="v">180 000 ₽</div><div class="s" style="color:#c4b49c">1 080 000 ÷ 6 · в месяц</div></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 06 ROADMAP ============ -->
+          <section data-sheet="6">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">06</span>
+                <h2 class="em-display">Дорожная карта внедрения</h2>
+                <p>4 фазы на 12 месяцев: от настройки аналитики и верификации 6 филиалов до 1 080 000 ₽/мес и 54 лидов в день.</p>
+              </div>
+              <div class="em-rule"></div>
+              <div class="em-grid2">
+                <div class="card" style="padding:14px 16px">
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 0</b><span class="em-pill">недели 1–2</span><span class="em-pill gold">~150 000 ₽</span></div>
+                  <p style="margin:10px 0 0;font-size:13px;line-height:1.65">Коллтрекинг + UTM + цели Метрики; лендинги под кластеры ядра; верификация 6 филиалов (Яндекс Карты, Google Maps, 2ГИС); скрипты админов на доведение лида до клиента (60%).</p>
+                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> аналитика · 6/6 филиалов · проверить посадочные страницы и формы</p>
+                </div>
+                <div class="card" style="padding:14px 16px">
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 1</b><span class="em-pill">месяц 1</span><span class="em-pill gold">400 000 ₽/мес</span></div>
+                  <p style="margin:10px 0 0;font-size:13px;line-height:1.65">Яндекс Директ (горячие + зоны + аппараты); Яндекс Карты + 2ГИС + Google Maps; парсинг номеров конкурентов; ретаргетинг «Не дошли» по базе.</p>
+                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> ≥ 35 лидов/день · CPL ≤ 600 ₽</p>
+                </div>
+                <div class="card" style="padding:14px 16px">
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 2</b><span class="em-pill">месяцы 2–3</span><span class="em-pill gold">700 000 ₽/мес</span></div>
+                  <p style="margin:10px 0 0;font-size:13px;line-height:1.65">+ Instagram / SMM; + SEO / контент, Яндекс Медицина; реферальная программа «Приведи подругу»; автоматизация записи в YCLIENTS.</p>
+                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> ≥ 45 лидов/день · органика ≥ 12% · удержание клиентов ≥ 65%</p>
+                </div>
+                <div class="card" style="padding:14px 16px">
+                  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><b class="em-display">Фаза 3</b><span class="em-pill">месяцы 4–6</span><span class="em-pill gold">1 080 000 ₽/мес</span></div>
+                  <p style="margin:10px 0 0;font-size:13px;line-height:1.65">+ Блогеры (бартер + интеграции); + CRM-маркетинг (повторные визиты, реактивация); membership «Клуб гладкой кожи»; оптимизация CPL/CAC по каналам.</p>
+                  <p style="margin:10px 0 0;font-size:12px"><span class="em-pill gold">KPI:</span> 54 лида/день · 38 продаж/день · ROMI (маржа) ≥ +222%</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 07 ТОЧКИ ============ -->
+          <section data-sheet="7">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">07</span>
+                <h2 class="em-display">Таблица контрольных точек</h2>
+                <p>Срезы и управленческие решения: каждая точка отвечает «идём дальше, масштабируем или чиним».</p>
+              </div>
+              <div class="em-rule"></div>
+              <div class="card scroll-x">
+                <table style="min-width:640px">
+                  <thead><tr><th>Точка</th><th>Что проверяем</th><th>KPI</th><th>Решение</th></tr></thead>
+                  <tbody>
+                    <tr><td><b>Неделя 2</b></td><td>Лендинги и карты</td><td>Проверить посадочные страницы и формы · 6/6 филиалов на Яндекс Картах, Google и 2ГИС</td><td>Запуск платного трафика</td></tr>
+                    <tr><td><b>Конец месяца 1</b></td><td>Срез Фазы 1</td><td>Лидов/день ≥ 35 · CPL ≤ 600 · CV клик→лид ≥ 10%</td><td>Масштаб в Фазу 2</td></tr>
+                    <tr><td><b>Конец месяца 3</b></td><td>Срез Фазы 2</td><td>Лидов/день ≥ 45 · органика ≥ 12% · удержание клиентов ≥ 65%</td><td>Переход в Фазу 3</td></tr>
+                    <tr><td><b>Конец месяца 6</b></td><td>Срез Фазы 3</td><td>Лидов/день 54 · ROMI (маржа) ≥ +222%</td><td>Годовой план, 7-й филиал</td></tr>
+                    <tr><td><b>Конец месяца 12</b></td><td>Годовой срез</td><td>Лидов/день 54+ · выручка/филиал ≥ 865 000 · по рекомендации ≥ 50</td><td>Масштабирование / франшиза</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 08 РИСКИ ============ -->
+          <section data-sheet="8">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">08</span>
+                <h2 class="em-display">Риски</h2>
+                <p>Четыре рабочих риска стратегии — у каждого есть заранее подготовленный ответ.</p>
+              </div>
+              <div class="em-rule"></div>
+              <div class="em-grid2">
+                <div class="card" style="padding:14px 16px"><b>CR лид → клиент ниже 60%</b> <span class="em-pill red">P: высокая</span> <span class="em-pill red">I: высокое</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> скрипты админов, напоминания за 24 ч, предоплата-бронь слотов, еженедельный контроль доходимости.</p></div>
+                <div class="card" style="padding:14px 16px"><b>Недостаточная качественная ёмкость для открутки бюджета</b> <span class="em-pill gold">P: средняя</span> <span class="em-pill red">I: высокое</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> расширение семантики и гео, новые кластеры (мужская, косметология), look-alike по базе, перераспределение в ёмкие каналы.</p></div>
+                <div class="card" style="padding:14px 16px"><b>Сезонность: спад май–июль</b> <span class="em-pill red">P: высокая</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> pivot на M22, RSL и косметологию; акции «Summer Ready»; предоплата курсов со скидкой.</p></div>
+                <div class="card" style="padding:14px 16px"><b>Рост цены за трафик</b> <span class="em-pill red">P: высокая</span> <span class="em-pill">I: среднее</span><p style="margin:8px 0 0;font-size:13px;line-height:1.6"><b style="color:#8a6a42">Ответ:</b> диверсификация каналов (14 источников), ставка на органику и карты, работа с LTV и удержанием клиентов.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 10 КАНАЛЫ ============ -->
+          <section data-sheet="9">
+            <div class="wrap">
+              <div class="em-head">
+                <span class="em-no em-display">09</span>
+                <h2 class="em-display">Детализация по каналам</h2>
+                <p>Конкретные действия и ожидаемый результат каждого канала к месяцу 6.</p>
+              </div>
+              <div class="em-rule"></div>
+              <div class="card scroll-x">
+                <table style="min-width:640px">
+                  <thead><tr><th>Канал</th><th>Ключевые действия</th><th>Ожидаемый результат</th></tr></thead>
+                  <tbody>
+                    <tr><td><b>Яндекс Карты</b></td><td>Кнопка-действие + клики по телефону; приоритетное размещение, отзывы</td><td>450 лидов/мес · CPL 289 ₽</td></tr>
+                    <tr><td><b>Google Maps · органика</b></td><td>Звонки 17 + переходы на сайт 21 (факт 30 дней); без бюджета</td><td>38 лидов/мес · 0 ₽</td></tr>
+                    <tr><td><b>2ГИС</b></td><td>Сайт 88 + звонки 31 + мессенджер 18 + кнопка 60 (факт 8 мес)</td><td>197 лидов/мес · CPL 457 ₽</td></tr>
+                    <tr><td><b>Яндекс Директ</b></td><td>Горячий поиск, зоны, аппараты (Candela/Deka), ретаргетинг</td><td>340 лидов/мес · CPL 1 000 ₽</td></tr>
+                    <tr><td><b>Instagram / SMM</b></td><td>Reels 3/нед, сторис ежедневно, highlights, коллабы</td><td>125 лидов/мес · CPL 800 ₽</td></tr>
+                    <tr><td><b>Блогеры</b></td><td>Микро-инфлюенсеры, бартер + интеграции (поправка ÷2,5)</td><td>80 лидов/мес · CPL 1 000 ₽</td></tr>
+                    <tr><td><b>SEO / контент</b></td><td>10 статей/мес, лендинги под кластеры ядра (поправка −20%)</td><td>144 лида/мес · CPL 417 ₽</td></tr>
+                    <tr><td><b>Яндекс Медицина</b></td><td>Профили клиник, карточки врачей, отзывы (поправка −30%)</td><td>140 лидов/мес · CPL 357 ₽</td></tr>
+                    <tr><td><b>Парсинг номеров конкурентов</b></td><td>Работа по базе номеров конкурентов (поправка −20%)</td><td>96 лидов/мес · CPL 833 ₽</td></tr>
+                    <tr><td><b>CRM-маркетинг · удержание</b></td><td>Повторные визиты, реактивация базы (поправка −30%)</td><td>175 повторных · ROMI +256%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Футер -->
+      <footer class="em-dark" style="margin-top:36px;padding:22px 0;border-top:3px solid #b0844f">
+        <div class="wrap" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+          <div style="display:flex;gap:12px;align-items:center">
+            <span style="display:grid;place-items:center;width:36px;height:36px;background:#6e5334;border:1px solid rgba(253,251,247,0.3);border-radius:8px">
+              <svg viewBox="0 0 24 24" width="21" height="21" aria-hidden><path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#fdfbf7" /></svg>
+            </span>
+            <div>
+              <div class="em-display" style="font-weight:700;font-size:13px;letter-spacing:0.08em">EPILATE-ME</div>
+              <div style="font-size:11px;color:rgba(253,251,247,0.55)">Стратегия 2026–2027 · 6 филиалов · Москва</div>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:12px;color:#d9be97;font-variant-numeric:tabular-nums;font-weight:700">
+              1 610 лид → 1 141 продажа → ROMI +222% · по LTV +2 762%
+            </div>
+            <div style="font-size:10.5px;color:rgba(253,251,247,0.5);font-weight:400;margin-top:5px;line-height:1.5">
+              Кнопка «Скачать Excel (.xlsx)» под шапкой: брендовая книга на 9 листов со всеми данными.
+              Работает всегда, даже если JavaScript отключён.
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Если скрипты доступны — скачиваем через Blob (надёжнее, чем data-URI).
+         Если скрипты отключены — ссылка выше сработает как обычная. -->
+    <script>
+      (function () {
+        try {
+          var btns = document.querySelectorAll("a.em-dlbtn");
+          for (var k = 0; k < btns.length; k++) {
+            (function (a) {
+              a.addEventListener("click", function (ev) {
+                try {
+                  var h = a.getAttribute("href") || "";
+                  var i = h.indexOf("base64,");
+                  if (i < 0) return; /* пусть сработает как обычная ссылка */
+                  var bin = atob(h.slice(i + 7));
+                  var u = new Uint8Array(bin.length);
+                  for (var j = 0; j < bin.length; j++) u[j] = bin.charCodeAt(j);
+                  var blob = new Blob([u], {
+                    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                  });
+                  var url = URL.createObjectURL(blob);
+                  var link = document.createElement("a");
+                  link.href = url;
+                  link.download = a.getAttribute("download") || "Epilate-Me_Стратегия.xlsx";
+                  document.body.appendChild(link);
+                  link.click();
+                  link.remove();
+                  setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+                  ev.preventDefault();
+                } catch (e) {
+                  /* если не вышло — пусть сработает обычная data-URI ссылка */
+                }
+              });
+            })(btns[k]);
+          }
+        } catch (e) { /* среда без JS — ничего не делаем */ }
+      })();
+    </script>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
