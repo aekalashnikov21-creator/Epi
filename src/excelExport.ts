@@ -34,11 +34,34 @@ function triggerDownloadDataUri(buf: ArrayBuffer | Uint8Array): void {
 
 /* Скачивание брендовой книги Excel прямо из браузера (кнопка «Скачать .xlsx») */
 export async function downloadExcel(): Promise<void> {
-  const wb = buildStrategyWorkbook(ExcelJS, data);
-  const buf = await wb.xlsx.writeBuffer();
   try {
-    triggerDownload(buf);
-  } catch {
-    triggerDownloadDataUri(buf);
+    const wb = buildStrategyWorkbook(ExcelJS, data);
+    const buffer = await wb.xlsx.writeBuffer();
+    
+    // Создаём blob
+    const blob = new Blob([buffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+    
+    // Создаём ссылку для скачивания
+    const link = document.createElement('a');
+    const url = window.URL.createObjectURL(blob);
+    
+    link.href = url;
+    link.download = 'Epilate-Me_Стратегия_2026-2027.xlsx';
+    link.style.display = 'none';
+    
+    // Добавляем в DOM, кликаем и удаляем
+    document.body.appendChild(link);
+    link.click();
+    
+    // Очищаем
+    setTimeout(() => {
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    }, 100);
+  } catch (error) {
+    console.error('Ошибка при создании Excel файла:', error);
+    alert('Не удалось создать Excel файл. Попробуйте обновить страницу.');
   }
 }
