@@ -35,7 +35,7 @@ const tabs = [
   { num: "09", label: "Каналы", icon: Layers },
 ];
 
-const CAC_PLAN_PCT = (963 / 32000) * 100;
+const CAC_PLAN_PCT = (861 / 32000) * 100;
 
 function DeckStat({
   label,
@@ -133,15 +133,15 @@ function Header({ tab }: { tab: number }) {
               Лазерная эпиляция и косметология
             </p>
             <h1 className="mt-5 font-display text-[32px] leading-[1.12] font-medium md:text-[52px] md:font-normal xl:text-[60px]">
-              <span className="tabular-nums">54</span> лида в день
+              <span className="tabular-nums">59</span> лидов в день
               <span className="mt-1 block text-paper-50/90">на всю сеть из 6 филиалов</span>
             </h1>
             <p className="mt-5 max-w-xl text-[14.5px] leading-relaxed text-paper-100/70">
-              6 филиалов × 9 лидов в день. При конверсии лид → клиент 60% это 38 продаж
-              ежедневно — 1 610 лидов и 1 141 продажа в месяц при бюджете 1 080 000 ₽.
+              6 филиалов × ~10 лидов в день. При конверсии лид → клиент 60% это 35 продаж
+              ежедневно — 1 761 лид и 1 057 продаж в месяц при бюджете 910 000 ₽.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {["Лидеры CPL: Яндекс Медицина 357 ₽, Карты 289 ₽", "Google Maps — 38 лидов за 0 ₽", "CRM-удержание — 175 повторных", "ROMI по марже — +222%"].map((c) => (
+              {["Лидеры ROMI: Авито +632%, Карты +533%", "Google Maps — 38 лидов за 0 ₽", "Таргет СМС — 200 лидов за 100 тыс", "ROMI по марже — +254%"].map((c) => (
                 <span
                   key={c}
                   className="flex items-center gap-2 border border-paper-100/15 bg-paper-100/5 px-3 py-1.5 text-[12px] font-semibold text-paper-100/85 transition-colors hover:border-gold-500/60 hover:text-gold-300"
@@ -167,20 +167,20 @@ function Header({ tab }: { tab: number }) {
               </span>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-6">
-              <DeckStat label="Бюджет" value={1080000} suffix=" ₽/мес" />
-              <DeckStat label="Лиды в месяц" value={1610} />
-              <DeckStat label="Продажи в месяц" value={1141} />
-              <DeckStat label="ROMI (маржа)" value={222} prefix="+" suffix="%" />
+              <DeckStat label="Бюджет" value={910000} suffix=" ₽/мес" />
+              <DeckStat label="Лиды в месяц" value={1761} />
+              <DeckStat label="Продажи в месяц" value={1057} />
+              <DeckStat label="ROMI (маржа)" value={254} prefix="+" suffix="%" />
             </div>
             <p className="mt-4 text-[11px] leading-relaxed text-ink-500 tabular-nums">
-              ROMI по LTV-марже когорты <b className="text-gold-700">+2 762%</b> · CAC 963 ₽ · CPL 578 ₽
+              ROMI по LTV-марже когорты <b className="text-gold-700">+3 617%</b> · CAC 861 ₽ · CPL 517 ₽
             </p>
             <div className="mt-7 border-t border-ink-100 pt-5">
               <div className="flex items-baseline justify-between">
                 <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink-500">
                   Запас прочности CAC
                 </p>
-                <p className="font-display text-[19px] font-bold text-gold-600 tabular-nums">×33</p>
+                <p className="font-display text-[19px] font-bold text-gold-600 tabular-nums">×37</p>
               </div>
               <div className="relative mt-3 h-2 w-full rounded-[2px] bg-paper-200">
                 <div
@@ -193,7 +193,7 @@ function Header({ tab }: { tab: number }) {
                 />
               </div>
               <div className="mt-2 flex justify-between text-[11px] text-ink-500 tabular-nums">
-                <span className="font-semibold text-moss-600">план 963 ₽</span>
+                <span className="font-semibold text-moss-600">план 861 ₽</span>
                 <span>
                   безубыточность <b className="text-ink-900">32 000 ₽</b>
                 </span>
@@ -327,14 +327,14 @@ export default function App() {
             <div>
               <p className="font-display text-[13px] font-bold tracking-[0.08em] text-paper-50">EPILATE-ME</p>
               <p className="mt-1.5 max-w-md text-[12px] leading-relaxed text-paper-100/50">
-                Маркетинг-стратегия 2026–2027 · сеть клиник лазерной эпиляции и косметологии · Москва, 6 филиалов ·
-                план: 54 лида в день на сеть, конверсия лид → клиент 60%
+                Маркетинг-стратегия 2026–2027 · сеть клиник лазерной эпиляции · Москва, 6 филиалов ·
+                8 каналов · план 59 лидов/день, CR лид→клиент 60%
               </p>
             </div>
           </div>
           <div className="md:text-right">
             <p className="flex flex-wrap items-center gap-2 font-display text-[12.5px] font-bold text-gold-400 tabular-nums">
-              1 610 лид <ArrowRight size={13} /> 1 141 продажа <ArrowRight size={13} /> ROMI +222%
+              1 761 лид <ArrowRight size={13} /> 1 057 продаж <ArrowRight size={13} /> ROMI +254%
             </p>
             <p className="mt-2 flex items-center gap-1.5 text-[11px] text-paper-100/40 md:justify-end">
               <FileSpreadsheet size={12} className="text-gold-500/70" />

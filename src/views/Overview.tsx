@@ -20,7 +20,7 @@ export function SheetCover({ go }: { go: (tab: number) => void }) {
       <SectionHead
         no="01"
         title="Стратегия в цифрах"
-        sub="Epilate-Me · Москва, 6 филиалов · план: 54 лида в день на сеть, конверсия лид → клиент 60%"
+        sub="Epilate-Me · Москва, 6 филиалов · 8 каналов · план 59 лидов/день, CR лид→клиент 60%"
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

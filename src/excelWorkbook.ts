@@ -58,7 +58,7 @@ function block(
   headers: string[],
   rows: Cell[][],
   widths: number[],
-  opts: { note?: string; totalLast?: boolean; zebra?: boolean; alignRight?: number[] } = {}
+  opts: { note?: string; totalLast?: boolean; zebra?: boolean; alignRight?: number[]; total?: Cell[] } = {}
 ): number {
   if (head) {
     const h = ws.getCell(row, 1);
@@ -108,6 +108,18 @@ function block(
     row += 1;
   });
 
+  if (opts.total) {
+    opts.total.forEach((v, ci) => {
+      const cell = ws.getCell(row, ci + 1);
+      cell.value = v;
+      cell.font = { name: F_BODY, size: 10.5, bold: true, color: { argb: INK_TX } };
+      cell.fill = { type: "pattern", pattern: "solid", fgColor: { argb: ZEBRA_BG } };
+      cell.alignment = { horizontal: opts.alignRight?.includes(ci) ? "right" : "left", vertical: "top", wrapText: true };
+      cell.border = bord;
+    });
+    row += 1;
+  }
+
   if (opts.note) {
     row += 1;
     const n = ws.getCell(row, 1);
@@ -135,23 +147,23 @@ export function buildStrategyWorkbook(ExcelJS: any, d: any): any {
   let r = title(
     ws,
     "МАРКЕТИНГ-СТРАТЕГИЯ EPILATE-ME 2026–2027",
-    `Сеть клиник лазерной эпиляции и косметологии · Москва, ${d.branches.length} филиалов · план: ${p.leadsDayNetwork} лида в день на сеть, конверсия лид→клиент ${p.conv}%`
+    `Сеть клиник лазерной эпиляции · Москва, ${d.branches.length} филиалов · 8 каналов · план ${p.leadsDayNetwork} лидов/день, CR лид→клиент ${p.conv}%`
   );
   r = block(
     ws, r, "СТРАТЕГИЯ В ЦИФРАХ",
     ["Параметр", "Значение"],
     [
-      ["Бюджет · целевой месяц", `${fmt(p.budget)} ₽/мес · привлечение ${fmt(p.budgetAcquisition)} + CRM ${fmt(p.budgetCrm)}`],
-      ["Лидов в день · сеть", `${p.leadsDayNetwork} (по ${p.leadsDayBranch} на филиал)`],
-      ["Продаж в день · сеть", `${p.salesDayNetwork} (${fmt(p.salesNew)} новых + ${fmt(p.salesRepeat)} повторных · CR лид→клиент ${p.conv}%)`],
-      ["Лидов / продаж в месяц", `${fmt(p.leadsMonth)} / ${fmt(p.salesMonth)}`],
+      ["Бюджет · целевой месяц", `${fmt(p.budget)} ₽/мес · 8 каналов`],
+      ["Лидов в день · сеть", `${p.leadsDayNetwork} (${fmt(p.leadsMonth)}/мес · ~${p.leadsDayBranch} на филиал)`],
+      ["Продаж в день · сеть", `${p.salesDayNetwork} (${fmt(p.salesMonth)}/мес · CR ${p.conv}%)`],
       ["Выручка 1-го месяца", `${fmt(p.revenueMonth)} ₽`],
       ["Маржа 1-го месяца", `${fmt(p.marginMonth)} ₽ (${p.marginRate}%)`],
       ["ROMI 1-го месяца (маржа)", `+${fmt(p.romi1mo)}% (по LTV +${fmt(p.romiLtv)}%)`],
-      ["LTV-маржа когорты · 12 мес", `${fmt(p.salesNew * p.ltvMargin)} ₽ · ${fmt(p.salesNew)} × ${fmt(p.ltvMargin)}`],
-      ["CPL / CAC", `${fmt(p.cpl)} ₽ / ${fmt(p.cac)} ₽ · безубыточный CAC ${fmt(p.breakevenCac)} ₽ (запас ×${p.safety})`],
+      ["LTV-маржа когорты · 12 мес", `${fmt(p.salesMonth * p.ltvMargin)} ₽ · ${fmt(p.salesMonth)} × ${fmt(p.ltvMargin)}`],
+      ["CPL / CAC", `${fmt(p.cpl)} ₽ / ${fmt(p.cac)} ₽`],
+      ["Допустимые пределы (стоп)", `CPL ${fmt(p.cplLimit)} ₽ · CAC ${fmt(p.cacLimit)} ₽ · запас ×${p.safety}`],
     ],
-    [34, 96],
+    [34, 70],
     { zebra: true }
   );
   r = block(
@@ -178,20 +190,30 @@ export function buildStrategyWorkbook(ExcelJS: any, d: any): any {
 
   /* ---------- 2. ДАШБОРД ---------- */
   ws = wb.addWorksheet("2. Дашборд");
-  r = title(ws, "ДАШБОРД", "Целевые показатели и KPI с красными линиями");
+  r = title(ws, "ДАШБОРД", "Целевые показатели, горизонты и KPI с красными линиями");
   r = block(
-    ws, r, "ЦЕЛЕВЫЕ ПОКАЗАТЕЛИ",
-    ["Метрика", "Цель", "Комментарий"],
-    d.dashboardGoals.map((g: any) => [g.label, g.value, g.note]),
-    [30, 18, 60],
-    { zebra: true }
+    ws, r, "ЦЕЛЕВЫЕ ПОКАЗАТЕЛИ ПО ГОРИЗОНТАМ",
+    ["Метрика", "Старт", "3 мес", "6 мес", "12 мес"],
+    [
+      ["Лидов / день · сеть", 30, 45, 52, p.leadsDayNetwork],
+      ["Продаж / день · сеть", 18, 27, 31, p.salesDayNetwork],
+      ["CPL (лид), ₽", "≤ 900", "≤ 700", "≤ 600", "≤ 550"],
+      ["Выручка / мес на филиал, ₽", 500000, 650000, 750000, "800 000+"],
+      ["Органика (Google Maps)", "~2%", "3%", "4%", "≥ 4%"],
+      ["ROMI (маржа)", "+180%", "+220%", "+254%", "+254%"],
+    ],
+    [30, 14, 14, 14, 14],
+    { zebra: true, alignRight: [1, 2, 3, 4] }
   );
   r = block(
     ws, r, "KPI-КОНТРОЛЬ (КРАСНЫЕ ЛИНИИ)",
-    ["Метрика", "Цель", "Красная линия", "Частота"],
+    ["Метрика", "Цель", "Красная линия (стоп)", "Частота"],
     d.kpiControl.map((k: any) => [k.metric, k.target, k.red, k.freq]),
-    [34, 18, 22, 16],
-    { zebra: true }
+    [30, 16, 24, 16],
+    {
+      zebra: true,
+      note: "Правило среза: метрика за красной линией → стоп бюджета канала на 48 ч, разбор (креативы, ставки, посадочная, скрипты).",
+    }
   );
 
   /* ---------- 3. ЮНИТ-ЭКОНОМИКА ---------- */
@@ -210,11 +232,11 @@ export function buildStrategyWorkbook(ExcelJS: any, d: any): any {
   r = title(
     ws,
     "МЕДИАПЛАН (ЦЕЛЕВОЙ МЕСЯЦ)",
-    `${fmt(p.budget)} ₽/мес → ${fmt(p.leadsMonth)} лидов → ${fmt(p.salesMonth)} продаж (${fmt(p.salesNew)} новых + ${fmt(p.salesRepeat)} повторных) · ROMI по марже = (маржа − бюджет) / бюджет`
+    `${fmt(p.budget)} ₽/мес → ${fmt(p.leadsMonth)} лид → ${fmt(p.salesMonth)} продаж · ROMI по марже = (маржа − бюджет) / бюджет`
   );
   r = block(
     ws, r, null,
-    ["Канал", "Бюджет, ₽", "Клики", "CPC, ₽", "CV клик→лид", "Лиды", "CPL, ₽", "Продажи (60%)", "Выручка, ₽", "ROMI (маржа)"],
+    ["Канал", "Бюджет, ₽", "Клики / отправки", "CPC, ₽", "CV клик→лид", "Лиды", "CPL, ₽", "Продажи (60%)", "Выручка, ₽", "ROMI (маржа)"],
     [
       ...d.mediaChannels.map((c: any) => [
         c.name,
@@ -228,22 +250,10 @@ export function buildStrategyWorkbook(ExcelJS: any, d: any): any {
         c.revenue,
         c.organic ? "органика" : `+${fmt(c.romi)}%`,
       ] as Cell[]),
-      [
-        d.mediaTotal.name,
-        d.mediaTotal.budget,
-        d.mediaTotal.clicks ?? "—",
-        d.mediaTotal.cpc ?? "—",
-        d.mediaTotal.cv,
-        d.mediaTotal.leads ?? "—",
-        d.mediaTotal.cpl ?? "—",
-        d.mediaTotal.sales,
-        d.mediaTotal.revenue,
-        `+${fmt(d.mediaTotal.romi)}%`,
-      ] as Cell[],
     ],
-    [28, 13, 10, 9, 12, 9, 9, 16, 13, 13],
+    [30, 12, 16, 9, 12, 8, 9, 13, 13, 13],
     {
-      totalLast: true,
+      total: [d.mediaTotal.name, d.mediaTotal.budget, "—", "—", "—", d.mediaTotal.leads, d.mediaTotal.cpl, d.mediaTotal.sales, d.mediaTotal.revenue, `+${fmt(d.mediaTotal.romi)}%`],
       zebra: true,
       alignRight: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       note: d.channelNotes.join(" "),
@@ -257,66 +267,63 @@ export function buildStrategyWorkbook(ExcelJS: any, d: any): any {
     ws, r, null,
     ["Этап воронки", "Значение", "Конверсия", "Комментарий"],
     d.funnelStages.map((s: any) => [s.stage, s.value, s.conv ?? "—", s.note]),
-    [30, 16, 20, 54],
+    [28, 12, 12, 44],
     { zebra: true, alignRight: [1] }
   );
   r = block(
-    ws, r, `ЭКОНОМИКА КОГОРТЫ · ${fmt(p.salesNew)} НОВЫХ КЛИЕНТОВ`,
+    ws, r, `ЭКОНОМИКА КОГОРТЫ · ${fmt(p.salesMonth)} КЛИЕНТОВ`,
     ["Показатель", "Расчёт", "Значение"],
     d.cohortEconomics.map((c: any) => [
       c.label,
       c.formula,
       `${"prefix" in c ? c.prefix : ""}${fmt(c.value)}${c.suffix}`,
     ]),
-    [34, 42, 24],
+    [36, 34, 20],
     { zebra: true }
   );
   r = block(
-    ws, r, "ЭКОНОМИКА ОДНОГО ФИЛИАЛА · В МЕСЯЦ",
+    ws, r, "ЭКОНОМИКА ОДНОГО ФИЛИАЛА · МЕСЯЦ",
     ["Показатель", "Значение", "Расчёт"],
     [
-      ["Лидов в день", String(p.leadsDayBranch), `≈ ${fmt(Math.round(p.leadsMonth / d.branches.length))} в месяц`],
-      ["Продаж в день", "6,3", `≈ ${fmt(Math.round(p.salesMonth / d.branches.length))} в месяц · CR ${p.conv}%`],
-      ["Выручка 1-го месяца", `≈ ${fmt(Math.round(p.revenueMonth / d.branches.length))} ₽`, `${fmt(p.revenueMonth)} / ${d.branches.length}`],
-      ["Бюджет на филиал", `${fmt(p.budgetBranch)} ₽/мес`, `${fmt(p.budget)} / ${d.branches.length}`],
+      ["Лидов в день", p.leadsDayBranch, `${fmt(p.leadsMonth)} / 30 / ${d.branches.length}`],
+      ["Продаж в день", p.salesDayBranch, `${fmt(p.salesMonth)} / 30 / ${d.branches.length}`],
+      ["Выручка 1-го месяца", `${fmt(Math.round(p.revenueMonth / d.branches.length))} ₽`, `${fmt(p.revenueMonth)} / ${d.branches.length}`],
+      ["Бюджет на филиал", `${fmt(p.budgetBranch)} ₽`, `${fmt(p.budget)} / ${d.branches.length}`],
     ],
-    [34, 22, 44],
-    {
-      zebra: true,
-      note: `Умножьте на ${d.branches.length} — получите ${p.leadsDayNetwork} лида и ${p.salesDayNetwork} продаж в день на всю сеть.`,
-    }
+    [36, 16, 24],
+    { zebra: true }
   );
 
   /* ---------- 6. ROADMAP ---------- */
   ws = wb.addWorksheet("6. Roadmap");
-  r = title(ws, "ДОРОЖНАЯ КАРТА ВНЕДРЕНИЯ", `4 фазы на 12 месяцев: от настройки аналитики до ${fmt(p.budget)} ₽/мес и ${p.leadsDayNetwork} лидов в день`);
+  r = title(ws, "ДОРОЖНАЯ КАРТА ВНЕДРЕНИЯ", `4 фазы на 12 месяцев: от аналитики до ${fmt(p.budget)} ₽/мес и ${p.leadsDayNetwork} лидов/день`);
   r = block(
     ws, r, null,
-    ["Фаза / период", "Действия", "Бюджет", "KPI выхода из фазы"],
+    ["Фаза / период", "Действия", "Бюджет", "KPI выхода"],
     d.phases.map((ph: any) => [`${ph.phase} · ${ph.period}`, ph.actions.join("; "), ph.budget, ph.kpi]),
-    [22, 78, 18, 42],
+    [20, 62, 16, 34],
     { zebra: true }
   );
 
   /* ---------- 7. КОНТРОЛЬНЫЕ ТОЧКИ ---------- */
   ws = wb.addWorksheet("7. Контрольные точки");
-  r = title(ws, "ТАБЛИЦА КОНТРОЛЬНЫХ ТОЧЕК", "Срезы и решения: каждая точка отвечает «идём дальше, масштабируем или чиним»");
+  r = title(ws, "ТАБЛИЦА КОНТРОЛЬНЫХ ТОЧЕК", "Каждая точка отвечает: идём дальше, масштабируем или чиним");
   r = block(
     ws, r, null,
     ["Точка", "Что проверяем", "KPI", "Решение"],
     d.checkpoints.map((c: any) => [c.point, c.check, c.kpi, c.decision]),
-    [20, 24, 52, 34],
+    [18, 24, 52, 30],
     { zebra: true }
   );
 
   /* ---------- 8. РИСКИ ---------- */
   ws = wb.addWorksheet("8. Риски");
-  r = title(ws, "РИСКИ");
+  r = title(ws, "РИСКИ", "У каждого риска заранее подготовленный ответ");
   r = block(
     ws, r, null,
     ["Риск", "Вероятность", "Влияние", "Что делаем"],
     d.risks.map((x: any) => [x.risk, x.prob, x.impact, x.mitigation]),
-    [36, 14, 12, 78],
+    [34, 14, 12, 62],
     { zebra: true }
   );
 
@@ -327,17 +334,7 @@ export function buildStrategyWorkbook(ExcelJS: any, d: any): any {
     ws, r, null,
     ["Канал", "Ключевые действия", "Ожидаемый результат"],
     d.channelDetails.map((c: any) => [c.channel, c.actions, c.result]),
-    [22, 82, 36],
-    { zebra: true }
-  );
-  r = block(
-    ws, r, "ПАМЯТКА ПО ПЛАНУ",
-    ["Тезис", "Цифра"],
-    d.tickerItems.map((t: string) => {
-      const [a, b] = t.includes(" — ") ? t.split(" — ") : [t, ""];
-      return [a, b];
-    }),
-    [40, 90],
+    [24, 62, 30],
     { zebra: true }
   );
 

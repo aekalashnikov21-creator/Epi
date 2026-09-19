@@ -26,7 +26,7 @@ export function SheetEconomics() {
       <SectionHead
         no="03"
         title="Юнит-экономика одного клиента"
-        sub="База для всех расчётов: чек 4 550 ₽, маржинальность 67%, курс 8–10 процедур, LTV-маржа 32 000 ₽"
+        sub="База расчётов ROMI и CAC · ROMI считается по марже"
       />
 
       <div className="grid gap-4 lg:grid-cols-5">
@@ -151,7 +151,7 @@ export function SheetMedia() {
       <SectionHead
         no="04"
         title="Медиаплан"
-        sub="Целевой месяц · 1 080 000 ₽/мес (привлечение 930 000 + CRM 150 000) → 1 610 лид → 1 141 продажа · ROMI по марже"
+        sub="Целевой месяц · 910 000 ₽/мес → 1 761 лид → 1 057 продаж · ROMI по марже = (маржа − бюджет) / бюджет"
       />
 
       <Reveal>
@@ -260,7 +260,7 @@ export function SheetFunnel() {
       <SectionHead
         no="05"
         title="Полная маркетинговая воронка"
-        sub="Целевой месяц · 1 610 лид → 966 новых клиентов (60%) → процедуры 1-го месяца и LTV"
+        sub="Целевой месяц · путь от лида до LTV-маржи когорты"
       />
 
       <Reveal>
@@ -306,7 +306,7 @@ export function SheetFunnel() {
       <Reveal delay={120} className="mt-12">
         <p className="mb-4 flex items-center gap-2 font-display text-[12px] font-semibold tracking-[0.22em] text-ink-500 uppercase">
           <span className="h-1.5 w-1.5 rotate-45 bg-gold-500" />
-          Экономика когорты · 966 новых клиентов
+          Экономика когорты · 1 057 клиентов
         </p>
       </Reveal>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
