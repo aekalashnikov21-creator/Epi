@@ -25,7 +25,7 @@ const stripModuleType = () => ({
 });
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), viteSingleFile(), inlineStrategyXlsx(), stripModuleType()],
+  plugins: [react(), tailwindcss(), inlineStrategyXlsx(), viteSingleFile(), stripModuleType()],
   base: "./",
   build: {
     target: "es2018",
